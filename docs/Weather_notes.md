@@ -1,6 +1,6 @@
-#Weather notes version1
+# Weather notes version1
 
-##Weather class
+## Weather class
 
 **purpose**: this class is used for containing current weather status 
 
@@ -8,7 +8,7 @@
 
 **methods**: getters and setters for the attributes 
 
-##WeatherStandard class
+## WeatherStandard class
 
 **purpose**: this this class is used for containing weather standard and checking whether the weather meet the requirements 
 
