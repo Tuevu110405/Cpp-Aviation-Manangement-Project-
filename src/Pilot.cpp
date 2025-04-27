@@ -1,4 +1,3 @@
-
 #include "../include/Pilot.h"
 #include <cctype>
 
@@ -12,10 +11,11 @@ Pilot::Pilot(string n, int a, char g, PilotCompetence competence, PilotCertifica
     pilotCertificate = certificate;
 }
 
-// Definition of Mutator functions.
+// The function Pilot::setName
 void Pilot::setName(string newName)
 {   
-    // If the name contains invalid character.
+    // If the name contains invalid character (other than letters and spaces),
+    // then throw an exception.
     for (int i = 0; i < newName.length(); i++)
     {
         if (!isalpha(newName[i]) && !isspace(newName[i]))
@@ -23,10 +23,11 @@ void Pilot::setName(string newName)
             throw InvalidName(newName);
         }
     }
-    // Otherwise
+    // Otherwise, store the argument in the member variable.
     name = newName;
 }
 
+// The function Pilot::setAge
 void Pilot::setAge(int newAge)
 {
     if (newAge < 0)

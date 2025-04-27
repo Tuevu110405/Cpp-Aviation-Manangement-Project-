@@ -17,11 +17,6 @@ void PilotStandard::setMinRequiredHoursInCommand(int hours)
 void PilotStandard::setRequiredLicenseType(string type)
 { requiredLicenseType = type; }
 
-/*
-void PilotStandard::setRequiredTypeRating(string rating)
-{ requiredTypeRating = rating; }
-*/
-
 void PilotStandard::setMinRequiredEnglishLevel(int level)
 { minRequiredEnglishLevel = level; }
 
@@ -46,11 +41,6 @@ int PilotStandard::getMinRequiredHoursInCommand() const
 
 string PilotStandard::getRequiredLicenseType() const
 { return requiredLicenseType; }
-
-/*
-string PilotStandard::getRequiredTypeRating() const
-{ return requiredTypeRating; }
-*/
 
 int PilotStandard::getMinRequiredEnglishLevel() const
 { return minRequiredEnglishLevel; }

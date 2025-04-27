@@ -13,12 +13,11 @@ class PilotStandard
 {
 private:
     string modelName;   // The model for which the standards are applied for.    
-    int minRequiredFlightHours;  // The minimum required number of flight hours.
+    int minRequiredFlightHours;       // The minimum required number of flight hours.
     int minRequiredHoursInCommand;    // The minimum required number of hours in command.
-    string requiredLicenseType;     // The required liscense type.
-    // string requiredTypeRating;      // The array to store required type rating.
-    int minRequiredEnglishLevel;   // The minimum required English level.
-    int requiredHealthStatus;      // The minimum required health status.
+    string requiredLicenseType;       // The required liscense type.
+    int minRequiredEnglishLevel;      // The minimum required English level.
+    int requiredHealthStatus;         // The minimum required health status.
     int maxAgeMale;     // The maximum age for a male pilot.
     int maxAgeFemale;   // The maximum age for a female pilot.
 
@@ -27,7 +26,6 @@ private:
     void setMinRequiredFlightHours(int);
     void setMinRequiredHoursInCommand(int);
     void setRequiredLicenseType(string);
-    // void setRequiredTypeRating(string);
     void setMinRequiredEnglishLevel(int);
     void setRequiredHealthStatus(int);
     void setMaxAgeMale(int);
@@ -39,7 +37,6 @@ public:
     int getMinRequiredFlightHours() const;
     int getMinRequiredHoursInCommand() const;
     string getRequiredLicenseType() const;
-    // string getRequiredTypeRating() const;
     int getMinRequiredEnglishLevel() const;
     int getRequiredHealthStatus() const;
     int getMaxAgeMale() const;
