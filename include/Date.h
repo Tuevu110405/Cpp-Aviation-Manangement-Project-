@@ -67,7 +67,7 @@ public:
     void setDay(int);
     void setYear(int);
 
-    // Other functions.
+    // Overloaded operators.
     bool operator > (const Date &);
     bool operator == (const Date &);
     friend istream &operator >> (istream &, Date &);

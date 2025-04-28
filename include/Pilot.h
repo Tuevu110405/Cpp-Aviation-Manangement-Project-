@@ -13,10 +13,11 @@ private:
     string name;    // The pilot's name.
     int age;        // The pilot's age.
     char gender;    // The pilot's gender.
-    PilotCompetence pilotCompetence; // The pilot's competence.
+    PilotCompetence pilotCompetence;    // The pilot's competence.
     PilotCertificate pilotCertificate;  // The pilot's certificate.
 public:
-    // Classes for throwing exception.
+    // Class for throwing exception when the pilot's
+    // name is invalid.
     class InvalidName
     {
     private:
@@ -28,6 +29,8 @@ public:
             { return value; }
     };
 
+    // Class for throwing exception when the pilot's 
+    // age is invalid.
     class InvalidAge
     {
     private:
@@ -39,6 +42,8 @@ public:
             { return value; }
     };
 
+    // Class for throwing exception when the pilot's
+    // gender is invalid.
     class InvalidGender
     {
     private:

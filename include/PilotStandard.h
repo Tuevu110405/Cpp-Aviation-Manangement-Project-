@@ -12,24 +12,14 @@ using namespace std;
 class PilotStandard
 {
 private:
-    string modelName;   // The model for which the standards are applied for.    
-    int minRequiredFlightHours;       // The minimum required number of flight hours.
-    int minRequiredHoursInCommand;    // The minimum required number of hours in command.
-    string requiredLicenseType;       // The required liscense type.
-    int minRequiredEnglishLevel;      // The minimum required English level.
-    int requiredHealthStatus;         // The minimum required health status.
+    string modelName;            // The model for which the standards are applied for.    
+    int minRequiredFlightHours;  // The minimum required number of flight hours.
+    int minRequiredHoursInCommand;  // The minimum required number of hours in command.
+    string requiredLicenseType;     // The required liscense type.
+    int minRequiredEnglishLevel;    // The minimum required English level.
+    int requiredHealthStatus;       // The minimum required health status.
     int maxAgeMale;     // The maximum age for a male pilot.
     int maxAgeFemale;   // The maximum age for a female pilot.
-
-    // Mutator functions.
-    void setModelName(string);
-    void setMinRequiredFlightHours(int);
-    void setMinRequiredHoursInCommand(int);
-    void setRequiredLicenseType(string);
-    void setMinRequiredEnglishLevel(int);
-    void setRequiredHealthStatus(int);
-    void setMaxAgeMale(int);
-    void setMaxAgeFemale(int);
 
 public:
     // Accessor functions.
@@ -43,7 +33,7 @@ public:
     int getMaxAgeFemale() const;
 
     // Other funtions.
-    static void loadStandardsFromFile(PilotStandard*, ifstream&);
+    static void loadStandardsFromFile(PilotStandard*, ifstream&, const int &);
     friend ostream& operator << (ostream &, const PilotStandard&);
 }; 
 #endif

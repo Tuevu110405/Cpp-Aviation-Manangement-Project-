@@ -12,7 +12,7 @@ private:
     string licenseNumber;   // The pilot's license number.
     Date expiryDate;        // The expiration date of the pilot's license.
 public:
-    // Class to throw exception.
+    // Class to throw exception when the license type is invalid.
     class InvalidType
     {
     private:
