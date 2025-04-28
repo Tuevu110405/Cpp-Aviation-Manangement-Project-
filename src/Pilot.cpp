@@ -37,19 +37,24 @@ void Pilot::setAge(int newAge)
     age = newAge;
 }
 
+// The function Pilot::setGender
 void Pilot::setGender(char newGender)
 {
     // Constants.
     const char MALE = 'M';
     const char FEMALE = 'F';
 
+    // If the gender is invalid, then throw an InvalidGender object
+    // with invalid gender value as an exception.
     if (toupper(newGender) != MALE && toupper(newGender) != FEMALE)
     {
         throw InvalidGender(newGender);
     }
+    // Otherwise, store the argument in member variable.
     gender = newGender;
 }
 
+// The function Pilot::setPilotCompetence
 void Pilot::setPilotCompetence(const PilotCompetence &newCompetence)
 {
     pilotCompetence = newCompetence;
