@@ -1,35 +1,10 @@
-#include "../include/PilotStandard.h"
+#include "PilotStandard.h"
 #include <sstream>
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Definition of Mutator functions.
-void PilotStandard::setModelName(string model)
-{ modelName = model; }
-
-void PilotStandard::setMinRequiredFlightHours(int hours)
-{ minRequiredFlightHours = hours; }
-
-void PilotStandard::setMinRequiredHoursInCommand(int hours)
-{ minRequiredHoursInCommand = hours; }
-
-void PilotStandard::setRequiredLicenseType(string type)
-{ requiredLicenseType = type; }
-
-void PilotStandard::setMinRequiredEnglishLevel(int level)
-{ minRequiredEnglishLevel = level; }
-
-void PilotStandard::setRequiredHealthStatus(int status)
-{ requiredHealthStatus = status; }
-
-void PilotStandard::setMaxAgeMale(int age)
-{ maxAgeMale = age; }
-
-void PilotStandard::setMaxAgeFemale(int age)
-{ maxAgeFemale = age; }
-
-// Definition of Accessor functions.
+// Definition of PilotStandard::getModelName
 string PilotStandard::getModelName() const
 { return modelName; }
 
@@ -55,7 +30,7 @@ int PilotStandard::getMaxAgeFemale() const
 { return maxAgeFemale; }
 
 // Other functions.
-void PilotStandard::loadStandardsFromFile(PilotStandard* arrPtr, ifstream &inputFile)
+void PilotStandard::loadStandardsFromFile(PilotStandard* arrPtr, ifstream &inputFile, const int &numOfRecords)
 {
     // Skip the header line.
     string headerLine;
@@ -65,11 +40,20 @@ void PilotStandard::loadStandardsFromFile(PilotStandard* arrPtr, ifstream &input
     int index = 0;  // Index of the array.
     string line;
 
-    while(getline(inputFile, line))
+    while(!inputFile.eof() && index < numOfRecords)
     {
+        // Read the entire line in the file.
+        getline(inputFile, line);
+
+        // Skip empty lines.
+        if (line.empty()) 
+            continue; 
+
+        // Create a PilotStandard object.
         PilotStandard pilotStandard;
         string token;
 
+        // Convert the line into a stream.
         stringstream ss(line);
 
         // Read the model name.
@@ -104,11 +88,27 @@ void PilotStandard::loadStandardsFromFile(PilotStandard* arrPtr, ifstream &input
 
         // Store the data of standards into the array.
         arrPtr[index] = pilotStandard;
+
         // Increment the index.
         index++;
     }
+
+    // If the number of records in the file is less than 
+    // the number of elements in the array.
+    if (index < numOfRecords)
+    {
+        // Create a PilotStandard with default values.
+        PilotStandard pilotStandard;
+
+        // Store default information in the element.
+        for (int count = index; index < numOfRecords; index++)
+        {
+            arrPtr[count] = pilotStandard;
+        }
+    }
 }
 
+// The overloaded cout << operator.
 ostream &operator << (ostream &strm, const PilotStandard &obj)
 {
     strm << "Model name: " << obj.getModelName() << endl;

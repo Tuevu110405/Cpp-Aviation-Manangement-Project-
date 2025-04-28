@@ -1,4 +1,4 @@
-#include "../include/PilotCertificate.h"
+#include "PilotCertificate.h"
 #include <ctime>
 #include <cctype>
 
@@ -8,7 +8,7 @@ PilotCertificate::PilotCertificate(string type, string number, Date date)
     // Try to store argument in the member variables.
     try
     {
-        licenseType = type;
+        setLicenseType(type);
         licenseNumber = number;
         expiryDate = date;
     }
@@ -19,7 +19,7 @@ PilotCertificate::PilotCertificate(string type, string number, Date date)
     }
 }
 
-// Definition of Mutator functions.
+// Definition of PilotCertificate::setLicenseType
 void PilotCertificate::setLicenseType(string type)
 {
     // An array of valid license types.
@@ -29,6 +29,7 @@ void PilotCertificate::setLicenseType(string type)
     // Convert the license type into uppercase.
     string output = "";
 
+    // Scanning the input from left to right.
     for (int i = 0; i < type.length(); i++)
     {
         // Check if the license type contains invalid characters.
@@ -43,7 +44,7 @@ void PilotCertificate::setLicenseType(string type)
         }
     }
 
-    // Validate the license type.
+    // Search for the license type in the array.
     bool isFound = false;
 
     for (int i = 0; i < NUM_OF_TYPES; i++)
@@ -52,9 +53,12 @@ void PilotCertificate::setLicenseType(string type)
         {
             licenseType = output;
             isFound = true;
+            break;
         }
     }
 
+    // If the license type is not found in the array, throws
+    // an InvalidType object as an exception.
     if (!isFound)
     {
         throw InvalidType(output);
@@ -62,28 +66,30 @@ void PilotCertificate::setLicenseType(string type)
     
 }
 
+// Definition of PilotCertificate::setLicenseNumber
 void PilotCertificate::setLicenseNumber(string number)
 {
     licenseNumber = number;
 }
 
+// Definition of PilotCertificate::setExpiryDate
 void PilotCertificate::setExpiryDate(Date date)
 {
     expiryDate = date;
 }
 
-// Overloaded operators.
+// Overloaded operator: cin >>
 istream &operator >> (istream &strm, PilotCertificate &obj)
 {   
     // Variables.
-    string type;
+    string type;    // Hold the license type.
 
+    // Prompt user for input.
     while (true)
     {
         try
         {
             cout << "Enter pilot's license type: ";
-            cin.ignore();
             getline(strm, type);
             obj.setLicenseType(type);
 
@@ -91,7 +97,8 @@ istream &operator >> (istream &strm, PilotCertificate &obj)
             getline(strm, obj.licenseNumber);
 
             cout << "Enter the expiration date of the license.\n";
-            strm >> obj.expiryDate;
+            strm >> obj.expiryDate;     // Calling cin >> in the Date class.
+
             break;
         }
         catch (PilotCertificate::InvalidType e)
@@ -104,6 +111,7 @@ istream &operator >> (istream &strm, PilotCertificate &obj)
     return strm;
 }
 
+// Overloaded operator: cout <<
 ostream &operator << (ostream &strm, const PilotCertificate &obj)
 {
     strm << "Pilot's license type: " << obj.getLicenseType() << endl;
@@ -113,10 +121,10 @@ ostream &operator << (ostream &strm, const PilotCertificate &obj)
     return strm;
 }
 
-// Other functions defined in PilotCertificate.cpp.
+// Definition of PilotCertificate::isLicenseExpired
 bool PilotCertificate::isLicenseExpired()
 {
-    // Get the curren month, day, and year.
+    // Get the current month, day, and year.
     time_t now = time(0);          // Get current system time as a raw time value.
     tm* ltm = localtime(&now);     // Convert raw time into local time structure (calendar form).
     

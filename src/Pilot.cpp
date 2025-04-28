@@ -1,21 +1,35 @@
-#include "../include/Pilot.h"
+#include "Pilot.h"
 #include <cctype>
 
-// Definition of constructor
+// Definition of constructor.
 Pilot::Pilot(string n, int a, char g, PilotCompetence competence, PilotCertificate certificate)
 {
-    name = n;
-    age = a;
-    gender = g;
-    pilotCompetence = competence;
-    pilotCertificate = certificate;
+    try
+    {
+        setName(n);
+        setAge(a);
+        setGender(g);
+        setPilotCompetence(competence);
+        setPilotCertificate(certificate);
+    }
+    catch (InvalidName errorName)
+    {
+        throw errorName;
+    }
+    catch (InvalidAge errorAge)
+    {
+        throw errorAge;
+    }
+    catch (InvalidGender errorGender)
+    {
+        throw errorGender;
+    }
 }
 
-// The function Pilot::setName
+// Definition of Pilot::setName
 void Pilot::setName(string newName)
 {   
-    // If the name contains invalid character (other than letters and spaces),
-    // then throw an exception.
+    // If the name contains invalid character.
     for (int i = 0; i < newName.length(); i++)
     {
         if (!isalpha(newName[i]) && !isspace(newName[i]))
@@ -23,11 +37,11 @@ void Pilot::setName(string newName)
             throw InvalidName(newName);
         }
     }
-    // Otherwise, store the argument in the member variable.
+    // Otherwise
     name = newName;
 }
 
-// The function Pilot::setAge
+// Definition of Pilot::setAge
 void Pilot::setAge(int newAge)
 {
     if (newAge < 0)
@@ -37,16 +51,20 @@ void Pilot::setAge(int newAge)
     age = newAge;
 }
 
+// Definition of Pilot::setGender
 void Pilot::setGender(char newGender)
 {
-    // Constants.
+    // Constants for pilot's gender.
     const char MALE = 'M';
     const char FEMALE = 'F';
 
+    // If the newGender is invalid, then throw an InvalidGender object
+    // as an exception.
     if (toupper(newGender) != MALE && toupper(newGender) != FEMALE)
     {
         throw InvalidGender(newGender);
     }
+    // Otherwise, store the argument in the member variable.
     gender = newGender;
 }
 
@@ -63,11 +81,11 @@ void Pilot::setPilotCertificate(const PilotCertificate &newCertificate)
 // Overloaded operators.
 istream &operator >> (istream & strm, Pilot &obj)
 {
-    // Constants.
+    // Constants for gender.
     const char MALE = 'M';
     const char FEMALE = 'F';
 
-    // Variables.
+    // Variables declaration.
     string pilotName;
     int pilotAge;
     char pilotGender;
@@ -97,6 +115,7 @@ istream &operator >> (istream & strm, Pilot &obj)
         {
             cout << "Enter the pilot's age: ";
             strm >> pilotAge;
+            strm.ignore();
             obj.setAge(pilotAge);
             
             break;
@@ -115,6 +134,7 @@ istream &operator >> (istream & strm, Pilot &obj)
         {
             cout << "Enter the pilot's gender (M/F): ";
             strm >> pilotGender;
+            strm.ignore();
             obj.setGender(pilotGender);
 
             break;
@@ -139,10 +159,11 @@ istream &operator >> (istream & strm, Pilot &obj)
 
 ostream &operator << (ostream & strm, const Pilot &obj)
 {
-    // Constants.
+    // Constant for pilot's gender.
     const char MALE = 'M';
     const char FEMALE = 'F';
 
+    // Display pilot's information.
     strm << "Name: " << obj.getName() << endl;
     strm << "Age: " << obj.getAge() << endl;
     strm << "Gender: " << (obj.getGender() == MALE ? "Male" : "Female") << endl;
@@ -156,7 +177,7 @@ ostream &operator << (ostream & strm, const Pilot &obj)
 
 bool Pilot::operator >= (const PilotStandard &standard)
 {
-    // Constants.
+    // Constants for pilot's gender.
     const char MALE = 'M';
     const char FEMALE = 'F';
 

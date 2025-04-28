@@ -1,4 +1,4 @@
-#include "../include/Date.h"
+#include "Date.h"
 #include <cctype>
 
 // Definition of Constructor.
@@ -94,7 +94,7 @@ void Date::setYear(int newYear)
     year = newYear;
 }
 
-// Other functions.
+// Overloaded operator: >
 bool Date::operator > (const Date &right)
 {
     // If the year of the right-hand date is larger than
@@ -132,6 +132,7 @@ bool Date::operator > (const Date &right)
     return false;
 }
 
+// Overloaded operator: <
 bool Date::operator == (const Date &right)
 {
     if (year == right.year && month == right.month && day == right.day)
@@ -139,6 +140,7 @@ bool Date::operator == (const Date &right)
     return false;
 }
 
+// Overloaded operator: cin >>
 istream &operator >> (istream &strm, Date &obj)
 {
     // Variables.
@@ -151,9 +153,11 @@ istream &operator >> (istream &strm, Date &obj)
         {
             cout << "Enter the month, day, year (E.g: 09 25 2005): ";
             strm >> month >> day >> year;
+            strm.ignore();
             obj.setYear(year);
             obj.setMonth(month);
             obj.setDay(day);
+            
             break;
         }
         // Handle the exception when the year is invalid.
@@ -179,6 +183,7 @@ istream &operator >> (istream &strm, Date &obj)
     return strm;
 }
 
+// Overloaded operator: cout <<
 ostream &operator << (ostream &strm, const Date &obj)
 {
     strm << obj.getMonth() << "/" << obj.getDay() << "/" << obj.getYear();

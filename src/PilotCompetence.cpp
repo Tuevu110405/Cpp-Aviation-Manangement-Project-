@@ -10,16 +10,25 @@ PilotCompetence::PilotCompetence(int flightHr, int hrInCommand, int english, int
         setEnglishLevel(english);
         setHealthStatus(health);
     }
-    catch(const std::exception& e)
+    catch(InvalidHours errorHours)
     {
-        std::cerr << e.what() << '\n';
+        throw errorHours;
     }
-    
+    catch(InvalidEnglish errorEnglish)
+    {
+        throw errorEnglish;
+    }
+    catch(InvalidHealth errorHealth)
+    {
+        throw errorHealth;
+    }
 }
-// Definition of Mutator functions.
+
+// Definition of PilotCompetence::setFlightHours
 void PilotCompetence::setFlightHours(int hours)
 {
-    // If the hours is negetive, then thows an exception.
+    // If the hours is negetive, then thows an InvalidHours object
+    // as an exception.
     if (hours < 0)
     {
         throw InvalidHours(hours);
@@ -28,9 +37,11 @@ void PilotCompetence::setFlightHours(int hours)
     flightHours = hours;
 }
 
+// Definition of PilotCompetence::setHoursInCommand
 void PilotCompetence::setHoursInCommand(int hours)
 {
-    // If the hours is negetive, then thows an exception.
+    // If the hours is negetive, then thows an InvalidHours
+    // object as an exception.
     if (hours < 0 || hours > flightHours)
     {
         throw InvalidHours(hours);
@@ -39,13 +50,15 @@ void PilotCompetence::setHoursInCommand(int hours)
     hoursInCommand = hours;
 }
 
+// Defintion of PilotCompetence::setEnglishLevel
 void PilotCompetence::setEnglishLevel(int level)
 {
-    // Constants
+    // Constants for English level.
     const int MAX_LEVEL = 6;
     const int MIN_LEVEL = 1;
 
-    // If the English leve is not from 1 to 6, then thows an exception.
+    // If the English leve is not from 1 to 6, then thows an 
+    // InvalidEnglish as an exception.
     if (level < MIN_LEVEL || level > MAX_LEVEL)
     {
         throw InvalidEnglish(level);
@@ -54,34 +67,37 @@ void PilotCompetence::setEnglishLevel(int level)
     englishLevel = level;
 }
 
+// Definition of PilotCompetence::setHealthStatus
 void PilotCompetence::setHealthStatus(int status)
 {
-    // Constants
+    // Constants for health status.
     const int MAX_STATUS = 1;
     const int MIN_STATUS = 3;
 
-    // If the English leve is not from 1 to 6, then thows an exception.
+    // If the English leve is not from 1 to 6, then thows an
+    // InvalidHealth object as exception.
     if (status > MIN_STATUS || status < MAX_STATUS)
     {
-        throw InvalidHeath(status);
+        throw InvalidHealth(status);
     }
     // Otherwise, store the argument in the member variable.
     healthStatus = status;
 }
 
-// Overloaded operators.
+// Overloaded operator: cin >>
 istream &operator >> (istream &strm, PilotCompetence &obj)
 {
     // Variables.
     int flightHr, hrInCommand, english, health;
 
-    // // Prompt user for the total flight hours.
+    // Prompt user for the total flight hours.
     while (true)
     {
         try
         {
             cout << "Enter pilot's total flight hours: ";
             strm >> flightHr;
+            strm.ignore();
             obj.setFlightHours(flightHr);
 
             break;
@@ -99,6 +115,7 @@ istream &operator >> (istream &strm, PilotCompetence &obj)
         {
             cout << "Enter pilot's total hours in command: ";
             strm >> hrInCommand;
+            strm.ignore();
             obj.setHoursInCommand(hrInCommand);
 
             break;
@@ -116,6 +133,7 @@ istream &operator >> (istream &strm, PilotCompetence &obj)
         {
             cout << "Enter pilot's English level (1 - 6): ";
             strm >> english;
+            strm.ignore();
             obj.setEnglishLevel(english);
 
             break;
@@ -131,13 +149,14 @@ istream &operator >> (istream &strm, PilotCompetence &obj)
         // Prompt user for the health status.
         try
         {
-            cout << "Enter pilot's heath status (1 - 3): ";
+            cout << "Enter pilot's health status (1 - 3): ";
             strm >> health;
+            strm.ignore();
             obj.setHealthStatus(health);
 
             break;
         }
-        catch (PilotCompetence::InvalidHeath h)
+        catch (PilotCompetence::InvalidHealth h)
         {
             cout << "Error: The value " << h.getValue();
             cout << " is invalid for health status.\n";
@@ -146,6 +165,8 @@ istream &operator >> (istream &strm, PilotCompetence &obj)
 
     return strm;
 }
+
+// Overlaoded operator: cout <<
 ostream &operator << (ostream &strm, const PilotCompetence &obj)
 {
     strm << "Pilot's total flight hours: " << obj.getFlightHours() << endl;
