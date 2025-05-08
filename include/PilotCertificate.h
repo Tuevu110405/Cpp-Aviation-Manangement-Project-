@@ -45,6 +45,6 @@ public:
     friend ostream &operator << (ostream &strm, const PilotCertificate &);
 
     // Other functions defined in PilotCertificate.cpp.
-    bool isLicenseExpired();;
+    bool isLicenseExpired();
 };
 #endif

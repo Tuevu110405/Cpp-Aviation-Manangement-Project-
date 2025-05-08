@@ -37,9 +37,9 @@ public:
     // Accessor functions.
     string getName() const
         { return name; }
-    const PilotCompetence &getPilotCompetence() const
+    PilotCompetence getPilotCompetence() const
         { return pilotCompetence; }
-    const PilotCertificate &getPilotCertificate() const
+    PilotCertificate getPilotCertificate() const
         { return pilotCertificate; }
     
     // Mutator functions.
