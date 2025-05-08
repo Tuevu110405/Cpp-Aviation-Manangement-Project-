@@ -1,0 +1,5 @@
+modelName,minRequiredFlightHours,minRequiredHoursInCommand,requiredLicenseType,minRequiredEnglishLevel,requiredHealthStatus
+BOEING787,5000,2000,ATPL,4,1
+AIRBUSA350,3500,1500,ATPL,4,1
+AIRBUSA320NEO,3500,1500,ATPL,4,1
+AIRBUSA321,3500,1500,ATPL,4,1
