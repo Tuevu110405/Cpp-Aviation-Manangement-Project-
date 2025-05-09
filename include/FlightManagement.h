@@ -1,12 +1,12 @@
-#ifndef FLIGHT_MANAGEMENT_DEPARTMENT_H
-#define FLIGHT_MANAGEMENT_DEPARTMENT_H
+#ifndef FLIGHT_MANAGEMENT_H
+#define FLIGHT_MANAGEMENT_H
 #include "PilotStandard.h"
 #include <string>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-class FlightManagementDepartment
+class FlightManagement
 {
 protected:
     static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)

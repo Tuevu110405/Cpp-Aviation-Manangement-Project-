@@ -1,8 +1,8 @@
-#include "../include/FlightInspectionDepartment.h"
+#include "../include/FlightInspection.h"
 
 
 // Function FlightInspectionDepartment::inspectPilot (Hoang)
-PilotInspectionResult FlightInspectionDepartment::inspectPilot(const Pilot &pilotInfo, const PilotStandard &standard)
+PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, const PilotStandard &standard)
 {
     PilotInspectionResult result("Pilot");
 

@@ -1,12 +1,12 @@
-#include "../include/FlightManagementDepartment.h"
+#include "../include/FlightManagement.h"
 #include <sstream>
 
 // Define static member variables
-vector<PilotStandard> FlightManagementDepartment::pilotStandardArray; // Hoang
+vector<PilotStandard> FlightManagement::pilotStandardArray; // Hoang
 
 
-// Function FlightManagementDepartment::loadPilotStandard (Hoang)
-void FlightManagementDepartment::loadPilotStandard(const string &fileName)
+// Function FlightManagement::loadPilotStandard (Hoang)
+void FlightManagement::loadPilotStandard(const string &fileName)
 {
     // Open the file.
     ifstream inputFile(fileName);
@@ -112,8 +112,8 @@ void FlightManagementDepartment::loadPilotStandard(const string &fileName)
 }
 
 
-// Function FlightManagementDepartment::findPilotStandard (Hoang)
-PilotStandard FlightManagementDepartment::findPilotStandard(const string &model)
+// Function FlightManagement::findPilotStandard (Hoang)
+PilotStandard FlightManagement::findPilotStandard(const string &model)
 {
     PilotStandard pilotStandard;
     for (int count = 0; count < pilotStandardArray.size(); count++)
@@ -128,8 +128,8 @@ PilotStandard FlightManagementDepartment::findPilotStandard(const string &model)
 }
 
 
-// Function FlightManagementDepartment::displayPilotStandards (Hoang)
-void FlightManagementDepartment::displayPilotStandards()
+// Function FlightManagement::displayPilotStandards (Hoang)
+void FlightManagement::displayPilotStandards()
 {
     for (int count = 0; count < pilotStandardArray.size(); count++)
     {
