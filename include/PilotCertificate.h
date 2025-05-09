@@ -43,8 +43,5 @@ public:
     // Overloaded operators.
     friend istream &operator >> (istream &strm, PilotCertificate &);
     friend ostream &operator << (ostream &strm, const PilotCertificate &);
-
-    // Other functions defined in PilotCertificate.cpp.
-    bool isLicenseExpired();
 };
 #endif

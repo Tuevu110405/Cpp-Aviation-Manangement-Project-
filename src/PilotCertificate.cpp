@@ -95,23 +95,3 @@ ostream &operator << (ostream &strm, const PilotCertificate &obj)
 
     return strm;
 }
-
-// Definition of PilotCertificate::isLicenseExpired
-bool PilotCertificate::isLicenseExpired()
-{
-    // Get the current month, day, and year.
-    time_t now = time(0);          // Get current system time as a raw time value.
-    tm* ltm = localtime(&now);     // Convert raw time into local time structure (calendar form).
-    
-    int day = ltm->tm_mday;        // Extract the day of the month (1-31).
-    int month = 1 + ltm->tm_mon;   // Extract the month (0-11), add 1 to convert to (1-12).
-    int year = 1900 + ltm->tm_year;// Extract the year since 1900, add 1900 to get full year.
-
-    // Create a Date object for the current date.
-    Date currentDate(month, day, year);
-
-    // Check the expiration of the license.
-    if (currentDate > expiryDate)
-        return true;
-    return false;
-}
