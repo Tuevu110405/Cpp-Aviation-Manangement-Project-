@@ -8,7 +8,7 @@ using namespace std;
 
 class FlightManagement
 {
-protected:
+private:
     static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)
 public:
     // Pilot-related functions (Hoang)
