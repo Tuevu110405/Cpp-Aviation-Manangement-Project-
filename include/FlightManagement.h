@@ -14,7 +14,7 @@ public:
     // Pilot-related functions (Hoang)
     static void loadPilotStandard(const string &fileName);
     static PilotStandard findPilotStandard(const string &model);
-    static void displayPilotStandards();
+    static void displayPilotStandards(const string &model);
 };
 
 #endif

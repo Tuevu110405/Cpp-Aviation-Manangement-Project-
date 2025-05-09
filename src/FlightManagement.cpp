@@ -1,4 +1,5 @@
 #include "../include/FlightManagement.h"
+#include "../include/StringManipulator.h"
 #include <sstream>
 
 // Define static member variables
@@ -115,10 +116,15 @@ void FlightManagement::loadPilotStandard(const string &fileName)
 // Function FlightManagement::findPilotStandard (Hoang)
 PilotStandard FlightManagement::findPilotStandard(const string &model)
 {
+    // Remove spaces and capitalize the argument.
+    string processedModel = StringManipulator::removeSpaces(model);
+    processedModel = StringManipulator::capitalize(processedModel);
+
     PilotStandard pilotStandard;
+
     for (int count = 0; count < pilotStandardArray.size(); count++)
     {
-        if (pilotStandardArray[count].getModelName() == model)
+        if (pilotStandardArray[count].getModelName() == processedModel)
         {
             pilotStandard = pilotStandardArray[count];
             break;
@@ -129,22 +135,22 @@ PilotStandard FlightManagement::findPilotStandard(const string &model)
 
 
 // Function FlightManagement::displayPilotStandards (Hoang)
-void FlightManagement::displayPilotStandards()
+void FlightManagement::displayPilotStandards(const string &model)
 {
-    for (int count = 0; count < pilotStandardArray.size(); count++)
-    {
-        cout << "Model: ";
-        cout << pilotStandardArray[count].getModelName() << endl;
-        cout << "Flight hours: ";
-        cout << pilotStandardArray[count].getMinRequiredFlightHours() << endl;
-        cout << "Hours in command: ";
-        cout << pilotStandardArray[count].getMinRequiredHoursInCommand() << endl;
-        cout << "English level: ";
-        cout << pilotStandardArray[count].getMinRequiredEnglishLevel() << endl;
-        cout << "Health status: ";
-        cout << pilotStandardArray[count].getRequiredHealthStatus() << endl;
-        cout << "License type: ";
-        cout << pilotStandardArray[count].getRequiredLicenseType() << endl;
-        cout << endl;
-    }
+    // Search for the pilot standard corresponding to the model.
+    PilotStandard standard = findPilotStandard(model);
+
+    cout << "Model: ";
+    cout << standard.getModelName() << endl;
+    cout << "Flight hours: ";
+    cout << standard.getMinRequiredFlightHours() << endl;
+    cout << "Hours in command: ";
+    cout << standard.getMinRequiredHoursInCommand() << endl;
+    cout << "English level: ";
+    cout << standard.getMinRequiredEnglishLevel() << endl;
+    cout << "Health status: ";
+    cout << standard.getRequiredHealthStatus() << endl;
+    cout << "License type: ";
+    cout << standard.getRequiredLicenseType() << endl;
+    cout << endl;
 }
