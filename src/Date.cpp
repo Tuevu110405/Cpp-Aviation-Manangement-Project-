@@ -1,7 +1,34 @@
 #include "../include/Date.h"
+#include "../include/StringManipulator.h"
 #include <cctype>
+#include <sstream>
 
-// Definition of Constructor.
+// Constructors.
+Date::Date(string date)
+{
+    try
+    {
+        setDate(date);
+    }
+    catch(InvalidDate d)
+    {
+        throw d;
+    }
+    catch(InvalidYear y)
+    {
+        throw y;
+    }
+    catch(InvalidMonth m)
+    {
+        throw m;
+    }
+    catch(InvalidDay d)
+    {
+        throw d;
+    }
+}
+
+
 Date::Date(int m, int d, int y)
 {
     // Try to assign arguments to the member variables.
@@ -27,6 +54,7 @@ Date::Date(int m, int d, int y)
         throw d;
     }
 }
+
 
 // Function Date::isLeapYear
 bool Date::isLeapYear() const
@@ -97,6 +125,85 @@ void Date::setYear(int newYear)
     }
     // Otherwise, store it in the member variable.
     year = newYear;
+}
+
+
+// Function Date::setDate
+void Date::setDate(string date)
+{
+    // Remove spaces in the argument.
+    string processedDate = StringManipulator::removeSpaces(date);
+
+    // Check if the argument contain invalid characters.
+    for (int count = 0; count < processedDate.length(); count++)
+    {
+        if (!isdigit(processedDate[count]) && 
+            processedDate[count] != '/')
+        {
+            throw InvalidDate(processedDate);
+        }
+    }
+
+    // Check if the argument is in valid formats (MM/DD/YYYY).
+    int numOfSlashes = 0;
+    const int MAX_LENGTH = 10;
+    const int MIN_LENGTH = 8;
+
+    // If the length is invalid, then throws an exception.
+    if (processedDate.length() > MAX_LENGTH || processedDate.length() < MIN_LENGTH)
+    {
+        throw InvalidDate(processedDate);
+    }
+
+    // Count the number of slashes.
+    for (int count = 0; count < processedDate.length(); count++)
+    {
+        if (processedDate[count] == '/')
+            numOfSlashes++;
+    }
+
+    // If the number slashes is not 2, then throws an exception.
+    if (numOfSlashes != 2)
+    {
+        throw InvalidDate(processedDate);
+    }
+
+    // Parse the string into month, day, and year.
+    stringstream ss(processedDate);     // Convert into a stream.
+    string token;
+    int month, day, year;
+
+    // Get the month of the date and convert to int.
+    getline(ss, token, '/');
+    month = stoi(token);
+
+    // Get the day of the date and convert to an int.
+    getline(ss, token, '/');
+    day = stoi(token);
+
+    // Get the year of the date and convert to an int.
+    getline(ss, token);
+    year = stoi(token);
+    
+    // Assigns the value of month, day, and year to member variables.
+    try
+    {
+        setYear(year);
+        setMonth(month);
+        setDay(day);
+    }
+    catch(InvalidYear y)
+    {
+        throw y;
+    }
+    catch(InvalidMonth m)
+    {
+        throw m;
+    }
+    catch(InvalidDay d)
+    {
+        throw d;
+    }
 }
 
 

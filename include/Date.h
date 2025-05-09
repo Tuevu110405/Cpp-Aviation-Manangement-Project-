@@ -45,11 +45,23 @@ public:
             { return value; }
     };
 
+    class InvalidDate
+    {
+    private:
+        string date;
+    public:
+        InvalidDate(string d)
+            { date = d; }
+        string getDate() const
+            { return date; }
+    };
+
     // Default constructor.
     Date()
         { month = day = year = 0; }
     // Constructors.
     Date(int m, int d, int y);
+    Date(string date);
     
     // Accessor functions.
     int getMonth() const
@@ -68,6 +80,7 @@ public:
     void setMonth(int newMonth);
     void setDay(int newDay);
     void setYear(int newYear);
+    void setDate(string date);
 
     // Overloaded operators.
     bool operator > (const Date &date);
