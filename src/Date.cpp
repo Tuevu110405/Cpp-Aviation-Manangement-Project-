@@ -249,22 +249,24 @@ bool Date::operator > (const Date &right)
 // Overloaded operator: cin >>
 istream &operator >> (istream &strm, Date &obj)
 {
-    // Variables.
-    int month, day, year;
+    // Variable declaration.
+    string date;
 
     // Validate the input.
     while (true)
     {
         try
         {
-            cout << "Enter the month, day, year (E.g: 09 25 2005): ";
-            strm >> month >> day >> year;
-            strm.ignore();
-            obj.setYear(year);
-            obj.setMonth(month);
-            obj.setDay(day);
-            
+            cout << "Enter the month, day, year (MM/DD/YYYY): ";
+            getline(strm, date);
+            obj.setDate(date);
             break;
+        }
+        // Handle the exception when the date is invalid.
+        catch (Date::InvalidDate d)
+        {
+            cout << "Error: The date " << d.getDate()
+                 << " is invalid format.\n";
         }
         // Handle the exception when the year is invalid.
         catch (Date::InvalidYear y)
