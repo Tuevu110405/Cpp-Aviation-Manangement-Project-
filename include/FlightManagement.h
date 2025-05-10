@@ -2,6 +2,7 @@
 #define FLIGHT_MANAGEMENT_H
 #include "PilotStandard.h"
 #include <string>
+#include <fstream>
 #include <iostream>
 #include <vector>
 using namespace std;

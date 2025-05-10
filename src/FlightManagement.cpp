@@ -52,11 +52,11 @@ void FlightManagement::loadPilotStandard(const string &fileName)
 
         // Read the minRequiredFlightHours.
         getline(ss, token, ',');
-        minFlightHours = stod(token);
+        minFlightHours = stoi(token);
 
         // Read the minRequiredHoursInCommand.
         getline(ss, token, ',');
-        minHoursInCommand = stod(token);
+        minHoursInCommand = stoi(token);
 
         // Read the requiredLicenseType.
         getline(ss, requiredType, ',');
@@ -84,27 +84,27 @@ void FlightManagement::loadPilotStandard(const string &fileName)
         }
         catch (PilotStandard::InvalidModel)
         {
-            cout << "Pilot standards file contain invalid model.\n";
+            cout << "LoadFileError: Pilot standards file contain invalid model.\n";
             exit(EXIT_FAILURE);
         }
         catch (PilotStandard::InvalidHours)
         {
-            cout << "Pilot standards file contains invalid value for hours.\n";
+            cout << "LoadFileError: Pilot standards file contains invalid value for hours.\n";
             exit(EXIT_FAILURE);
         } 
         catch (PilotStandard::InvalidEnglish)
         {
-            cout << "Pilot standards file contains invalid value for english level.\n";
+            cout << "LoadFileError: Pilot standards file contains invalid value for english level.\n";
             exit(EXIT_FAILURE);
         } 
         catch (PilotStandard::InvalidHealth)
         {
-            cout << "Pilot standards file contains invalid value for heath status.\n";
+            cout << "LoadFileError: Pilot standards file contains invalid value for heath status.\n";
             exit(EXIT_FAILURE);
         } 
         catch (PilotStandard::InvalidType)
         {
-            cout << "Pilot standards file contains invalid value for license type.\n";
+            cout << "LoadFileError: Pilot standards file contains invalid value for license type.\n";
             exit(EXIT_FAILURE);
         } 
     }
