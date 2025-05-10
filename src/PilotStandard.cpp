@@ -18,8 +18,8 @@ PilotStandard::PilotStandard()
 }
 
 // Constructor.
-PilotStandard::PilotStandard(string model, int flightHours, int hrsInCommand,
-                  string type, int english, int health)
+PilotStandard::PilotStandard(const string &model, const int &flightHours, const int &hrsInCommand,
+                             const string &type, const int &english, const int &health)
 {
     try
     {
@@ -84,7 +84,7 @@ int PilotStandard::getRequiredHealthStatus() const
 
 
 // Function PilotStandard::setModelName
-void PilotStandard::setModelName(string model)
+void PilotStandard::setModelName(const string &model)
 {
     // Array of valid model names.
     const int NUM_MODELS = 4;
@@ -119,7 +119,7 @@ void PilotStandard::setModelName(string model)
 
 
 // Function PilotStandard::setMinRequiredFlightHours
-void PilotStandard::setMinRequiredFlightHours(int hours)
+void PilotStandard::setMinRequiredFlightHours(const int &hours)
 {
     // If the argument is negative, then throw an InvalidHours
     // object as an exception.
@@ -133,7 +133,7 @@ void PilotStandard::setMinRequiredFlightHours(int hours)
 
 
 // Function PilotStandard::setMinRequiredHoursInCommand
-void PilotStandard::setMinRequiredHoursInCommand(int hours)
+void PilotStandard::setMinRequiredHoursInCommand(const int &hours)
 {
     // If the argument is negative or larger than the minRequiredFlightHours,
     // then throw an InvalidHours object as an exception.
@@ -147,7 +147,7 @@ void PilotStandard::setMinRequiredHoursInCommand(int hours)
 
 
 // Function PilotStandard::setRequiredLicenseType
-void PilotStandard::setRequiredLicenseType(string type)
+void PilotStandard::setRequiredLicenseType(const string &type)
 {
     // Array of valid license types.
     const int NUM_LICENSES = 5;
@@ -182,7 +182,7 @@ void PilotStandard::setRequiredLicenseType(string type)
 
 
 // Function PilotStandard::setMinRequiredEnglishLevel.
-void PilotStandard::setMinRequiredEnglishLevel(int level)
+void PilotStandard::setMinRequiredEnglishLevel(const int &level)
 {
     const int MAX_LEVEL = 6;
     const int MIN_LEVEL = 1;
@@ -198,19 +198,19 @@ void PilotStandard::setMinRequiredEnglishLevel(int level)
 
 
 // Function PilotStandard::setRequiredHealthStatus
-void PilotStandard::setRequiredHealthStatus(int status)
+void PilotStandard::setRequiredHealthStatus(const int &health)
 {
     const int MAX_STATUS = 1;
     const int MIN_STATUS = 3;
 
     // If the argument is out of value range, then throw an
     // InvalidHealth object as an exception.
-    if (status > MIN_STATUS || status < MAX_STATUS)
+    if (health > MIN_STATUS || health < MAX_STATUS)
     {
         throw InvalidHealth();
     }
     // Otherwise, store the argument in the member variable.
-    requiredHealthStatus = status;
+    requiredHealthStatus = health;
 }
 
 

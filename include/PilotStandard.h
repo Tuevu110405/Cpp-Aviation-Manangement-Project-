@@ -1,21 +1,16 @@
-// The class is designed to hold standards of a pilot,
-// and provides methods to retrive the standards and
-// to load standards from a file into the program.
-
 #ifndef PILOTSTANDARD_H
 #define PILOTSTANDARD_H
 #include <string>
 #include <iostream>
-#include <fstream>
 using namespace std;
 
 class PilotStandard
 {
 private:
-    string modelName;            // The model for which the standards are applied for.    
-    int minRequiredFlightHours;  // The minimum required number of flight hours.
+    string modelName;               // The model for which the standards are applied for.    
+    int minRequiredFlightHours;     // The minimum required number of flight hours.
     int minRequiredHoursInCommand;  // The minimum required number of hours in command.
-    string requiredLicenseType;     // The required liscense type.
+    string requiredLicenseType;     // The required license type.
     int minRequiredEnglishLevel;    // The minimum required English level.
     int requiredHealthStatus;       // The minimum required health status.
 
@@ -31,8 +26,8 @@ public:
     PilotStandard();
 
     // Constructor.
-    PilotStandard(string model, int flightHours, int hrsInCommand,
-                  string type, int english, int health);
+    PilotStandard(const string &model, const int &flightHours, const int &hrsInCommand,
+                  const string &type, const int &english, const int &health);
 
     // Accessor functions.
     string getModelName() const;
@@ -43,12 +38,12 @@ public:
     int getRequiredHealthStatus() const;
 
     // Mutator functions.
-    void setModelName(string);
-    void setMinRequiredFlightHours(int);
-    void setMinRequiredHoursInCommand(int);
-    void setRequiredLicenseType(string);
-    void setMinRequiredEnglishLevel(int);
-    void setRequiredHealthStatus(int);
+    void setModelName(const string &model);
+    void setMinRequiredFlightHours(const int &hours);
+    void setMinRequiredHoursInCommand(const int &hours);
+    void setRequiredLicenseType(const string &type);
+    void setMinRequiredEnglishLevel(const int &level);
+    void setRequiredHealthStatus(const int &health);
 
     // Other funtions.
     friend ostream& operator << (ostream &, const PilotStandard&);
