@@ -4,7 +4,7 @@
 #include <sstream>
 
 // Constructors.
-Date::Date(string date)
+Date::Date(const string &date)
 {
     try
     {
@@ -29,7 +29,7 @@ Date::Date(string date)
 }
 
 
-Date::Date(int m, int d, int y)
+Date::Date(const int &m, const int &d, const int &y)
 {
     // Try to assign arguments to the member variables.
     try
@@ -79,7 +79,7 @@ bool Date::isLeapYear() const
 
 
 // Function Date::setMonth
-void Date::setMonth(int newMonth)
+void Date::setMonth(const int &newMonth)
 {
     // If the month is less than 1 or greater than 12,
     // throw an exception.
@@ -93,7 +93,7 @@ void Date::setMonth(int newMonth)
 
 
 // Function Date::setDay
-void Date::setDay(int newDay)
+void Date::setDay(const int &newDay)
 {   
     // Arrays of constant integer for the number 
     // of days in a month.
@@ -116,7 +116,7 @@ void Date::setDay(int newDay)
 
 
 // Function Date::setYears
-void Date::setYear(int newYear)
+void Date::setYear(const int &newYear)
 {
     // If the year is negative, throws an exception.
     if (newYear < 0 || newYear > 9999)
@@ -129,7 +129,7 @@ void Date::setYear(int newYear)
 
 
 // Function Date::setDate
-void Date::setDate(string date)
+void Date::setDate(const string &date)
 {
     // Remove spaces in the argument.
     string processedDate = StringManipulator::removeSpaces(date);

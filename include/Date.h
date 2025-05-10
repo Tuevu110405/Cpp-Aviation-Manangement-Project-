@@ -17,7 +17,7 @@ public:
     private:
         int value;
     public:
-        InvalidMonth(int m)
+        InvalidMonth(const int &m)
             { value = m; }
         int getValue() const
             { return value; }
@@ -28,7 +28,7 @@ public:
     private:
         int value;
     public:
-        InvalidDay(int d)
+        InvalidDay(const int &d)
             { value = d; }
         int getValue() const
             { return value; }
@@ -39,7 +39,7 @@ public:
     private:
         int value;
     public:
-        InvalidYear(int y)
+        InvalidYear(const int &y)
             { value = y; }
         int getValue() const
             { return value; }
@@ -50,7 +50,7 @@ public:
     private:
         string date;
     public:
-        InvalidDate(string d)
+        InvalidDate(const string &d)
             { date = d; }
         string getDate() const
             { return date; }
@@ -60,8 +60,8 @@ public:
     Date()
         { month = day = year = 0; }
     // Constructors.
-    Date(int m, int d, int y);
-    Date(string date);
+    Date(const int &m, const int &d, const int &y);
+    Date(const string &date);
     
     // Accessor functions.
     int getMonth() const
@@ -77,10 +77,10 @@ public:
     bool isLeapYear() const;
     
     // Mutator functions.
-    void setMonth(int newMonth);
-    void setDay(int newDay);
-    void setYear(int newYear);
-    void setDate(string date);
+    void setMonth(const int &newMonth);
+    void setDay(const int &newDay);
+    void setYear(const int &newYear);
+    void setDate(const string &date);
 
     // Overloaded operators.
     bool operator > (const Date &date);
