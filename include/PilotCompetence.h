@@ -17,7 +17,7 @@ public:
     private:
         int value;
     public:
-        InvalidHours(int h)
+        InvalidHours(const int &h)
             { value = h; }
         int getValue() const
             { return value; }
@@ -29,7 +29,7 @@ public:
     private:
         int value;
     public:
-        InvalidEnglish(int l)
+        InvalidEnglish(const int &l)
             { value = l; }
         int getValue() const
             { return value; }
@@ -41,7 +41,7 @@ public:
     private:
         int value;
     public:
-        InvalidHealth(int h)
+        InvalidHealth(const int &h)
             { value = h; }
         int getValue() const
             { return value; }
@@ -52,7 +52,7 @@ public:
         {flightHours = 0; hoursInCommand = 0; englishLevel = 0; healthStatus = 0; }
     
     // Constructor.
-    PilotCompetence(int, int, int, int);
+    PilotCompetence(const int &flightHr, const int &hrInCommand, const int &english, const int &health);
 
     // Accessor functions.
     int getFlightHours() const
@@ -65,10 +65,10 @@ public:
         { return healthStatus; }
     
     // Mutator functions.
-    void setFlightHours(int);
-    void setHoursInCommand(int);
-    void setEnglishLevel(int);
-    void setHealthStatus(int);
+    void setFlightHours(const int &hours);
+    void setHoursInCommand(const int &hours);
+    void setEnglishLevel(const int &level);
+    void setHealthStatus(const int &status);
 
     // Overloaded operators.
     friend istream &operator >> (istream &, PilotCompetence &);

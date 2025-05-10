@@ -1,7 +1,7 @@
 #include "../include/PilotCompetence.h"
 
 // Definition of Constructor.
-PilotCompetence::PilotCompetence(int flightHr, int hrInCommand, int english, int health)
+PilotCompetence::PilotCompetence(const int &flightHr, const int &hrInCommand, const int &english, const int &health)
 {
     try
     {
@@ -25,7 +25,7 @@ PilotCompetence::PilotCompetence(int flightHr, int hrInCommand, int english, int
 }
 
 // Definition of PilotCompetence::setFlightHours
-void PilotCompetence::setFlightHours(int hours)
+void PilotCompetence::setFlightHours(const int &hours)
 {
     // If the hours is negetive, then thows an InvalidHours object
     // as an exception.
@@ -38,7 +38,7 @@ void PilotCompetence::setFlightHours(int hours)
 }
 
 // Definition of PilotCompetence::setHoursInCommand
-void PilotCompetence::setHoursInCommand(int hours)
+void PilotCompetence::setHoursInCommand(const int &hours)
 {
     // If the hours is negetive, then thows an InvalidHours
     // object as an exception.
@@ -51,7 +51,7 @@ void PilotCompetence::setHoursInCommand(int hours)
 }
 
 // Defintion of PilotCompetence::setEnglishLevel
-void PilotCompetence::setEnglishLevel(int level)
+void PilotCompetence::setEnglishLevel(const int &level)
 {
     // Constants for English level.
     const int MAX_LEVEL = 6;
@@ -68,7 +68,7 @@ void PilotCompetence::setEnglishLevel(int level)
 }
 
 // Definition of PilotCompetence::setHealthStatus
-void PilotCompetence::setHealthStatus(int status)
+void PilotCompetence::setHealthStatus(const int &status)
 {
     // Constants for health status.
     const int MAX_STATUS = 1;
