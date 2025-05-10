@@ -15,7 +15,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the flight hours result to false.
         result.setFlightHoursResult(false);
         // Add note to the result.
-        result.addNote("Flight hours does not meet. (Actual: " + to_string(pilotHours) + " hours, " +
+        result.addNote("Flight hours do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
         "Required: " + to_string(requiredHours) + " hours.)");
     }
     else
@@ -32,7 +32,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the hours in command result to false.
         result.setHoursInCommandResult(false);
         // Add note to the result.
-        result.addNote("Hours in command does not meet. (Actual: " + to_string(pilotHours) + " hours, " +
+        result.addNote("Hours in command do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
         "Required: " + to_string(requiredHours) + " hours.)");
     }
     else
