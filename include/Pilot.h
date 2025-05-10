@@ -21,7 +21,7 @@ public:
     private:
         string value;
     public:
-        InvalidName(string n)
+        InvalidName(const string &n)
             { value = n; }
         string getValue() const
             { return value; }
@@ -32,7 +32,7 @@ public:
         { name = ""; }
     
     // Constructor.
-    Pilot(string, PilotCompetence, PilotCertificate);
+    Pilot(const string &pilotName, const PilotCompetence &competence, const PilotCertificate &certificate);
 
     // Accessor functions.
     string getName() const
@@ -43,9 +43,9 @@ public:
         { return pilotCertificate; }
     
     // Mutator functions.
-    void setName(string);
-    void setPilotCompetence(const PilotCompetence &);
-    void setPilotCertificate(const PilotCertificate &);
+    void setName(const string &newName);
+    void setPilotCompetence(const PilotCompetence &newCompetence);
+    void setPilotCertificate(const PilotCertificate &newCertificate);
 
     // Overloaded operators.
     friend istream &operator >> (istream &, Pilot &);

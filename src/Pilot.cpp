@@ -2,11 +2,11 @@
 #include <cctype>
 
 // Definition of constructor.
-Pilot::Pilot(string n, PilotCompetence competence, PilotCertificate certificate)
+Pilot::Pilot(const string &pilotName, const PilotCompetence &competence, const PilotCertificate &certificate)
 {
     try
     {
-        setName(n);
+        setName(pilotName);
         setPilotCompetence(competence);
         setPilotCertificate(certificate);
     }
@@ -18,7 +18,7 @@ Pilot::Pilot(string n, PilotCompetence competence, PilotCertificate certificate)
 
 
 // Function Pilot::setName
-void Pilot::setName(string newName)
+void Pilot::setName(const string &newName)
 {   
     // If the name contains invalid character.
     for (int i = 0; i < newName.length(); i++)
