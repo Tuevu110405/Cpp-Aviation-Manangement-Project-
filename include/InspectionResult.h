@@ -19,7 +19,7 @@ public:
           inspectionResult = false; }
     
     // Constructor.
-    InspectionResult(string t)
+    InspectionResult(const string &t)
         { title = t;
           inspectionResult = false; }
 
@@ -42,10 +42,10 @@ public:
         }
 
     // Mutator functions.
-    void setTitle(string newTitle)
+    void setTitle(const string &newTitle)
         { title = newTitle; }
     
-    void addNote(string newNote)
+    void addNote(const string &newNote)
         { notes.push_back(newNote); }
 
     // Destructor.

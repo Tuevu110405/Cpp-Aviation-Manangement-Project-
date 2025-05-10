@@ -17,15 +17,15 @@ public:
     PilotInspectionResult();
 
     // Constructor
-    PilotInspectionResult(string t);
+    PilotInspectionResult(const string &t);
 
     // Mutator functions.
-    void setFlightHoursResult(bool);
-    void setHoursInCommandResult(bool);
-    void setEnglishLevelResult(bool);
-    void setHealthStatusResult(bool);
-    void setLicenseExpiryResult(bool);
-    void setLicenseTypeResult(bool);
+    void setFlightHoursResult(const bool &result);
+    void setHoursInCommandResult(const bool &result);
+    void setEnglishLevelResult(const bool &result);
+    void setHealthStatusResult(const bool &result);
+    void setLicenseExpiryResult(const bool &result);
+    void setLicenseTypeResult(const bool &result);
     
     // Accessor functions.
     bool getFlightHoursResult() const

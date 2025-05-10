@@ -13,7 +13,7 @@ PilotInspectionResult::PilotInspectionResult() : InspectionResult()
 }
 
 // Constructor.
-PilotInspectionResult::PilotInspectionResult(string t) : InspectionResult(t)
+PilotInspectionResult::PilotInspectionResult(const string &t) : InspectionResult(t)
 {
     flightHoursResult = false;
     hoursInCommandResult = false;
@@ -25,44 +25,56 @@ PilotInspectionResult::PilotInspectionResult(string t) : InspectionResult(t)
 }
 
 // Function PilotInspectionResult::setFlightHoursResult
-void PilotInspectionResult::setFlightHoursResult(bool result)
+void PilotInspectionResult::setFlightHoursResult(const bool &result)
 {
+    // Set the result.
     flightHoursResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
 // Function PilotInspectionResult::setHoursInCommandResult
-void PilotInspectionResult::setHoursInCommandResult(bool result)
+void PilotInspectionResult::setHoursInCommandResult(const bool &result)
 {
+    // Set the result.
     hoursInCommandResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
 // Function PilotInspectionResult::setEnglishLevelResult
-void PilotInspectionResult::setEnglishLevelResult(bool result)
+void PilotInspectionResult::setEnglishLevelResult(const bool &result)
 {
+    // Set the result.
     englishLevelResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
 // Function PilotInspectionResult::setHealthStatusResult
-void PilotInspectionResult::setHealthStatusResult(bool result)
+void PilotInspectionResult::setHealthStatusResult(const bool &result)
 {
+    // Set the result.
     healthStatusResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
 // Function PilotInspectionResult::setLicenseExpiryResult
-void PilotInspectionResult::setLicenseExpiryResult(bool result)
+void PilotInspectionResult::setLicenseExpiryResult(const bool &result)
 {
+    // Set the result.
     licenseExpiryResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
 // Function PilotInspectionResult::setLicenseTypeResult
-void PilotInspectionResult::setLicenseTypeResult(bool result)
+void PilotInspectionResult::setLicenseTypeResult(const bool &result)
 {
+    // Set the result.
     licenseTypeResult = result;
+    // Update the overall result.
     setInspectionResult();
 }
 
