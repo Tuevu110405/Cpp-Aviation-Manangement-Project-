@@ -5,12 +5,6 @@
 #include <vector>
 using namespace std;
 
-struct InspectionItem
-{
-    bool result;
-    string note;
-};
-
 class InspectionResult
 {
 protected:
