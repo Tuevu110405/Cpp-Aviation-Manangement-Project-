@@ -26,67 +26,68 @@ int main()
     if (pilotResult.getFlightHoursResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getFlightHoursNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getFlightHoursNote() << endl;
+
 
     cout << " - Hours in command: ";
     if (pilotResult.getHoursInCommandResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getHoursInCommandNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getHoursInCommandNote() << endl;
 
     cout << " - English level: ";
     if (pilotResult.getEnglishLevelResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getEnglishLevelNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getEnglishLevelNote() << endl;
 
     cout << " - Health status: ";
     if (pilotResult.getHealthStatusResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getHealthStatusNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getHealthStatusNote() << endl;
 
     cout << " - License Type: ";
     if (pilotResult.getLicenseTypeResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getLicenseTypeNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getLicenseTypeNote() << endl;
 
     cout << " - License expiration: ";
     if (pilotResult.getLicenseExpiryResult() == false)
     {
         cout << "Ineligible. ";
-        cout << pilotResult.getLicenseExpiryNote() << endl;
     }
     else
     {
-        cout << "Eligible.\n";
+        cout << "Eligible.";
     }
+    cout << pilotResult.getLicenseExpiryNote() << endl;
 
     return 0;
 }
