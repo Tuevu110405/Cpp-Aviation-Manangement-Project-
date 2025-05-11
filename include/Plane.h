@@ -9,8 +9,6 @@ private:
 	int fuel; // in proportion
 	string model;
 	bool engine_ok;
-	Location departure;
-	Location arrival;
 
 public:
 	// constructor
