@@ -13,6 +13,8 @@ int main()
     FlightManagement::loadPilotStandard("pilot_standards.txt");
     string model = "Boeing 787";
     PilotStandard standard = FlightManagement::findPilotStandard(model);
+    FlightManagement::displayPilotStandards(model);
+    cout << endl;
 
     Pilot pilot;
     cin >> pilot;

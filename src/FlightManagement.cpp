@@ -139,18 +139,6 @@ void FlightManagement::displayPilotStandards(const string &model)
 {
     // Search for the pilot standard corresponding to the model.
     PilotStandard standard = findPilotStandard(model);
-
-    cout << "Model: ";
-    cout << standard.getModelName() << endl;
-    cout << "Flight hours: ";
-    cout << standard.getMinRequiredFlightHours() << endl;
-    cout << "Hours in command: ";
-    cout << standard.getMinRequiredHoursInCommand() << endl;
-    cout << "English level: ";
-    cout << standard.getMinRequiredEnglishLevel() << endl;
-    cout << "Health status: ";
-    cout << standard.getRequiredHealthStatus() << endl;
-    cout << "License type: ";
-    cout << standard.getRequiredLicenseType() << endl;
-    cout << endl;
+    // Display the pilot standard.
+    cout << standard << endl;
 }
