@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
-#include "Location.h"
 using namespace std;
 class Plane
 {
