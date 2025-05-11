@@ -9,6 +9,7 @@
 using namespace std;
 struct Destination {
 	string city;
+	string airport_code;
 	float latitude;
 	float longitude;
 };
