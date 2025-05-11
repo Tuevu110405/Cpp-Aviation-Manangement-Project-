@@ -15,7 +15,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the flight hours result to false.
         result.setFlightHoursResult(false);
         // Add note to the result.
-        result.addNote("Flight hours do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
+        result.setFlightHoursNote("Flight hours do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
         "Required: " + to_string(requiredHours) + " hours.)");
     }
     else
@@ -32,7 +32,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the hours in command result to false.
         result.setHoursInCommandResult(false);
         // Add note to the result.
-        result.addNote("Hours in command do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
+        result.setHoursInCommandNote("Hours in command do not meet. (Actual: " + to_string(pilotHours) + " hours, " +
         "Required: " + to_string(requiredHours) + " hours.)");
     }
     else
@@ -49,8 +49,8 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the English result to false.
         result.setEnglishLevelResult(false);
         // Add note to the result.
-        result.addNote("English level does not meet. (Actual: Level " + to_string(pilotEnglish) +
-        "Required: Level " + to_string(requiredEnglish) + ")");
+        result.setEnglishLevelNote("English level does not meet. (Actual: Level " + to_string(pilotEnglish) +
+        ", Required: Level " + to_string(requiredEnglish) + ")");
     }
     else
     {
@@ -61,13 +61,13 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     int pilotHealth = pilotInfo.getPilotCompetence().getHealthStatus();
     int requiredHealth = standard.getRequiredHealthStatus();
 
-    if (pilotHealth < requiredHealth)
+    if (pilotHealth > requiredHealth)
     {
         // Set the health result to false.
         result.setHealthStatusResult(false);
         // Add note to the result.
-        result.addNote("Health does not meet. (Actual: Status " + to_string(pilotHealth) +
-        "Required: Status " + to_string(requiredHealth) + ")");
+        result.setHealthStatusNote("Health does not meet. (Actual: Status " + to_string(pilotHealth) +
+        ", Required: Status " + to_string(requiredHealth) + ")");
     }
     else
     {
@@ -83,8 +83,8 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the license type result to false.
         result.setLicenseTypeResult(false);
         // Add note to the result.
-        result.addNote("License type does not meet. (Actual: " + pilotLicenseType +
-        "Required: " + requiredType + ")");
+        result.setLicenseTypeNote("License type does not meet. (Actual: " + pilotLicenseType +
+        ", Required: " + requiredType + ")");
     }
     else
     {
@@ -108,7 +108,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the license expiry result to false.
         result.setLicenseExpiryResult(false);
         // Add note to the result.
-        result.addNote("License has expired.");
+        result.setLicenseExipiryNote("License has expired.");
     }
     else
     {

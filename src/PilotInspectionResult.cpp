@@ -4,23 +4,47 @@
 PilotInspectionResult::PilotInspectionResult() : InspectionResult()
 {
     flightHoursResult = false;
+    flightHoursNote = "Not checked yet";
+
     hoursInCommandResult = false;
+    hoursInCommandNote = "Not checked yet";
+
     englishLevelResult = false;
+    englishLevelNote = "Not checked yet";
+
     healthStatusResult = false;
+    healthStatusNote = "Not checked yet";
+
     licenseTypeResult = false;
+    licenseTypeNote = "Not checked yet";
+
     licenseExpiryResult = false;
+    licenseExpiryNote = "Not checked yet";
+
     setInspectionResult();
 }
 
 // Constructor.
 PilotInspectionResult::PilotInspectionResult(const string &t) : InspectionResult(t)
 {
-    flightHoursResult = false;
+flightHoursResult = false;
+    flightHoursNote = "Not checked yet";
+
     hoursInCommandResult = false;
+    hoursInCommandNote = "Not checked yet";
+
     englishLevelResult = false;
+    englishLevelNote = "Not checked yet";
+
     healthStatusResult = false;
+    healthStatusNote = "Not checked yet";
+
     licenseTypeResult = false;
+    licenseTypeNote = "Not checked yet";
+
     licenseExpiryResult = false;
+    licenseExpiryNote = "Not checked yet";
+
     setInspectionResult();
 }
 
@@ -77,6 +101,43 @@ void PilotInspectionResult::setLicenseTypeResult(const bool &result)
     // Update the overall result.
     setInspectionResult();
 }
+
+// Function PilotInspectionResult::setFlighHoursNote
+void PilotInspectionResult::setFlightHoursNote(const string &note)
+{
+    flightHoursNote = note;
+}
+
+// Function PilotInspectionResult::setHoursInCommand
+void PilotInspectionResult::setHoursInCommandNote(const string &note)
+{
+    hoursInCommandNote = note;
+}
+
+// Function PilotInspectionResult::setEnglishLevelNote
+void PilotInspectionResult::setEnglishLevelNote(const string &note)
+{
+    englishLevelNote = note;
+}
+
+// Function PilotInspectionResult::setHealthStatusNote
+void PilotInspectionResult::setHealthStatusNote(const string &note)
+{
+    healthStatusNote = note;
+}
+
+// Function PilotInspectionResult::setLicenseTypeNote
+void PilotInspectionResult::setLicenseTypeNote(const string &note)
+{
+    licenseTypeNote = note;
+}
+
+// Function PilotInspectionResult::setLicenseExpiryNote
+void PilotInspectionResult::setLicenseExipiryNote(const string &note)
+{
+    licenseExpiryNote = note;
+}
+
 
 // Virtual funciton PilotInspectionResult::setInspectionResult
 void PilotInspectionResult::setInspectionResult()
