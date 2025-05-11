@@ -20,7 +20,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the flight hours result to true.
         result.setFlightHoursResult(true);
+        // Add a blank note to the result.
+        result.setFlightHoursNote("");
     }
 
     // Inspect the pilot's hours in command.
@@ -37,7 +40,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the hours in command result to true.
         result.setHoursInCommandResult(true);
+        // Add a blank note to the result.
+        result.setHoursInCommandNote("");
     }
 
     // Inspect the pilot's English level.
@@ -54,7 +60,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the English result to true.
         result.setEnglishLevelResult(true);
+        // Add a blank note to the result.
+        result.setEnglishLevelNote("");
     }
 
     // Inspect the pilot's Health status.
@@ -71,7 +80,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the health result to true.
         result.setHealthStatusResult(true);
+        // Add a blank note to the result.
+        result.setHealthStatusNote("");
     }
 
     // Inspect the pilot's license type.
@@ -88,7 +100,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the license type result to true.
         result.setLicenseTypeResult(true);
+        // Add a blank note to the result.
+        result.setLicenseTypeNote("");
     }
 
     // Inspect the license expiry date.
@@ -112,7 +127,10 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     }
     else
     {
+        // Set the license expiry result to true.
         result.setLicenseExpiryResult(true);
+        // Add a blank note to the result.
+        result.setLicenseExipiryNote("");
     }
 
     return result;
