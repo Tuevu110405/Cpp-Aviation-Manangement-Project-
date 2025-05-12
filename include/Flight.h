@@ -11,10 +11,10 @@ using namespace std;
 class Flight
 {
 protected:
-    string flightID;                    // The flight ID.
-    string flightType;                  // The type of the flight.
-    Pilot pilot;                        // The pilot.
-    PilotInspectionResult pilotResult;  // The pilot inspection result.
+    string flightID;                    // The flight ID (Hoang).
+    string flightType;                  // The type of the flight (Hoang).
+    Pilot pilot;                        // The pilot (Hoang).
+    PilotInspectionResult pilotResult;  // The pilot inspection result (Hoang).
 public:
     // Exception classes.
     // Classes for exceptions.
@@ -28,7 +28,7 @@ public:
         string getID() const
             { return id; }
     };
-    
+
     // Default constructor.
     Flight();
 
