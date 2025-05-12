@@ -11,7 +11,8 @@
 using namespace std;
 
 
-class Flight{
+class Flight
+{
 private:
     //Weather(Tue)
     Weather weather;
@@ -22,7 +23,6 @@ protected:
     Pilot pilot;                        // The pilot (Hoang).
     PilotInspectionResult pilotResult; 
     
-
 public:
     Flight();
     // Weather(Tue)
@@ -32,6 +32,7 @@ public:
     // Setters
     void setWeather(const Weather& weather);
     void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
+
     // Exception classes.
     // Classes for exceptions.
     class InvalidID
@@ -69,9 +70,6 @@ public:
     void setFlightType(const string &type);
     void setPilot(const Pilot &newPilot);
     void setPilotResult(const PilotInspectionResult &);
-    
-    
-    
 };
 
 

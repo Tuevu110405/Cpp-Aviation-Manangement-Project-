@@ -1,10 +1,10 @@
 #ifndef FLIGHTMANAGEMENT_H
 #define FLIGHTMANAGEMENT_H
-#include<Weather.h>
-#include<WeatherStandard.h>
-#include<Flight.h>
+#include "Weather.h"
+#include "WeatherStandard.h"
+#include "Flight.h"
 #include "PilotStandard.h"
-#include<FlightInspection.h>
+#include "FlightInspection.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -12,6 +12,7 @@
 using namespace std;
 
 class FlightManagementDepartment
+{
 private:
     static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)
 public:
