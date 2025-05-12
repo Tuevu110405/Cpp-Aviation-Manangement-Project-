@@ -3,15 +3,21 @@
 #include<Weather.h>
 #include<WeatherStandard.h>
 #include<Flight.h>
+#include "PilotStandard.h"
 #include<FlightInspection.h>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <vector>
+using namespace std;
 
 class FlightManagementDepartment
-{
+private:
+    static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)
 public:
-    
-
+    // Pilot-related functions (Hoang)
+    static void loadPilotStandard(const string &fileName);
+    static PilotStandard findPilotStandard(const string &model);
+    static void displayPilotStandards(const string &model);
 };
-
-
-
 #endif
