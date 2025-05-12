@@ -7,8 +7,13 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+<<<<<<< HEAD
                 "${workspaceFolder}/src/*.cpp",
                 "${fileDirname}\\*.cpp",
+=======
+                "${fileDirname}\\*.cpp",
+                "${workspaceFolder}/src/*.cpp",
+>>>>>>> develop
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

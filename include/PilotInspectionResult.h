@@ -84,4 +84,8 @@ public:
     virtual ~PilotInspectionResult() { };
 };
 
+<<<<<<< HEAD
 #endif
+=======
+#endif
+>>>>>>> develop

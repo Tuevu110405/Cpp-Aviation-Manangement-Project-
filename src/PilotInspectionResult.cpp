@@ -148,4 +148,8 @@ void PilotInspectionResult::setInspectionResult()
                         healthStatusResult &&
                         licenseExpiryResult &&
                         licenseTypeResult);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

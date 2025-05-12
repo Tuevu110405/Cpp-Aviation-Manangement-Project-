@@ -141,4 +141,8 @@ void FlightManagement::displayPilotStandards(const string &model)
     PilotStandard standard = findPilotStandard(model);
     // Display the pilot standard.
     cout << standard << endl;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

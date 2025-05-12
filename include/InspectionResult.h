@@ -34,4 +34,8 @@ public:
     // Destructor.
     virtual ~InspectionResult() { };
 };
+<<<<<<< HEAD
 #endif
+=======
+#endif
+>>>>>>> develop
