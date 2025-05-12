@@ -3,17 +3,6 @@
 // Default constructor.
 Flight::Flight()
 {
-<<<<<<< HEAD
-
-}
-
-// Constructor
-Flight::Flight(const Pilot &pilotInfo)
-{
-    pilot = pilotInfo;
-}
-
-=======
     flightID = "";
     flightType = "";
 }
@@ -72,7 +61,6 @@ void Flight::setFlightType(const string &type)
 }
 
 
->>>>>>> develop
 // Function Flight::setPilot (Hoang)
 void Flight::setPilot(const Pilot &newPilot)
 {
