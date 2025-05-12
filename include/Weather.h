@@ -43,7 +43,7 @@ public:
 
 };
 #endif // WEATHER_H
-//operator << to print the Vietnames weather
+//operator << to print Vietnames weather
 ostream& operator<<(ostream& os, const Weather& weather);
 // operator >> to input Vietnamese weather
 istream& operator>>(istream& is, Weather& weather);
