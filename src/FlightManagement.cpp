@@ -1,6 +1,11 @@
 #include "../include/FlightManagement.h"
 #include "../include/StringManipulator.h"
 #include <sstream>
+#include<Weather.h>
+#include<WeatherStandard.h>
+#include<Flight.h>
+#include<FlightInspection.h>
+
 
 // Define static member variables
 vector<PilotStandard> FlightManagement::pilotStandardArray; // Hoang
@@ -142,3 +147,4 @@ void FlightManagement::displayPilotStandards(const string &model)
     // Display the pilot standard.
     cout << standard << endl;
 }
+

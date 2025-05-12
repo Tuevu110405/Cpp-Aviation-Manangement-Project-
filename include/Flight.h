@@ -1,5 +1,7 @@
-#ifndef FLIGHT_H
-#define FLIGHT_H
+#ifndef Flight_H
+#define Flight_H
+#include "Weather.h"
+#include "WeatherInspectionResult.h"
 #include "PilotInspectionResult.h"
 #include "StringManipulator.h"
 #include "Pilot.h"
@@ -8,14 +10,28 @@
 #include <cctype>
 using namespace std;
 
-class Flight
-{
+
+class Flight{
+private:
+    //Weather(Tue)
+    Weather weather;
+    WeatherInspectionResult weatherInspectionResult;
 protected:
     string flightID;                    // The flight ID (Hoang).
     string flightType;                  // The type of the flight (Hoang).
     Pilot pilot;                        // The pilot (Hoang).
-    PilotInspectionResult pilotResult;  // The pilot inspection result (Hoang).
+    PilotInspectionResult pilotResult; 
+    
+
 public:
+    Flight();
+    // Weather(Tue)
+    // Getters
+    Weather& getWeather() ;
+    WeatherInspectionResult& getWeatherInspectionResult() ;
+    // Setters
+    void setWeather(const Weather& weather);
+    void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
     // Exception classes.
     // Classes for exceptions.
     class InvalidID
@@ -53,5 +69,10 @@ public:
     void setFlightType(const string &type);
     void setPilot(const Pilot &newPilot);
     void setPilotResult(const PilotInspectionResult &);
+    
+    
+    
 };
-#endif
+
+
+#endif 
