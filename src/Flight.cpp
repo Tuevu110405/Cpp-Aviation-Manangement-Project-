@@ -3,40 +3,37 @@
 #include "../include/WeatherStandard.h"
 using namespace std;
 
-//Tue
-Flight::Flight() : weather(0, 0, 0, 0,0,0), weatherInspectionResult(false, false, false,false, false, false) {
-    // Constructor initialization
-
-}
-//Getters
+// Getters (Tue).
 WeatherInspectionResult& Flight::getWeatherInspectionResult() {
     return this->weatherInspectionResult;
 }
 Weather& Flight::getWeather()  {
     return this->weather;
 }
-//Setters
+// Setters (Tue).
 void Flight::setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult) {
     this->weatherInspectionResult = weatherInspectionResult;
 }
 void Flight::setWeather(const Weather& weather){
     this->weather = weather;
 }
+
 // Default constructor.
-Flight::Flight()
+Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, false, false, false, false, false)
 {
     flightID = "";
     flightType = "";
 }
 
 // Constructor.
-Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo)
+Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, const Weather &weatherInfo)
 {
     try
     {
         setFlightID(id);
         setFlightType(type);
         setPilot(pilot);
+        setWeather(weatherInfo);
     }
     catch (InvalidID e)
     {

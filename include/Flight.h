@@ -14,25 +14,16 @@ using namespace std;
 class Flight
 {
 private:
-    //Weather(Tue)
-    Weather weather;
-    WeatherInspectionResult weatherInspectionResult;
-protected:
+    // Pilot and flight (Hoang).
     string flightID;                    // The flight ID (Hoang).
     string flightType;                  // The type of the flight (Hoang).
     Pilot pilot;                        // The pilot (Hoang).
-    PilotInspectionResult pilotResult; 
+    PilotInspectionResult pilotResult;  // The pilot inspection result.
+    // Weather (Tue)
+    Weather weather;
+    WeatherInspectionResult weatherInspectionResult;
     
 public:
-    Flight();
-    // Weather(Tue)
-    // Getters
-    Weather& getWeather() ;
-    WeatherInspectionResult& getWeatherInspectionResult() ;
-    // Setters
-    void setWeather(const Weather& weather);
-    void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
-
     // Exception classes.
     // Classes for exceptions.
     class InvalidID
@@ -50,9 +41,9 @@ public:
     Flight();
 
     // Constructor.
-    Flight(const string &id, const string &type, const Pilot &pilotInfor);
+    Flight(const string &id, const string &type, const Pilot &pilotInfor, const Weather &weatherInfo);
 
-    // Accessor functions.
+    // Accessor functions (Hoang).
     string getFlightID() const
         { return flightID; }
 
@@ -64,12 +55,20 @@ public:
     
     const PilotInspectionResult &getPilotInspectionResult() const
         { return pilotResult; }
+
+    // Accessor functions (Tue).
+    Weather& getWeather();
+    WeatherInspectionResult& getWeatherInspectionResult();   
         
-    // Mutator functions.
+    // Mutator functions (Hoang).
     void setFlightID(const string &id);
     void setFlightType(const string &type);
     void setPilot(const Pilot &newPilot);
     void setPilotResult(const PilotInspectionResult &);
+
+    // Mutator functions (Tue).
+    void setWeather(const Weather& weather);
+    void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
 };
 
 
