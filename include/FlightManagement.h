@@ -11,7 +11,7 @@
 #include <vector>
 using namespace std;
 
-class FlightManagementDepartment
+class FlightManagement
 {
 private:
     static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)

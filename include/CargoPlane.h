@@ -11,7 +11,7 @@ public:
 
     // override function
     int maxPayLoad() const override;
-    int passenger_Capacity() const override;
+    int passengerCapacity() const override;
 
     // setter
     void setPayload(int payloadCapacity);

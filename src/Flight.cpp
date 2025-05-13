@@ -92,3 +92,28 @@ void Flight::setPilotResult(const PilotInspectionResult &newResult)
     pilotResult = newResult;
 }
 
+// Function Flight::displayDetailsPilotResult (Hoang).
+void Flight::displayDetailsPilotResult() const
+{
+    cout << " - Overall inspection result: ";
+    cout << (pilotResult.getInspectionResult() == false ? "Not acceptable" : "Acceptable") << endl;
+
+    cout << " - Flight hours: " << (pilotResult.getFlightHoursResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getFlightHoursNote() << endl;
+
+    cout << " - Hours in command: " << (pilotResult.getHoursInCommandResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getHoursInCommandNote() << endl;
+
+    cout << " - English level: " << (pilotResult.getEnglishLevelResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getEnglishLevelNote() << endl;
+
+    cout << " - Health status: " << (pilotResult.getHealthStatusResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getHealthStatusNote() << endl;
+
+    cout << " - License type: " << (pilotResult.getLicenseTypeResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getLicenseTypeNote() << endl;
+
+    cout << " - License expiry: " << (pilotResult.getLicenseExpiryResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << pilotResult.getLicenseExpiryNote() << endl;
+}
+

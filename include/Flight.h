@@ -1,5 +1,5 @@
-#ifndef Flight_H
-#define Flight_H
+#ifndef FLIGHT_H
+#define FLIGHT_H
 #include "Weather.h"
 #include "WeatherInspectionResult.h"
 #include "PilotInspectionResult.h"
@@ -69,6 +69,9 @@ public:
     // Mutator functions (Tue).
     void setWeather(const Weather& weather);
     void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
+
+    // Other functions (Hoang).
+    void displayDetailsPilotResult() const;
 };
 
 

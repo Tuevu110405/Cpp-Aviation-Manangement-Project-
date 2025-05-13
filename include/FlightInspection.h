@@ -1,5 +1,5 @@
 #ifndef FLIGHT_INSPECTION_H
-#define FLIGHT_INSPECITON_H
+#define FLIGHT_INSPECTION_H
 #include "Weather.h"
 #include "WeatherStandardVN.h"
 #include "Flight.h"
@@ -10,11 +10,8 @@
 #include <string>
 using namespace std;
 
-
-class FlightInspection{
-
-protected:
-
+class FlightInspection
+{
 public:
     // Function to inspect the weather (Tue).
     static WeatherInspectionResult& inspectWeather(Flight& flight, WeatherStandardVN& weatherStandard);
