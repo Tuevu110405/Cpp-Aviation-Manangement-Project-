@@ -22,6 +22,8 @@ private:
     // Weather (Tue)
     Weather weather;
     WeatherInspectionResult weatherInspectionResult;
+
+    // Plane (Tung)
     
 public:
     // Exception classes.
