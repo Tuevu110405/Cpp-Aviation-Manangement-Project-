@@ -4,10 +4,11 @@
 using namespace std;
 
 // Getters (Tue).
-WeatherInspectionResult& Flight::getWeatherInspectionResult() {
+const WeatherInspectionResult& Flight::getWeatherInspectionResult() {
     return this->weatherInspectionResult;
 }
-Weather& Flight::getWeather()  {
+
+const Weather& Flight::getWeather()  {
     return this->weather;
 }
 // Setters (Tue).

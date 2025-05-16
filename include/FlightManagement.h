@@ -27,4 +27,4 @@ public:
     void updateInvalidAndValidFlight(Flight &flight);
     //output file
 };
-#endif;
+#endif

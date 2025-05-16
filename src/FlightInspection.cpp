@@ -7,8 +7,8 @@
 using namespace std;
 
 // Function FlightInspection::inspectWeather (Tue)
-WeatherInspectionResult& FlightInspection::inspectWeather(Flight& flight, WeatherStandardVN& weatherStandard) {
-    WeatherInspectionResult& weatherInspectionResult = flight.getWeatherInspectionResult();
+WeatherInspectionResult FlightInspection::inspectWeather(Flight& flight, WeatherStandardVN& weatherStandard) {
+    WeatherInspectionResult weatherInspectionResult = flight.getWeatherInspectionResult();
     // Check if the weather is satisfactory, if not, check and set status for each quality
     if(weatherStandard.isWeatherAcceptable(flight.getWeather())){
         weatherInspectionResult.setIsCrosswind(true);
