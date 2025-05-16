@@ -25,7 +25,7 @@ public:
 
 	// setter
 	 void setCurrent_Fuel(int current_fuel__) ;
-	/* void setModel(const string& model_) ;*/
+	 void setModel(const string& model_) ;
 	 void setEngineStatus(int status);
 
 	 virtual void setBaseInfo(float fuel_consumption_rate_, float speed_, const string& model_ );
@@ -39,9 +39,5 @@ public:
 	// each type of airplane must report their max possible weight
 	virtual int maxPayLoad() const = 0;
 	virtual int passengerCapacity() const = 0;
-	
-
-	
-	
 };
 

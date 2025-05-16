@@ -5,6 +5,10 @@
 #include "PilotInspectionResult.h"
 #include "StringManipulator.h"
 #include "Pilot.h"
+#include "Plane.h"
+#include "CargoPlane.h"
+#include "PassengerPlane.h"
+#include "PlaneInspectionresult.h"
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -25,7 +29,8 @@ private:
     WeatherInspectionResult weatherInspectionResult;
 
     // Plane (Tung)
-    
+    Plane *plane;   // The plane.
+    PlaneInspectionResult planeInspectionResult;
 public:
     // Exception classes.
     // Classes for exceptions.
@@ -44,7 +49,7 @@ public:
     Flight();
 
     // Constructor.
-    Flight(const string &id, const string &type, const Pilot &pilotInfor, const Weather &weatherInfo);
+    Flight(const string &id, const string &type, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
 
     // Accessor functions (Hoang).
     string getFlightID() const
@@ -59,10 +64,15 @@ public:
     const PilotInspectionResult &getPilotInspectionResult() const
         { return pilotResult; }
 
+    Plane *getPlane() const
+        { return plane; }
+
+    PlaneInspectionResult getPlaneInspectionResult() const
+        { return planeInspectionResult; }
+
     // Accessor functions (Tue).
     const Weather& getWeather();
     const WeatherInspectionResult& getWeatherInspectionResult();
-    
     
         
     // Mutator functions (Hoang).
@@ -75,6 +85,16 @@ public:
     void setWeather(const Weather& weather);
     void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
 
+    // Mutator functions (Tung).
+    void setPlane(Plane *newPlane)
+        {  if (plane != nullptr){
+            delete plane;
+        }
+            plane = newPlane; }
+
+    void setPlaneInspectionResult(const PlaneInspectionResult &result)
+        { planeInspectionResult = result; }
+    
     // Other functions (Hoang).
     void displayDetailsPilotResult() const;
 };

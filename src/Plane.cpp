@@ -1,4 +1,4 @@
-#include "Plane.h"
+#include "../include/Plane.h"
 // constructor
 Plane::Plane()
 {
@@ -55,14 +55,15 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
 		}
 
 		float fuelRate, speedVal;
-		file >> fuelRate >> speedVal;
+		string model;
+		file >> fuelRate >> speedVal >> model;
 
 		if (file.fail()) {
 			cerr << "Error: Failed to read base info from file." << endl;
 			return;
 		}
 
-		setBaseInfo(fuelRate, speedVal);  // Use your existing setter
+		setBaseInfo(fuelRate, speedVal,model);  // Use your existing setter
 
 		file.close();
 
@@ -92,19 +93,7 @@ float Plane::getSpeed() const{
 	return speed;
 
 }
-// method
 
-bool Plane::isModelNameTrue(string& modelName)
-{
-	// convert to model name to uppercase
-	transform(modelName.begin(), modelName.end(), modelName.begin(), ::toupper);
-
-	// Due to the program just using two brand boeing and airbus -> have to check if the plane is belongs to those two or not
-	if (modelName.substr(0, 6) == "BOEING" || modelName.substr(0, 6) == "AIRBUS") {
-		return true;
-	}
-	return false;
-}
 
 
 

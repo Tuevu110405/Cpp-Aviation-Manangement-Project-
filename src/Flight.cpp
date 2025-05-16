@@ -27,7 +27,7 @@ Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, fal
 }
 
 // Constructor.
-Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, const Weather &weatherInfo)
+Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, const Weather &weatherInfo, const Plane *planeInfo)
 {
     try
     {
@@ -35,6 +35,7 @@ Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, con
         setFlightType(type);
         setPilot(pilot);
         setWeather(weatherInfo);
+        setPlane(plane);
     }
     catch (InvalidID e)
     {
@@ -72,6 +73,8 @@ void Flight::setFlightID(const string &id)
     // Otherwise.
     flightID = processedID;
 }
+
+
 
 
 // Function Flight::setFlightType (Hoang).

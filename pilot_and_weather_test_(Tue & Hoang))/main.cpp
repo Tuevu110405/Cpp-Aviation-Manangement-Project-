@@ -15,6 +15,10 @@ int main()
     // Load the standard into the program.
     FlightManagement::loadPilotStandard("pilot_standards.txt");
 
+    // Get data for passenger plane.
+    Plane planeInfo;
+
+
     // The actual weather.
     Weather weather;
     weather.setVisibility(300.0);

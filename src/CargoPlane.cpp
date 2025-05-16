@@ -5,7 +5,7 @@
 ostream& operator<<(ostream& os, const CargoPlane& plane)
 {
     os << "Plane model: " << plane.getModel();
-    os << "\nPlane fuel level: " << plane.getFuel();
+    os << "\nPlane fuel level: " << plane.getCurrent_Fuel();
     os << "\nPlane engines status: " << (plane.areEnginesOk() ? " OK! " : " NO!");
     os << "\nPlane payload capacity: " << plane.maxPayLoad() << " kg";
     return os;
@@ -22,18 +22,18 @@ istream& operator>>(istream& is, CargoPlane& plane)
     // Input model name
     cout << "Please enter the model: ";
     is >> model_name;
-    while (!plane.isModelNameTrue(model_name)) {
-        cout << "The program supports two brands: [BOEING] AND [AIRBUS]\n";
-        cout << "Please enter the model: ";
+    // while (!plane.isModelNameTrue(model_name)) {
+    //     cout << "The program supports two brands: [BOEING] AND [AIRBUS]\n";
+    //     cout << "Please enter the model: ";
         is >> model_name;
-    }
+    
     plane.setModel(model_name);
     cin.ignore();
 
     // Input fuel level
     cout << "\nPlease enter the fuel level (in percentage 0 - 100): ";
     is >> fuel;
-    plane.setFuel(fuel);
+    plane.setCurrent_Fuel(fuel);
 
     // Input engines condition
     do {

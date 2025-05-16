@@ -1,4 +1,4 @@
-#include "PlaneInspectionResult.h"
+#include "../include/PlaneInspectionResult.h"
 #include <iostream>
 #include <algorithm>
 
@@ -22,8 +22,7 @@ bool PlaneInspectionResult::validateModel(const Plane& plane) {
         cout << "Error: Model name is empty." << endl;
         return false;
     }
-    if (!isAlphan(model)) {
-        cout << "Error: Model name must be alphanumeric." << endl;
+    if (!isModelNameTrue(model)) {
         return false;
     }
     return true;

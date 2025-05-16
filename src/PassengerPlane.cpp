@@ -1,4 +1,4 @@
-#include "PassengerPlane.h"
+#include "../include/PassengerPlane.h"
 
 PassengerPlane::PassengerPlane()
 {
@@ -45,16 +45,16 @@ istream& operator>>(istream& in, PassengerPlane& plane)
 	int passenger_capacity;
 	// input model
 	cout << "Please enter the model : "; in >> model_name;
-	while (!plane.isModelNameTrue(model_name)) {
-		cout << "The program support two brands: [BOEING] AND [AIRBUS]";
-		cout << "Please enter the model : ";
-		in >> model_name;
-	}
+	// while (!plane.isModelNameTrue(model_name)) {
+	// 	cout << "The program support two brands: [BOEING] AND [AIRBUS]";
+	// 	cout << "Please enter the model : ";
+	in >> model_name;
+	
 	plane.setModel(model_name);
 
 	// input fuel level
 	cout << "\nPlease enter the fuel level (in percentage 0 - 100 )  : "; in >> fuel;
-	plane.setFuel(fuel);
+	plane.setCurrent_Fuel(fuel);
 
 	// Input engines condition
 	do {
@@ -81,7 +81,7 @@ istream& operator>>(istream& in, PassengerPlane& plane)
 ostream& operator<<(ostream& out, const PassengerPlane& plane)
 {
 	out << "Plane model: " << plane.getModel();
-	out << "\nPlane fuel level: " << plane.getFuel();
+	out << "\nPlane fuel level: " << plane.getCurrent_Fuel();
 	out << "\nPlane engines status :" << (plane.areEnginesOk() ? " OK! " : " NO!");
 	out << "\nPlane have " << plane.passengerCapacity() << " passenger! ";
 	out << "\nPlane payload: " << plane.maxPayLoad() << " kg";

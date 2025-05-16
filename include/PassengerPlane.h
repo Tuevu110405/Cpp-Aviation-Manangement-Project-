@@ -1,5 +1,8 @@
 #pragma once
 #include "Plane.h"
+#include <iostream>
+using namespace std;
+
 class PassengerPlane :
     public Plane
 {
@@ -23,9 +26,9 @@ public:
 
     // validate number of passenger 
     bool IsEnoughPassenger(int num_passenger);
+
    
 };
-
- // operator overloading
-    istream& operator>>(istream& in, PassengerPlane& plane);
-    ostream& operator<<(ostream& out, const PassengerPlane& plane);
+// operator overloading
+istream& operator>>(istream& in, PassengerPlane& plane);
+ostream& operator<<(ostream& out, const PassengerPlane& plane);
