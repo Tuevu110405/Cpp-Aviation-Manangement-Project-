@@ -19,6 +19,7 @@ private:
     string flightType;                  // The type of the flight (Hoang).
     Pilot pilot;                        // The pilot (Hoang).
     PilotInspectionResult pilotResult;  // The pilot inspection result.
+    
     // Weather (Tue)
     Weather weather;
     WeatherInspectionResult weatherInspectionResult;
@@ -59,8 +60,10 @@ public:
         { return pilotResult; }
 
     // Accessor functions (Tue).
-    Weather& getWeather();
-    WeatherInspectionResult& getWeatherInspectionResult();   
+    const Weather& getWeather();
+    const WeatherInspectionResult& getWeatherInspectionResult();
+    
+    
         
     // Mutator functions (Hoang).
     void setFlightID(const string &id);

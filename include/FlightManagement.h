@@ -15,10 +15,16 @@ class FlightManagement
 {
 private:
     static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)
+    // Vector valid flight (Tue)
+    vector<Flight> validFlight;
+    vector<Flight> invalidFlight;
 public:
     // Pilot-related functions (Hoang)
     static void loadPilotStandard(const string &fileName);
     static PilotStandard findPilotStandard(const string &model);
     static void displayPilotStandards(const string &model);
+    //
+    void updateInvalidAndValidFlight(Flight &flight);
+    //output file
 };
-#endif
+#endif;

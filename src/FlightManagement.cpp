@@ -144,3 +144,18 @@ void FlightManagement::displayPilotStandards(const string &model)
     cout << standard << endl;
 }
 
+void FlightManagement::updateInvalidAndValidFlight(Flight &flight)
+{
+    // Check if the flight is valid or not.
+    if (flight.getPilotInspectionResult().getInspectionResult() == false || 
+        flight.getWeatherInspectionResult().getInspectionResult() == false 
+        // ||: Wait for Tung to implement the plane inspection result
+    ){
+        invalidFlight.push_back(flight);
+
+        }
+    else{
+        validFlight.push_back(flight);
+    }
+
+}
