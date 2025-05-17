@@ -47,6 +47,7 @@ istream& PassengerPlane::input(istream& is)
         is >> fuel;
         if (fuel < 0 || fuel > fuel_tank)
             throw out_of_range("Fuel  must be between 0 and less than the fuel capacity of model " + model + " is " + to_string(fuel_tank));
+            
         setCurrent_Fuel(fuel);
 
         cout << "\nPlease enter the engine status (1 for OK, 0 for NOT OK): ";

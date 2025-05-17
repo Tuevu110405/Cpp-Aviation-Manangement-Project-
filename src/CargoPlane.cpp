@@ -59,6 +59,7 @@ istream& CargoPlane::input(istream& is)
             cout << "\nPlease enter the number of payload: ";
             is >> payload_capacity;
             if (payloadCapacity > this->maxPayLoad())
+            if (payloadCapacity > this->maxPayLoad())
                 throw out_of_range("The payload is over than the max capacity.");
             setPayload(payload_capacity);
 
