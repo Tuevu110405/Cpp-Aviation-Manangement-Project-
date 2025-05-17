@@ -49,4 +49,10 @@ public:
 
 
 };
+istream& operator>>(istream& is, Plane& plane) {
+	return plane.input(is);  // Calls the virtual input() method
+}
 
+ostream& operator<<(ostream& os, const Plane& plane) {
+	return plane.output(os);  // Calls the virtual output() method
+}

@@ -7,5 +7,10 @@ using namespace std;
 
 int main()
 {
+    Plane *p = new CargoPlane;
+
+    cin >> *p;
+
+    cout << *p;
     
 }
