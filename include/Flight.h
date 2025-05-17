@@ -87,10 +87,10 @@ public:
 
     // Mutator functions (Tung).
     void setPlane(Plane *newPlane)
-        {  if (plane != nullptr){
-            delete plane;
-        }
-            plane = newPlane; }
+    {
+        // Do not delete the existing plane pointer here to avoid double deletion.
+        plane = newPlane;
+    }
 
     void setPlaneInspectionResult(const PlaneInspectionResult &result)
         { planeInspectionResult = result; }

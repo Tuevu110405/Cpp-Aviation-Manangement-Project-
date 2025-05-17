@@ -16,7 +16,7 @@ int main()
     FlightManagement::loadPilotStandard("pilot_standards.txt");
 
     // Get data for passenger plane.
-    Plane planeInfo;
+    // Plane planeInfo;
 
 
     // The actual weather.

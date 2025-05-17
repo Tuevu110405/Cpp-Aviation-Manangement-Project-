@@ -28,6 +28,8 @@ int main()
     flight->setFlightID("VN001");
     flight->setFlightType("Passenger");
     Pilot pilot;
+
+    cout << "Enter data for pilot:\n";
     cin >> pilot;
     cout << pilot;
     flight->setPilot(pilot);
@@ -59,7 +61,7 @@ int main()
     cout << "Tailwind: " << (flight->getWeatherInspectionResult().getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
     cout << "Horizontal Visibility: " << (flight->getWeatherInspectionResult().getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
     cout << "Overall Inspection Result: " << (flight->getWeatherInspectionResult().getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
-    cout << "\n[Plane Inspection Result]" << endl;
+    cout << "\n[Pilot Inspection Result]" << endl;
     flight->displayDetailsPilotResult();
     delete flight;
     delete p;
