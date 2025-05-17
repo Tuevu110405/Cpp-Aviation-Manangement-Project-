@@ -1,4 +1,6 @@
 #include "../include/PassengerPlane.h"
+#include <limits>
+
 
 PassengerPlane::PassengerPlane()
 {
@@ -32,6 +34,7 @@ istream& PassengerPlane::input(istream& is)
     string model_name;
     double status_;
     double passenger_capacity;
+    double seat_capacity;
 
     try {
         cout << "Please enter the model: ";
@@ -43,7 +46,7 @@ istream& PassengerPlane::input(istream& is)
         cout << "\nPlease enter the fuel in gallons : ";
         is >> fuel;
         if (fuel < 0 || fuel > fuel_tank)
-            throw out_of_range("Fuel  must be between 0 and less than the fuel capacity of model " + model + " is " + to_string(fuel_tank);
+            throw out_of_range("Fuel  must be between 0 and less than the fuel capacity of model " + model + " is " + to_string(fuel_tank));
         setCurrent_Fuel(fuel);
 
         cout << "\nPlease enter the engine status (1 for OK, 0 for NOT OK): ";
@@ -51,9 +54,12 @@ istream& PassengerPlane::input(istream& is)
         if (status_ != 1 && status_ != 0)
             throw invalid_argument("Engine status must be set by using 1 or 0.");
         setEngineStatus(status_);
-
+        cout << "Enter seat capacity: ";
+        is >> seat_capacity;
+        setSeatCapacity(seat_capacity);
         cout << "\nPlease enter the number of passengers: ";
         is >> passenger_capacity;
+
         if (!IsEnoughPassenger(passenger_capacity))
             throw out_of_range("Number of passengers exceeds seat capacity.");
         setNumOfPassenger(passenger_capacity);
@@ -67,6 +73,7 @@ istream& PassengerPlane::input(istream& is)
 
         return is;
     }
+    return is;
 }
 
 void PassengerPlane::setSeatCapacity(double seatCapacity)

@@ -3,10 +3,10 @@
 using namespace std;
 
 //Default constructor
-Weather::Weather() : visibility(0), crosswind(0), temperature(0), thunderstorm(0), tailwind(0), horizontalVisibility(0) {
+Weather::Weather() : visibility(0), crosswind(0), temperature(0), thunderstorm(0), tailwind(0), horizontalVisibility(0) , Freezing(false) {
     // Constructor initialization
 }
-Weather::Weather(float visibility, float crosswind, float temperature, float thunderstorm, float tailwind, float horizontalVisibility): visibility(visibility), crosswind(crosswind), temperature(temperature),thunderstorm(thunderstorm), tailwind(tailwind), horizontalVisibility(horizontalVisibility){}
+Weather::Weather(float visibility, float crosswind, float temperature, float thunderstorm, float tailwind, float horizontalVisibility): visibility(visibility), crosswind(crosswind), temperature(temperature),thunderstorm(thunderstorm), tailwind(tailwind), horizontalVisibility(horizontalVisibility), Freezing(false){}
 
 //Getters
 float Weather::getVisibility() const {
@@ -95,7 +95,7 @@ istream& operator>>(istream& is, Weather& weather){
     is >> temperature;
     is.ignore();
     weather.setTemperature(temperature);
-    cout << "Enter thunderstorm: ";
+    cout << "Enter distance to thunderstorm: ";
     float thunderstorm;
     is >> thunderstorm;
     is.ignore();

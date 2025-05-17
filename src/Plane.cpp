@@ -103,10 +103,14 @@ bool Plane::isModelNameTrue(std::string& modelName) {
 	transform(modelName.begin(), modelName.end(), modelName.begin(), ::toupper);
 
 	// Valid Boeing and Airbus models (you can expand this list)
+	// Remove invalid models for Tung 
 	const unordered_set<string> validModels = {
-		"BOEING737", "BOEING747", "BOEING757", "BOEING767", "BOEING777", "BOEING787",
-		"AIRBUSA220", "AIRBUSA300", "AIRBUSA310", "AIRBUSA318", "AIRBUSA319", "AIRBUSA320",
-		"AIRBUSA321", "AIRBUSA330", "AIRBUSA340", "AIRBUSA350", "AIRBUSA380"
+		// "BOEING737", "BOEING747", "BOEING757", "BOEING767", "BOEING777",//
+		 "BOEING787",
+		// "AIRBUSA220", "AIRBUSA300", "AIRBUSA310", "AIRBUSA318", "AIRBUSA319",
+		 "AIRBUSA320NEO","AIRBUSA350", 
+		"AIRBUSA321" //"AIRBUSA330"//
+		//  "AIRBUSA340",  "AIRBUSA380"
 	};
 
 	// Check if modelName is in the valid models list
@@ -120,7 +124,6 @@ istream& operator>>(istream& is, Plane& plane) {
 ostream& operator<<(ostream& os, const Plane& plane) {
 	return plane.output(os);  // Calls the virtual output() method
 }
-
 
 
 

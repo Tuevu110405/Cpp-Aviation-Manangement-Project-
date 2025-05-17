@@ -1,4 +1,6 @@
-#include "CargoPlane.h"
+#include "../include/CargoPlane.h"
+#include <limits>
+#include <stdexcept>
 
 
 
@@ -54,9 +56,9 @@ istream& CargoPlane::input(istream& is)
                 throw invalid_argument("Engine status must be 1 or 0.");
             setEngineStatus(status_);
 
-            cout << "\nPlease enter the number of passengers: ";
+            cout << "\nPlease enter the number of payload: ";
             is >> payload_capacity;
-            if (payloadCapacity > maxPayLoad)
+            if (payloadCapacity > this->maxPayLoad())
                 throw out_of_range("The payload is over than the max capacity.");
             setPayload(payload_capacity);
 
