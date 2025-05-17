@@ -25,8 +25,6 @@ void FlightManagement::loadPilotStandard(const string &fileName)
     getline(inputFile, line);       // Skip the header line.
 
     // Reading the file.
-    int index = 0;  // Index of the array.
-
     while(getline(inputFile, line))
     {
         // Skip empty lines.
@@ -80,8 +78,6 @@ void FlightManagement::loadPilotStandard(const string &fileName)
             pilotStandard.setMinRequiredEnglishLevel(minEnglish);
             pilotStandard.setRequiredHealthStatus(minHealth);
             pilotStandardArray.push_back(pilotStandard);
-            // Increment the index.
-            index++;
         }
         catch (PilotStandard::InvalidModel)
         {
