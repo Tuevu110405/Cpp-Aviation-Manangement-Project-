@@ -67,9 +67,12 @@ bool PlaneInspectionResult::isModelNameTrue(std::string& modelName) {
 
     // Valid Boeing and Airbus models (you can expand this list)
     const std::unordered_set<std::string> validModels = {
-        "BOEING737", "BOEING747", "BOEING757", "BOEING767", "BOEING777", "BOEING787",
-        "AIRBUSA220", "AIRBUSA300", "AIRBUSA310", "AIRBUSA318", "AIRBUSA319", "AIRBUSA320",
-        "AIRBUSA321", "AIRBUSA330", "AIRBUSA340", "AIRBUSA350", "AIRBUSA380"
+        // "BOEING737", "BOEING747", "BOEING757", "BOEING767", "BOEING777",//
+		 "BOEING787",
+		// "AIRBUSA220", "AIRBUSA300", "AIRBUSA310", "AIRBUSA318", "AIRBUSA319",
+		 "AIRBUSA320NEO","AIRBUSA350", 
+		"AIRBUSA321" //"AIRBUSA330"//
+		//  "AIRBUSA340",  "AIRBUSA380"
     };
 
     // Check if modelName is in the valid models list
