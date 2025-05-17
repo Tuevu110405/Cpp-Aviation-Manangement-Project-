@@ -5,9 +5,9 @@
 #include "PilotInspectionResult.h"
 #include "StringManipulator.h"
 #include "Pilot.h"
-#include "Plane.h"
-#include "CargoPlane.h"
-#include "PassengerPlane.h"
+#include "../include/Plane.h"
+#include "../include/PassengerPlane.h"
+#include "../include/CargoPlane.h"
 #include "PlaneInspectionresult.h"
 #include <iostream>
 #include <string>
