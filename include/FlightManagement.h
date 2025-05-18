@@ -14,10 +14,12 @@ using namespace std;
 class FlightManagement
 {
 private:
-    static vector<PilotStandard> pilotStandardArray;    // Pilot-related variable (Hoang)
+    // Pilot-related variable (Hoang)
+    static vector<PilotStandard> pilotStandardArray; 
+
     // Vector valid flight (Tue)
-    static vector<Flight> validFlight;
-    static vector<Flight> invalidFlight;
+    static vector<Flight *> eligibleFlightList;
+    static vector<Flight *> ineligibleFlightList;
 public:
     // Pilot-related functions (Hoang)
     static void loadPilotStandard(const string &fileName);
@@ -25,18 +27,23 @@ public:
     static void displayPilotStandards(const string &model);
 
     //actions of flight management(Tue)
-    static void addValidFlight(Flight& flight);
-    static void addInvalidFlight(Flight& flight);
+    // static void addValidFlight(Flight* flight);
+    // static void addInvalidFlight(Flight* flight);
+    static void addFlight(Flight *flight);
+
     //accessor functions for valid and invalid flights
-    static vector<Flight> getValidFlight();
-    static vector<Flight> getInvalidFlight();
+    static vector<Flight *> getValidFlight();
+    static vector<Flight *> getInvalidFlight();
+
     //store flight to valid or invalid flight after inspection
 
-    static void storeFlight(Flight &flight);
+    // static void storeFlight(Flight &flight);
     //function find invalid flight based on flightID
     // notice: after the flight is picked out , it will be removed from invalidFlight
-    static Flight& getInvalidFlight(string flightID);
+    // static Flight& getInvalidFlight(string flightID);
 
+    static void writeIneligibleFlights(const string &fileName);
+    static void writeEligibleFlights(const string &fileName);
 
 };
 #endif
