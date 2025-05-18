@@ -50,6 +50,9 @@ public:
 
     // Constructor.
     Flight(const string &id, const string &type, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
+    //Copy constructor for FlightManagement stage(Tue)
+    
+    Flight(const Flight &flight);
 
     // Accessor functions (Hoang).
     string getFlightID() const

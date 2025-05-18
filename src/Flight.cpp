@@ -43,6 +43,30 @@ Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, con
     }
 }
 
+// Copy constructor for FlightManagement stage (Tue).
+Flight::Flight(const Flight &flight)
+{
+    flightID = flight.flightID;
+    flightType = flight.flightType;
+    pilot = flight.pilot;
+    pilotResult = flight.pilotResult;
+    weather = flight.weather;
+    plane = flight.plane;
+    /*Tuệệ dùng deep copy như trong sách mà không đc
+    if(flight.plane != nullptr)
+    {
+        plane = new Plane(*flight.plane);
+        plane->setBaseInfo(flight.plane->getFuel_consumption_rate(), flight.plane->getSpeed(), flight.plane->getCurrent_Fuel(), flight.plane->getModel());
+    }
+    else
+    {
+        plane = nullptr;
+    }
+        */
+    weatherInspectionResult = flight.weatherInspectionResult;
+    planeInspectionResult = flight.planeInspectionResult;
+}
+
 
 // Function Flight::setFlightID (Hoang).
 void Flight::setFlightID(const string &id)
@@ -120,4 +144,5 @@ void Flight::displayDetailsPilotResult() const
     cout << " - License expiry: " << (pilotResult.getLicenseExpiryResult() == false ? "Not acceptable, " : "Acceptable");
     cout << pilotResult.getLicenseExpiryNote() << endl;
 }
+
 
