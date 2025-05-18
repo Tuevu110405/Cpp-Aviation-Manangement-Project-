@@ -406,17 +406,17 @@ void FlightManagement::addInvalidFlight(Flight& flight)
 {
     invalidFlight.push_back(flight);
 }
-
-vector<Flight> FlightManagement::getValidFlight()
+*/
+vector<Flight *> FlightManagement::getEligibleFlightList()
 {
-    return validFlight;
+    return eligibleFlightList;
 }
 
-vector<Flight> FlightManagement::getInvalidFlight()
+vector<Flight *> FlightManagement::getIneligibleFlightList()
 {
-    return invalidFlight;
+    return ineligibleFlightList;
 }
-
+/*
 void FlightManagement::storeFlight(Flight &flight)
 {
     // Check if the flight is valid or invalid
@@ -431,19 +431,18 @@ void FlightManagement::storeFlight(Flight &flight)
         addInvalidFlight(flight);
     }
 }
-
-Flight& FlightManagement::getInvalidFlight(string flightID)
+*/
+Flight *FlightManagement::getIneligibleFlight(string flightID)
 {
-    for (int i = 0; i < invalidFlight.size(); i++)
+    for (int i = 0; i < ineligibleFlightList.size(); i++)
     {
-        if (invalidFlight[i].getFlightID() == flightID)
+        if (ineligibleFlightList[i]->getFlightID() == flightID)
         {
             //get flight that we want to find and remove it from invalidFlight
-            Flight temp = invalidFlight[i];
-            invalidFlight.erase(invalidFlight.begin() + i);
+            Flight *temp = ineligibleFlightList[i];
+            ineligibleFlightList.erase(ineligibleFlightList.begin() + i);
             return temp;
         }
     }
     throw runtime_error("Flight not found");
 }
-    */

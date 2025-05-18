@@ -32,15 +32,15 @@ public:
     static void addFlight(Flight *flight);
 
     //accessor functions for valid and invalid flights
-    static vector<Flight *> getValidFlight();
-    static vector<Flight *> getInvalidFlight();
+    static vector<Flight *> getEligibleFlightList();
+    static vector<Flight *> getIneligibleFlightList();
 
     //store flight to valid or invalid flight after inspection
 
     // static void storeFlight(Flight &flight);
     //function find invalid flight based on flightID
     // notice: after the flight is picked out , it will be removed from invalidFlight
-    // static Flight& getInvalidFlight(string flightID);
+    static Flight *getIneligibleFlight(string flightID);
 
     static void writeIneligibleFlights(const string &fileName);
     static void writeEligibleFlights(const string &fileName);
