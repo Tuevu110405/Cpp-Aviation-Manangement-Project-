@@ -1,7 +1,16 @@
-=== Flight: VN002 ===
-Flight type: Cargo
+Flight: VN001
+Flight type: Passenger
 Status: Ineligible
 
-[Inspection Result]
-Pilot result: Ineligible
+[Pilot Inspection Result]
+Overall result: Ineligible
+Flight hours: Ineligible, Flight hours do not meet. (Actual: 4000 hours, Required: 5000 hours.)
+Hours in command: Ineligible, Hours in command do not meet. (Actual: 1000 hours, Required: 2000 hours.)
+English level: Eligible
+Health status: Ineligible, Health does not meet. (Actual: Status 2, Required: Status 1)
+License type: Ineligible, 
+License date: Ineligible, 
+
 Weather result: Eligible
+======
+

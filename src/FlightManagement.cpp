@@ -173,9 +173,83 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
         outputFile << "Status: Ineligible\n";
-        outputFile << "\n[Inspection Result]\n";
-        outputFile << "Pilot result: ";
-        outputFile << (flight->getPilotInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
+
+        // Write details of Pilot Inspection Result.
+        outputFile << "\n[Pilot Inspection Result]\n";
+        // Take the pilot inspection result.
+        PilotInspectionResult pilotResult = flight->getPilotInspectionResult();
+        // Write the overall pilot inspection result.
+        outputFile << "Overall result: " << 
+        (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible") << endl;
+        // Write the details of the pilot inspection result for flight hours.
+        outputFile << " - Flight hours: ";
+        if (pilotResult.getFlightHoursResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getFlightHoursNote()<< endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for hours in command.
+        outputFile << " - Hours in command: ";
+        if (pilotResult.getHoursInCommandResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getHoursInCommandNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for English level.
+        outputFile << " - English level: ";
+        if (pilotResult.getEnglishLevelResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getEnglishLevelNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for health status.
+        outputFile << " - Health status: ";
+        if (pilotResult.getHealthStatusResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getHealthStatusNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for license type.
+        outputFile << " - License type: ";
+        if (pilotResult.getLicenseTypeResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getLicenseExpiryNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for license expiry.
+        outputFile << " - License date: ";
+        if (pilotResult.getLicenseTypeResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getLicenseExpiryNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+
+        // Write the details of Weather Inspection Result.
+        outputFile << endl;
         outputFile << "Weather result: ";
         outputFile << (flight->getWeatherInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
         outputFile << "======\n\n";
@@ -203,10 +277,85 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
         outputFile << "Status: Eligible\n";
+
+        // Write details of Pilot Inspection Result.
         outputFile << "\n[Pilot Inspection Result]\n";
-        outputFile << "Pilot result: ";
-        outputFile << (flight->getPilotInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
-        outputFile << "Weather result: ";
+        // Take the pilot inspection result.
+        PilotInspectionResult pilotResult = flight->getPilotInspectionResult();
+        // Write the overall pilot inspection result.
+        outputFile << "Overall result: " << 
+        (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible") << endl;
+        // Write the details of the pilot inspection result for flight hours.
+        outputFile << " - Flight hours: ";
+        if (pilotResult.getFlightHoursResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getFlightHoursNote()<< endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for hours in command.
+        outputFile << " - Hours in command: ";
+        if (pilotResult.getHoursInCommandResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getHoursInCommandNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for English level.
+        outputFile << " - English level: ";
+        if (pilotResult.getEnglishLevelResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getEnglishLevelNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for health status.
+        outputFile << " - Health status: ";
+        if (pilotResult.getHealthStatusResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getHealthStatusNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for license type.
+        outputFile << " - License type: ";
+        if (pilotResult.getLicenseTypeResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getLicenseExpiryNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        // Write the details of the pilot inspection result for license expiry.
+        outputFile << " - License date: ";
+        if (pilotResult.getLicenseTypeResult() == false)
+        {
+            outputFile << "Ineligible, ";
+            outputFile << pilotResult.getLicenseExpiryNote() << endl;
+        }
+        else
+        {
+            outputFile << "Eligible" << endl;
+        }
+        outputFile << endl;
+
+
+        // Write details eather Inspection Result.
+        outputFile << "[Weather Inspection Result]\n";
         outputFile << (flight->getWeatherInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
         outputFile << "======\n\n";
     }
