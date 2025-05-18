@@ -19,9 +19,10 @@ class Flight
 {
 private:
     // Pilot and flight (Hoang).
-    string flightID;                    // The flight ID (Hoang).
-    string flightType;                  // The type of the flight (Hoang).
-    Pilot pilot;                        // The pilot (Hoang).
+    string flightID;                    // The flight ID.
+    string flightType;                  // The type of the flight.
+    bool flightStatus;                  // The status of the flight: Eligible or Ineligible.
+    Pilot pilot;                        // The pilot.
     PilotInspectionResult pilotResult;  // The pilot inspection result.
     
     // Weather (Tue)
@@ -60,6 +61,9 @@ public:
 
     string getFlightType() const
         { return flightType; }
+    
+    bool getFlightStatus() const
+        { return flightStatus; }
 
     Pilot getPilot() const
         { return pilot; }
@@ -83,6 +87,7 @@ public:
     void setFlightType(const string &type);
     void setPilot(const Pilot &newPilot);
     void setPilotResult(const PilotInspectionResult &);
+    void updateFlightStatus();
 
     // Mutator functions (Tue).
     void setWeather(const Weather& weather);
