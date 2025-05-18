@@ -158,3 +158,14 @@ void Flight::displayDetailsPilotResult() const
 }
 
 
+void Flight::displayDetailsWeatherResult() const
+{
+    cout << "\n[Weather Inspection Result]" << endl;
+    cout << "Visibility: " << (weatherInspectionResult.getIsVisibility() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Crosswind: " << (weatherInspectionResult.getIsCrosswind() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Temperature: " << (weatherInspectionResult.getIsTemperature() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Thunderstorm: " << (weatherInspectionResult.getIsThunderstorm() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Tailwind: " << (weatherInspectionResult.getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Horizontal Visibility: " << (weatherInspectionResult.getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << "Overall Inspection Result: " << (weatherInspectionResult.getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
+}

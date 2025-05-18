@@ -105,6 +105,7 @@ public:
     
     // Other functions (Hoang).
     void displayDetailsPilotResult() const;
+    void displayDetailsWeatherResult() const;
 };
 
 

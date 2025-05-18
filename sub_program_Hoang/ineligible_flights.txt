@@ -1,0 +1,7 @@
+=== Flight: VN002 ===
+Flight type: Cargo
+Status: Ineligible
+
+[Inspection Result]
+Pilot result: Ineligible
+Weather result: Eligible

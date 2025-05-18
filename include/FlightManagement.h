@@ -44,6 +44,8 @@ public:
 
     static void writeIneligibleFlights(const string &fileName);
     static void writeEligibleFlights(const string &fileName);
+    static void writeSummary(const string &fileName);
+    static void deleteFlights();
 
 };
 #endif

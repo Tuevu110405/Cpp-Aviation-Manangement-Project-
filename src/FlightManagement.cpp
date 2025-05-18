@@ -170,7 +170,7 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
     for (int count = 0; count < ineligibleFlightList.size(); count++)
     {
         Flight *flight = ineligibleFlightList[count];
-        outputFile << "=== Flight: " << flight->getFlightID() << " ===\n";
+        outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
         outputFile << "Status: Ineligible\n";
         outputFile << "\n[Inspection Result]\n";
@@ -178,7 +178,7 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         outputFile << (flight->getPilotInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
         outputFile << "Weather result: ";
         outputFile << (flight->getWeatherInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
-        cout << "======\n\n";
+        outputFile << "======\n\n";
     }
 
     // Close the file.
@@ -200,21 +200,53 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
     for (int count = 0; count < eligibleFlightList.size(); count++)
     {
         Flight *flight = eligibleFlightList[count];
-        outputFile << "=== Flight: " << flight->getFlightID() << " ===\n";
+        outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
         outputFile << "Status: Eligible\n";
-        outputFile << "\n[Inspection Result]\n";
+        outputFile << "\n[Pilot Inspection Result]\n";
         outputFile << "Pilot result: ";
         outputFile << (flight->getPilotInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
         outputFile << "Weather result: ";
         outputFile << (flight->getWeatherInspectionResult().getInspectionResult() == false ? "Ineligible\n" : "Eligible\n");
-        cout << "======\n\n";
+        outputFile << "======\n\n";
     }
 
     // Close the file.
     outputFile.close();
 }
 
+void FlightManagement::writeSummary(const string &fileName)
+{
+    // Open the file.
+    ofstream outputFile(fileName);
+    if (outputFile.fail())
+    {
+        cout << "ERROR: Could not open file to write summary.\n";
+        exit(EXIT_FAILURE);
+    }
+
+    int totalFlightsInspected = eligibleFlightList.size() + ineligibleFlightList.size();
+
+    // Write the summary.
+    outputFile << "Total flight inspected: " << totalFlightsInspected << " flights, in which" << endl;
+    outputFile << "  - " << eligibleFlightList.size() << " eligible flights\n";
+    outputFile << "  - " << ineligibleFlightList.size() << " ineligible flights\n";
+
+    // Close the file.
+    outputFile.close();
+}
+
+void FlightManagement::deleteFlights()
+{
+    for (int count = 0; count < eligibleFlightList.size(); count++)
+    {
+        delete eligibleFlightList[count];
+    }
+    for (int count = 0; count < ineligibleFlightList.size(); count++)
+    {
+        delete ineligibleFlightList[count];
+    }
+}
 /* Function for actions of valid and invalid flight (Tue)
 void FlightManagement::addValidFlight(Flight& flight)
 {
@@ -266,4 +298,3 @@ Flight& FlightManagement::getInvalidFlight(string flightID)
     throw runtime_error("Flight not found");
 }
     */
-
