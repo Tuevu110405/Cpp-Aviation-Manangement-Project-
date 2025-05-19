@@ -24,6 +24,7 @@ Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, fal
 {
     flightID = "";
     flightType = "";
+    flightStatus = false;
 }
 
 // Constructor.
