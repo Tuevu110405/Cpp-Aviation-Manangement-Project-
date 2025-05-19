@@ -26,26 +26,21 @@ public:
     static PilotStandard findPilotStandard(const string &model);
     static void displayPilotStandards(const string &model);
 
-    //actions of flight management(Tue)
-    // static void addValidFlight(Flight* flight);
-    // static void addInvalidFlight(Flight* flight);
+    // Actions of flight management(Tue)
     static void addFlight(Flight *flight);
 
-    //accessor functions for valid and invalid flights
+    // Accessor functions for valid and invalid flights
     static vector<Flight *> getEligibleFlightList();
     static vector<Flight *> getIneligibleFlightList();
 
-    //store flight to valid or invalid flight after inspection
-
-    // static void storeFlight(Flight &flight);
     //function find invalid flight based on flightID
     // notice: after the flight is picked out , it will be removed from invalidFlight
     static Flight *getIneligibleFlight(string flightID);
 
+    // Report flight data (Hoang).
     static void writeIneligibleFlights(const string &fileName);
     static void writeEligibleFlights(const string &fileName);
     static void writeSummary(const string &fileName);
     static void deleteFlights();
-
 };
 #endif

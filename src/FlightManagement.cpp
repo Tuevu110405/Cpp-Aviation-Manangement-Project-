@@ -396,42 +396,20 @@ void FlightManagement::deleteFlights()
         delete ineligibleFlightList[count];
     }
 }
-/* Function for actions of valid and invalid flight (Tue)
-void FlightManagement::addValidFlight(Flight& flight)
-{
-    validFlight.push_back(flight);
-}
 
-void FlightManagement::addInvalidFlight(Flight& flight)
-{
-    invalidFlight.push_back(flight);
-}
-*/
+// Function FlightManagement::getEligibleFlightList.
 vector<Flight *> FlightManagement::getEligibleFlightList()
 {
     return eligibleFlightList;
 }
 
+// Function FlightManagement::getIneligibleFlightList.
 vector<Flight *> FlightManagement::getIneligibleFlightList()
 {
     return ineligibleFlightList;
 }
-/*
-void FlightManagement::storeFlight(Flight &flight)
-{
-    // Check if the flight is valid or invalid
-    if (flight.getWeatherInspectionResult().getInspectionResult() == true &&
-        flight.getPilotInspectionResult().getInspectionResult() == true )
-        // &&flight.getPlaneInspectionResult().getInspectionResult() == true)
-    {
-        addValidFlight(flight);
-    }
-    else
-    {
-        addInvalidFlight(flight);
-    }
-}
-*/
+
+// Function FlightManagement::getEligibleFlight.
 Flight *FlightManagement::getIneligibleFlight(string flightID)
 {
     for (int i = 0; i < ineligibleFlightList.size(); i++)
