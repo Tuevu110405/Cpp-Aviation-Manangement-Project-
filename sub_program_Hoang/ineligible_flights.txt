@@ -4,13 +4,20 @@ Status: Ineligible
 
 [Pilot Inspection Result]
 Overall result: Ineligible
-Flight hours: Ineligible, Flight hours do not meet. (Actual: 4000 hours, Required: 5000 hours.)
-Hours in command: Ineligible, Hours in command do not meet. (Actual: 1000 hours, Required: 2000 hours.)
-English level: Eligible
-Health status: Ineligible, Health does not meet. (Actual: Status 2, Required: Status 1)
-License type: Ineligible, 
-License date: Ineligible, 
+ - Flight hours: Eligible
+ - Hours in command: Ineligible, (Actual: 1000 hours, Required: 2000 hours).
+ - English level: Ineligible, (Actual: Level 3, Required: Level 4).
+ - Health status: Ineligible, (Actual: Status 2, Required: Status 1).
+ - License type: Ineligible, 
+ - License date: Ineligible, 
 
-Weather result: Eligible
-======
 
+[Weather inspection result]
+ - Overall result: Acceptable
+ - Visibility: Acceptable
+ - Crosswind: Not Acceptable
+ - Temperature: Not Acceptable
+ - Thunderstorm: Not Acceptable
+ - Tailwind: Not Acceptable
+ - Horizontal Visibility: Acceptable
+==========

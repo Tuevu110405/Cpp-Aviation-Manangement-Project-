@@ -74,7 +74,7 @@ int main()
                         catch (Flight::InvalidID id)
                         {
                             cout << "ERROR: The ID " << id.getID()
-                                << " is invalid for a Vietnam airline flight.";
+                                << " is invalid for a Vietnam Airline flight.";
                             cout << "\nEnter again.\n";
                         }
                     }

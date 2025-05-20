@@ -117,7 +117,7 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         
         // Write the details of Weather Inspection Result.
         WeatherInspectionResult weatherInspectionResult = flight->getWeatherInspectionResult();
-        outputFile << "\n[Weather inspection result]\n";
+        outputFile << "[Weather inspection result]\n";
         outputFile << " - Overall result: " << (weatherInspectionResult.getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Visibility: " << (weatherInspectionResult.getIsVisibility() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Crosswind: " << (weatherInspectionResult.getIsCrosswind() ? "Acceptable" : "Not Acceptable") << endl;
