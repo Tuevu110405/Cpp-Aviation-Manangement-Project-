@@ -5,37 +5,28 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-
+#ifndef M_PI
+#define M_PI (acos(-1.0))
+#endif
 using namespace std;
 struct Destination {
 	string city;
 	string airport_code;
-	float latitude;
-	float longitude;
+	double latitude;
+	double longitude;
 };
 
-class Location
-{
+class Location {
 private:
-	// exchange the degree
-	double degreeToRadian(double deg);
-	double radianToDegree(double rad);
-	vector<Destination> destinations;
+    double degreeToRadian(double deg);
+    double radianToDegree(double rad);
+    vector<Destination> destinations; // List of all loaded airports
+
 public:
-	// The calculate function will take the latitude and longitude to calculate the distance between 2 destination
-    double calculateDistance_in_KM(float lat1, float lon1, float lat2, float lon2);
-	void loadDestinationFromFile(const string& filename);
-	bool isOceanicFlight(float lat1, float lon1, float lat2, float lon2);
-	double Distance_in_NM();
-	// get destination
-	const vector<Destination>& getDestinations() const { return destinations; }
-
-    
-
+    void loadDestinationFromFile(const string& filename);  // Load airport data
+    double calculateDistanceInKM(double lat1, double lon1, double lat2, double lon2);
+    double distanceInNM(double distanceInKM);
+    bool isOceanicFlight(double lat1, double lon1, double lat2, double lon2);
+    const vector<Destination>& getDestinations() const;
+    bool getDestinationByCode(const string& code, Destination& dest) const;
 };
-
-
-
-
-
-
