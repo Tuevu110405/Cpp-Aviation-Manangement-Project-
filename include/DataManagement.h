@@ -1,7 +1,6 @@
 #ifndef DATA_MANAGEMENT_H
 #define DATA_MANAGEMENT_H
 #include "PilotStandard.h"
-#include "PlaneSpecification.h"
 #include <vector>
 #include <string>
 #include <fstream>
