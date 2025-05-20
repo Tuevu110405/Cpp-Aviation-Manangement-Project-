@@ -104,15 +104,8 @@ void Flight::setFlightID(const string &id)
 // Function Flight::updateFlightStatus.
 void Flight::updateFlightStatus()
 {
-    if (pilotResult.getInspectionResult() == true &&
-        weatherInspectionResult.getInspectionResult() == true)
-    {
-        flightStatus = true;
-    }
-    else
-    {
-        flightStatus = false;
-    }
+    flightStatus = pilotResult.getInspectionResult() && 
+                   weatherInspectionResult.getInspectionResult();
 }
 
 // Function Flight::setFlightType (Hoang).
