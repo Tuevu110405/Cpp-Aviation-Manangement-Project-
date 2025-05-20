@@ -1,0 +1,5 @@
+fuelTank,fuelConsumptionRate,speedVal,model
+101300,5400,903,Boeing 787
+113000,5800,903,Airbus A350
+19000,2200,830,Airbus A320neo
+20000,2500,830,Airbus A321
