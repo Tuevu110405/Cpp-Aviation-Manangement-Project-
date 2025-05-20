@@ -3,6 +3,7 @@
 #include "../include/Flight.h"
 #include "../include/FlightInspection.h"
 #include "../include/FlightManagement.h"
+#include "../include/DataManagement.h"
 #include "../include/WeatherInspectionResult.h"
 #include "../include/Pilot.h"
 #include "../include/PilotInspectionResult.h"
@@ -13,7 +14,7 @@ using namespace std;
 int main()
 {   
     // Load the standard into the program.
-    FlightManagement::loadPilotStandard("pilot_standards.txt");
+    DataManagement::loadPilotStandard("pilot_standards.txt");
 
     // Get data for passenger plane.
     // Plane planeInfo;
@@ -58,7 +59,7 @@ int main()
     cout << "Overall Inspection Result: " << (flight.getWeatherInspectionResult().getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
 
     // Inspect the pilot for model Boeing 787.
-    PilotStandard pilotStandard = FlightManagement::findPilotStandard("Boeing 787");
+    PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
     PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(flight.getPilot(), pilotStandard);
 
     // Store the pilot inspection result to the flight.
