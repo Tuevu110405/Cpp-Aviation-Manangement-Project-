@@ -1,5 +1,6 @@
 #include "../include/FlightInspection.h"
 #include "../include/FlightManagement.h"
+#include "../include/DataManagement.h"
 #include "../include/PilotInspectionResult.h"
 #include "../include/PilotStandard.h"
 #include "../include/Pilot.h"
@@ -17,7 +18,7 @@ int validateOption(const string &option);
 int main()
 {
     // Load pilot standard from the file named PilotStandards.csv.
-    FlightManagement::loadPilotStandard("pilot_standards.txt");
+    DataManagement::loadPilotStandard("pilot_standards.txt");
     cout << "Load the pilot standards sucessfully.\n";
 
     // Constants for options.
@@ -109,7 +110,7 @@ int main()
             flight->setWeather(actualWeather);
             
             // Inspect the pilot.
-            PilotStandard pilotStandard = FlightManagement::findPilotStandard("Boeing 787");
+            PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
             pilotResult = FlightInspection::inspectPilot(pilot, pilotStandard);
             flight->setPilotResult(pilotResult);
 
@@ -236,7 +237,7 @@ int main()
             flight->setWeather(actualWeather);
             
             // Inspect the pilot.
-            PilotStandard pilotStandard = FlightManagement::findPilotStandard("Boeing 787");
+            PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
             pilotResult = FlightInspection::inspectPilot(pilot, pilotStandard);
             flight->setPilotResult(pilotResult);
 
