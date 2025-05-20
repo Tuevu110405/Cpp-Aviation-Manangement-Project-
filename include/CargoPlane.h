@@ -11,6 +11,7 @@ private:
 public:
     //constructor
     CargoPlane();
+    CargoPlane(const CargoPlane& other);
 
     // override function
     double maxPayLoad() const override;

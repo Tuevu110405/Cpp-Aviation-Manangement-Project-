@@ -1,6 +1,7 @@
 #include "../include/CargoPlane.h"
 #include <limits>
 #include <stdexcept>
+#include "CargoPlane.h"
 
 
 
@@ -10,6 +11,9 @@ CargoPlane::CargoPlane()
     payloadCapacity = 0;
 }
 
+CargoPlane::CargoPlane(const CargoPlane &other):Plane(other), payloadCapacity(other.payloadCapacity)
+{
+}
 double CargoPlane::maxPayLoad() const
 {
     return payloadCapacity + fuel_tank * 3.785411784001;
@@ -44,7 +48,7 @@ istream& CargoPlane::input(istream& is)
                 throw invalid_argument("Unsupported model. Allowed: [BOEING], [AIRBUS]");
             setModel(model_name);
 
-            cout << "\nPlease enter the fuel level (0 - 100): ";
+            cout << "\nPlease enter the fuel in gallons : ";
             is >> fuel;
             if (fuel < 0 || fuel > 100000)
                 throw out_of_range("Fuel level must be between 0 and 100,000.");

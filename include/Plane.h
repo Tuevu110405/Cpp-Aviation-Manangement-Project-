@@ -19,7 +19,8 @@ protected:
 public:
 	// constructor
 	Plane();
-	Plane(int current_fuel_,const string& model, bool engine_ok);
+	Plane(int current_fuel_,const	 string& model, bool engine_ok);
+	Plane(const Plane& other) = default; // COPY CONSTRUCTOR
 
 	// destructor
 	virtual ~Plane() = default;

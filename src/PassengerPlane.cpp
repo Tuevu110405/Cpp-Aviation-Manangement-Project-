@@ -1,13 +1,13 @@
 #include "../include/PassengerPlane.h"
 #include <limits>
-
+#include <stdexcept>
 
 PassengerPlane::PassengerPlane()
 {
 	//seatCapacity = 0;
 	Passenger_num = 0;
 }
-
+PassengerPlane::PassengerPlane(const PassengerPlane& other): Plane(other), Passenger_num(other.Passenger_num){}
 double PassengerPlane::maxPayLoad() const
 {
 	return Passenger_num * 100;
@@ -45,8 +45,8 @@ istream& PassengerPlane::input(istream& is)
 
         cout << "\nPlease enter the fuel in gallons : ";
         is >> fuel;
-        if (fuel < 0 || fuel > fuel_tank)
-            throw out_of_range("Fuel  must be between 0 and less than the fuel capacity of model " + model + " is " + to_string(fuel_tank));
+        if (fuel < 0 || fuel > 100000)
+            throw out_of_range("Fuel  must be between 0 and l00000");
             
         setCurrent_Fuel(fuel);
 

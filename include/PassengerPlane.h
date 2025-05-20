@@ -13,6 +13,7 @@ private:
 public:
     // constructor
     PassengerPlane();
+    PassengerPlane(const PassengerPlane& other);
 
     // override function
     double maxPayLoad() const override;
