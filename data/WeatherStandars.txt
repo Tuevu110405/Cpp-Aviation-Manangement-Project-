@@ -1,0 +1,14 @@
+model,minVisibility,minCrossWind,maxTemperature,minTemperature,maxThunderstorm
+Boeing787,500,38,52,40,10
+Airbusa350,550,35,40,-40,20
+Airbusa320Neo,125,35,55,-40,20
+Airbusa321,125,35,55,-40,20
+
+horizontalminvisibility : 5000
+forwardvisibility:250
+maxTemperature: 50
+minTemperature: -47
+minThunderstorm: 5 knots
+maxCrossWind: 15
+minCrosswind: 5 
+
