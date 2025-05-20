@@ -3,7 +3,6 @@
 #include "Weather.h"
 #include "WeatherStandard.h"
 #include "Flight.h"
-#include "PilotStandard.h"
 #include "FlightInspection.h"
 #include <string>
 #include <fstream>
@@ -14,18 +13,10 @@ using namespace std;
 class FlightManagement
 {
 private:
-    // Pilot-related variable (Hoang)
-    static vector<PilotStandard> pilotStandardArray; 
-
     // Vector valid flight (Tue)
     static vector<Flight *> eligibleFlightList;
     static vector<Flight *> ineligibleFlightList;
 public:
-    // Pilot-related functions (Hoang)
-    static void loadPilotStandard(const string &fileName);
-    static PilotStandard findPilotStandard(const string &model);
-    static void displayPilotStandards(const string &model);
-
     // Actions of flight management(Tue)
     static void addFlight(Flight *flight);
 
