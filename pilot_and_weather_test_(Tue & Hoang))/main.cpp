@@ -65,6 +65,8 @@ int main()
     // Store the pilot inspection result to the flight.
     flight.setPilotResult(pilotInspectionResult);
     
+    flight.updateFlightStatus();
+    
     // Print the details of the pilot inspection result.
     cout << "\n[Pilot Inspection Result]\n";
     flight.displayDetailsPilotResult();

@@ -14,6 +14,7 @@ const Weather& Flight::getWeather()  {
 // Setters (Tue).
 void Flight::setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult) {
     this->weatherInspectionResult = weatherInspectionResult;
+    updateFlightStatus();
 }
 void Flight::setWeather(const Weather& weather){
     this->weather = weather;
@@ -24,6 +25,7 @@ Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, fal
 {
     flightID = "";
     flightType = "";
+    flightStatus = false;
 }
 
 // Constructor.
@@ -130,6 +132,7 @@ void Flight::setPilot(const Pilot &newPilot)
 void Flight::setPilotResult(const PilotInspectionResult &newResult)
 {
     pilotResult = newResult;
+    updateFlightStatus();
 }
 
 // Function Flight::displayDetailsPilotResult (Hoang).
