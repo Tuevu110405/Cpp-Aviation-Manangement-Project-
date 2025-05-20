@@ -25,7 +25,7 @@ int main()
     weather.setVisibility(300.0);
     weather.setCrosswind(10.0);
     weather.setTemperature(25.0);
-    weather.setThunderstorm(1.0);
+    weather.setThunderstorm(7.0);
     weather.setTailwind(9);
     weather.setHorizontalVisibility(6000.0);
 
