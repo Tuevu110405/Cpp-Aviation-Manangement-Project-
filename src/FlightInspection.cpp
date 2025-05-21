@@ -62,6 +62,7 @@ WeatherInspectionResult FlightInspection::inspectWeather(Flight& flight, Weather
         else{
             weatherInspectionResult.setIsHorizontalVisibility(true);
         }
+        weatherInspectionResult.setInspectionResult(false);
     }
 
     return weatherInspectionResult;
