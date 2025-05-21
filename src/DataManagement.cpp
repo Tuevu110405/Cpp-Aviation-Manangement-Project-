@@ -109,6 +109,7 @@ void DataManagement::loadPilotStandard(const string &fileName)
     }
 
     inputFile.close();
+    cout << "Load the pilot standards sucessfully.\n";
 }
 
 // Function DataManagement::findPilotStandard (Hoang)
@@ -120,12 +121,12 @@ PilotStandard DataManagement::findPilotStandard(const string &model)
 
     // Define a PilotStandard object.
     PilotStandard pilotStandard;
-    bool isFound = false;
+
+    // Search for pilot standard.
     for (int count = 0; count < pilotStandardArray.size(); count++)
     {
         if (pilotStandardArray[count].getModelName() == processedModel)
         {
-            isFound = true;
             pilotStandard = pilotStandardArray[count];
             break;
         }

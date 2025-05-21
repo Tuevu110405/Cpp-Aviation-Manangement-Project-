@@ -19,7 +19,6 @@ int main()
 {
     // Load pilot standard from the file named PilotStandards.csv.
     DataManagement::loadPilotStandard("pilot_standards.txt");
-    cout << "Load the pilot standards sucessfully.\n";
 
     // Constants for options.
     const int PASSENGER_OPTION = 1;         
