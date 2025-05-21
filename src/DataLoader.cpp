@@ -1,4 +1,4 @@
-#include "DataLoader.h"
+#include "../include/DataLoader.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -51,4 +51,16 @@ string DataLoader::getValue(string key, int index) {
         throw out_of_range("Index out of range for key: " + key);
     }
     return data[key][index];
+}
+
+map<string, vector<string>> DataLoader::getData() {
+    return data;
+}
+
+int DataLoader::getValueSize(string key) {
+    if (data.find(key) == data.end()) {
+        throw runtime_error("Key not found: " + key);
+    }
+    int size = data[key].size();
+    return size;
 }
