@@ -16,6 +16,8 @@ private:
     // Vector valid flight (Tue)
     static vector<Flight *> eligibleFlightList;
     static vector<Flight *> ineligibleFlightList;
+    // Vector of inspected flight (Hoang).
+    static vector<Flight *> inspectedFlightList;
 public:
     // Actions of flight management(Tue)
     static void addFlight(Flight *flight);
