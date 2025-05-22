@@ -49,9 +49,13 @@ passenger_number,0,3
 //Function for program of loading data and handle data
 void loadDataAndHandle(){
     string filepath;
-    cout << "Enter the path to the flight data file: ";
-    cin >> filepath;
-    cout << "--- Loading data from file: " << filepath << " ---" << endl;
+
+    // cout << "Enter the path to the flight data file: ";
+    // cin >> filepath;
+    // cout << "--- Loading data from file: " << filepath << " ---" << endl;
+
+    //test fixed path
+    filepath = "../data/data.csv";
     // Load flight data(try-catch for not being able to open file)
     try{
         DataLoader loader(filepath);
@@ -59,13 +63,15 @@ void loadDataAndHandle(){
         // Print the number of flights
         string key = "flightID";
         cout << "This data constains " << loader.getValueSize(key) << " flights." << endl;
+        DataManagement::loadPilotStandard("pilot_standards.txt");
         //Using a loop to handle each flight
         for (int i = 0; i < loader.getValueSize(key); i++) {
             Flight* flight = new Flight();
-            string flightID = loader.getValue("key", i);
+            string flightID = loader.getValue(key, i);
             flight->setFlightID(flightID);
             string flightType = loader.getValue("flight_type", i);
             flight->setFlightType(flightType);
+
 
             Weather* weather = new Weather();
             //Set weather data
@@ -78,6 +84,7 @@ void loadDataAndHandle(){
             flight->setWeather(*weather);
             delete weather;
 
+
             Pilot *pilot= new Pilot();
             //Set pilot data
             pilot->setName(loader.getValue("pilot_name", i));
@@ -88,13 +95,15 @@ void loadDataAndHandle(){
             flight->setPilot(*pilot);
             delete pilot;
 
+
             if(flightType == "cargo"){
+                //Set cargoPlane data
                 CargoPlane *plane = new CargoPlane();
                 plane->setBaseInfo(stof(loader.getValue("fuel_consumption_rate", i)), stof(loader.getValue("speed_val", i)), 
                     stof(loader.getValue("fuel_tank", i)), loader.getValue("model", i));
                 plane->setPayload(stof(loader.getValue("capacity", i)));
                 flight->setPlane(plane);
-                delete plane;
+                
             }
             else if(flightType == "passenger"){
                 PassengerPlane *plane = new PassengerPlane();
@@ -103,15 +112,20 @@ void loadDataAndHandle(){
                 plane->setSeatCapacity(stoi(loader.getValue("capacity", i)));
                 plane->setNumOfPassenger(stoi(loader.getValue("passenger_number", i)));
                 flight->setPlane(plane);
-                delete plane;
+                
             }
             else{
                 cout << "Invalid flight type: " << flightType << endl;
                 delete flight;
                 continue; // Skip to the next iteration
             }
+
+
+
             // flight inspection
             WeatherStandardVN weatherStandard;
+            //load the pilot standard
+            
             PilotStandard pilotStandard = DataManagement::findPilotStandard(flight->getPlane()->getModel());
             PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(flight->getPilot(), pilotStandard);
             flight->setPilotResult(pilotInspectionResult);
@@ -120,7 +134,7 @@ void loadDataAndHandle(){
             flight->setPlaneInspectionResult(PlaneInspectionResult());
             //Store the flight in the relevant vector
             FlightManagement::addFlight(flight);
-            cout << "Processing flight: " << flightID << "succesfully" << endl;
+            cout << "Processing flight: " << flightID << " succesfully" << endl;
 
 
 
@@ -132,13 +146,26 @@ void loadDataAndHandle(){
     }
     catch (const runtime_error& e) {
         cout << "Error: " << e.what() << endl;
+        cout << "Please check the file path and format." << endl;
+        return;
         
     }
-    catch (const exception& e) {
-        cout << "An unexpected error occurred: " << e.what() << endl;
+    // catch (const exception& e) {
+    //     cout << "An unexpected error occurred: " << e.what() << endl;
         
-    }
+    // }
     cout << "---Data is handled successfully---" << endl;
+    FlightManagement::writeEligibleFlights("eligible_flights.txt");
+    FlightManagement::writeIneligibleFlights("ineligible_flights.txt");
+    FlightManagement::writeSummary("summary.txt");
+    
+    // Free memory
+    FlightManagement::deleteFlights();
+    cout << "All data is written to file successfully." << endl;
+    cout <<"---Program finished successfully---" << endl;
+    
+
+
 
 
     
@@ -148,7 +175,8 @@ void loadDataAndHandle(){
 
 
 int main(){
-    loadDataAndHandle(); ;
+    loadDataAndHandle(); 
+    return 0;
     
 
 }

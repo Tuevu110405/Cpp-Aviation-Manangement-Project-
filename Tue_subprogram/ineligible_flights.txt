@@ -1,0 +1,44 @@
+Flight: VN310
+Flight type: cargo
+Status: Ineligible
+
+[Pilot Inspection Result]
+Overall result: Ineligible
+ - Flight hours: Eligible
+ - Hours in command: Eligible
+ - English level: Eligible
+ - Health status: Ineligible, (Actual: Status 2, Required: Status 1).
+ - License type: Eligible
+ - License date: Eligible
+
+[Weather inspection result]
+ - Overall result: Acceptable
+ - Visibility: Acceptable
+ - Crosswind: Acceptable
+ - Temperature: Acceptable
+ - Thunderstorm: Acceptable
+ - Tailwind: Acceptable
+ - Horizontal Visibility: Acceptable
+==========
+Flight: VN150
+Flight type: passenger
+Status: Ineligible
+
+[Pilot Inspection Result]
+Overall result: Ineligible
+ - Flight hours: Eligible
+ - Hours in command: Eligible
+ - English level: Eligible
+ - Health status: Ineligible, (Actual: Status 2, Required: Status 1).
+ - License type: Eligible
+ - License date: Eligible
+
+[Weather inspection result]
+ - Overall result: Not Acceptable
+ - Visibility: Acceptable
+ - Crosswind: Not Acceptable
+ - Temperature: Not Acceptable
+ - Thunderstorm: Acceptable
+ - Tailwind: Not Acceptable
+ - Horizontal Visibility: Acceptable
+==========
