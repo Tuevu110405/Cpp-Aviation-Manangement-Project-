@@ -127,12 +127,15 @@ PilotStandard DataManagement::findPilotStandard(const string &model)
     {
         if (pilotStandardArray[count].getModelName() == processedModel)
         {
-            pilotStandard = pilotStandardArray[count];
-            break;
+            return pilotStandardArray[count];
         }
     }
 
-    return pilotStandard;
+    // If the pilot standards for the model is not found, 
+    // display an error messange and terminate the program.
+    cout << "ERROR: No pilot standards for model " << processedModel << endl;
+    cout << "Check the pilot standards file again.\n";
+    exit(EXIT_FAILURE);
 }
 
 
