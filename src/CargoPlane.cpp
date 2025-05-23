@@ -14,9 +14,9 @@ CargoPlane::CargoPlane()
 CargoPlane::CargoPlane(const CargoPlane &other):Plane(other), payloadCapacity(other.payloadCapacity)
 {
 }
-double CargoPlane::maxPayLoad() const
+double CargoPlane::PayLoad() const
 {
-    return payloadCapacity + fuel_tank * 3.785411784001;
+    return payloadCapacity;
 }
 
 double CargoPlane::passengerCapacity() const
@@ -30,7 +30,7 @@ ostream& CargoPlane::output(ostream& os) const
     os << "Plane model: " << getModel();
     os << "\nPlane fuel level: " << getCurrent_Fuel();
     os << "\nPlane engines status: " << (areEnginesOk() ? " OK! " : " NO!");
-    os << "\nPlane payload capacity: " << maxPayLoad() << " kg";
+    os << "\nPlane payload capacity: " << PayLoad() << " kg";
     return os;
 }
 
@@ -48,7 +48,7 @@ istream& CargoPlane::input(istream& is)
                 throw invalid_argument("Unsupported model. Allowed: [BOEING], [AIRBUS]");
             setModel(model_name);
 
-            cout << "\nPlease enter the fuel in gallons : ";
+            cout << "\nPlease enter the fuel level in gallons : ";
             is >> fuel;
             if (fuel < 0 || fuel > 100000)
                 throw out_of_range("Fuel level must be between 0 and 100,000.");
@@ -62,9 +62,9 @@ istream& CargoPlane::input(istream& is)
 
             cout << "\nPlease enter the number of payload: ";
             is >> payload_capacity;
-            if (payloadCapacity > this->maxPayLoad())
+            if (payloadCapacity < 0 )
             
-                throw out_of_range("The payload is over than the max capacity.");
+                throw out_of_range("The payload can not less than zero.");
             setPayload(payload_capacity);
 
         }
@@ -81,4 +81,9 @@ istream& CargoPlane::input(istream& is)
 void CargoPlane::setPayload(double payloadCapacity)
 {
     this->payloadCapacity = payloadCapacity;
+}
+
+Plane* CargoPlane::clone() const{
+
+    return new CargoPlane(*this);
 }

@@ -14,10 +14,12 @@ public:
     CargoPlane(const CargoPlane& other);
 
     // override function
-    double maxPayLoad() const override;
+    double PayLoad() const override;
     double passengerCapacity() const override;
     ostream& output(ostream& os) const override;
     istream& input(istream& is) override;
+
+    Plane* clone() const override;
 
 
     // setter

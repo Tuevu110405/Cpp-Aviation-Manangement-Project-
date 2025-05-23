@@ -1,6 +1,7 @@
 #include "../include/Plane.h"
 #include <unordered_set>
 
+
 using namespace std;
 // constructor
 Plane::Plane()
@@ -98,6 +99,10 @@ double Plane::getSpeed() const{
 
 }
 
+double Plane::getFuelTank() const
+{
+    return fuel_tank;
+}
 bool Plane::isModelNameTrue(std::string& modelName) {
 	// Convert model name to uppercase
 	transform(modelName.begin(), modelName.end(), modelName.begin(), ::toupper);

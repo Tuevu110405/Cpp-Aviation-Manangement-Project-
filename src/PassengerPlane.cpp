@@ -8,7 +8,7 @@ PassengerPlane::PassengerPlane()
 	Passenger_num = 0;
 }
 PassengerPlane::PassengerPlane(const PassengerPlane& other): Plane(other), Passenger_num(other.Passenger_num){}
-double PassengerPlane::maxPayLoad() const
+double PassengerPlane::PayLoad() const
 {
 	return Passenger_num * 100;
 }
@@ -24,7 +24,6 @@ ostream& PassengerPlane::output(ostream& os) const
 	os << "\nPlane fuel level: " << getCurrent_Fuel();
 	os << "\nPlane engines status :" << (areEnginesOk() ? " OK! " : " NO!");
 	os << "\nPlane have " << passengerCapacity() << " passenger! ";
-	os << "\nPlane payload: " << maxPayLoad() << " kg";
 	return os;
 }
 
@@ -34,7 +33,6 @@ istream& PassengerPlane::input(istream& is)
     string model_name;
     double status_;
     double passenger_capacity;
-    double seat_capacity;
 
     try {
         cout << "Please enter the model: ";
@@ -55,14 +53,10 @@ istream& PassengerPlane::input(istream& is)
         if (status_ != 1 && status_ != 0)
             throw invalid_argument("Engine status must be set by using 1 or 0.");
         setEngineStatus(status_);
-        cout << "Enter seat capacity: ";
-        is >> seat_capacity;
-        setSeatCapacity(seat_capacity);
         cout << "\nPlease enter the number of passengers: ";
         is >> passenger_capacity;
-
-        if (!IsEnoughPassenger(passenger_capacity))
-            throw out_of_range("Number of passengers exceeds seat capacity.");
+        if (passenger_capacity < 0)
+            throw out_of_range("Number of passengers can not less than 0 .");
         setNumOfPassenger(passenger_capacity);
 
     }
@@ -77,26 +71,22 @@ istream& PassengerPlane::input(istream& is)
     return is;
 }
 
-void PassengerPlane::setSeatCapacity(double seatCapacity)
-{
-	this->seatCapacity = seatCapacity;
-}
 
 void PassengerPlane::setNumOfPassenger(double Passenger_num)
 {
 	this->Passenger_num = Passenger_num;
 }
 
-double PassengerPlane::getSeatCapacity()
-{
-	return seatCapacity;
+double PassengerPlane::getNumOfPassenger(){
+    return Passenger_num;
 }
 
-bool PassengerPlane::IsEnoughPassenger(double num_passenger) 
-{
-	
-	return (Passenger_num <= seatCapacity) ? true : false;
+Plane* PassengerPlane::clone() const{
+    return new PassengerPlane(*this);
+
 }
+
+
 
 
 

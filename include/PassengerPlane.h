@@ -8,7 +8,6 @@ class PassengerPlane :
     public Plane
 {
 private:
-    double seatCapacity;
     double Passenger_num;
 public:
     // constructor
@@ -16,21 +15,17 @@ public:
     PassengerPlane(const PassengerPlane& other);
 
     // override function
-    double maxPayLoad() const override;
+    double PayLoad() const override;
     double passengerCapacity() const override;
     ostream& output(ostream& os) const override;
     istream& input(istream& is) override;
+    Plane* clone() const override;
 
     //setter
-    void setSeatCapacity(double seatCapacity);
     void setNumOfPassenger(double Passenger_num);
 
     //getter
-    double getSeatCapacity();
-
-    // validate number of passenger 
-    bool IsEnoughPassenger(double num_passenger);
-
-   
+    double getNumOfPassenger();
+ 
 };
 
