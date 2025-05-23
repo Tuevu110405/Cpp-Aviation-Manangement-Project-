@@ -16,7 +16,10 @@ public:
 
     void setPayloadResult(bool result);
     void setPayloadNote(const string& note);
-
+    // Pure virtual clone function
+    PlaneInspectionResult* clone() const override {
+        return new CargoPlaneInspectionResult(*this);
+    }
     bool getPayloadResult() const;
     string getPayloadNote() const;
 };

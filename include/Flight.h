@@ -10,6 +10,7 @@
 #include "../include/PassengerPlane.h"
 #include "../include/CargoPlane.h"
 #include "PlaneInspectionresult.h"
+#include "Location.h"
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -32,7 +33,16 @@ private:
 
     // Plane (Tung)
     Plane *plane;   // The plane.
-    PlaneInspectionResult planeInspectionResult;
+    PlaneInspectionResult* planeInspectionResult;
+    
+    // Location (Tung)
+    Location location; // The location of the flight.
+    string departureCode; // Departure airport code.
+    string arrivalCode; // Arrival airport code.
+
+
+    
+
 public:
     // Exception classes.
     // Classes for exceptions.
@@ -75,7 +85,7 @@ public:
     Plane *getPlane() const
         { return plane; }
 
-    PlaneInspectionResult getPlaneInspectionResult() const
+    const PlaneInspectionResult* getPlaneInspectionResult() const
         { return planeInspectionResult; }
 
     // Accessor functions (Tue).
@@ -102,7 +112,7 @@ public:
     }
 
     void setPlaneInspectionResult(const PlaneInspectionResult &result)
-        { planeInspectionResult = result; }
+        { planeInspectionResult = result.clone(); }
     
     // Other functions (Hoang).
     void displayDetailsPilotResult() const;
