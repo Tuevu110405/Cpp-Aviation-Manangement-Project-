@@ -132,24 +132,24 @@ void Flight::setPilotResult(const PilotInspectionResult &newResult)
 void Flight::displayDetailsPilotResult() const
 {
     cout << " - Overall inspection result: ";
-    cout << (pilotResult.getInspectionResult() == false ? "Not acceptable" : "Acceptable") << endl;
+    cout << (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible ") << endl;
 
-    cout << " - Flight hours: " << (pilotResult.getFlightHoursResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - Flight hours: " << (pilotResult.getFlightHoursResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getFlightHoursNote() << endl;
 
-    cout << " - Hours in command: " << (pilotResult.getHoursInCommandResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - Hours in command: " << (pilotResult.getHoursInCommandResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getHoursInCommandNote() << endl;
 
-    cout << " - English level: " << (pilotResult.getEnglishLevelResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - English level: " << (pilotResult.getEnglishLevelResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getEnglishLevelNote() << endl;
 
-    cout << " - Health status: " << (pilotResult.getHealthStatusResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - Health status: " << (pilotResult.getHealthStatusResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getHealthStatusNote() << endl;
 
-    cout << " - License type: " << (pilotResult.getLicenseTypeResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - License type: " << (pilotResult.getLicenseTypeResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getLicenseTypeNote() << endl;
 
-    cout << " - License expiry: " << (pilotResult.getLicenseExpiryResult() == false ? "Not acceptable, " : "Acceptable");
+    cout << " - License expiry: " << (pilotResult.getLicenseExpiryResult() ? "Eligible" : "Ineligible ");
     cout << pilotResult.getLicenseExpiryNote() << endl;
 }
 

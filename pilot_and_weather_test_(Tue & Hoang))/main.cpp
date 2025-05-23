@@ -22,10 +22,10 @@ int main()
 
     // The actual weather.
     Weather weather;
-    weather.setVisibility(300.0);
+    weather.setVisibility(200.0);
     weather.setCrosswind(10.0);
     weather.setTemperature(25.0);
-    weather.setThunderstorm(7.0);
+    weather.setThunderstorm(2.0);
     weather.setTailwind(9);
     weather.setHorizontalVisibility(6000.0);
 
