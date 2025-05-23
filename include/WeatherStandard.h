@@ -5,7 +5,7 @@
 using namespace std;
 
 class WeatherStandard{
-private:
+protected:
     float visibility;
     float horizontalVisibility;
     float crosswind;
@@ -36,6 +36,13 @@ public:
     void setThunderstorm(float thunderstorm);
     void setFreezing(bool Freezing);
     //Check whether the weather is qualified
+    virtual bool isTailwind(const Weather& weather) const;
+    virtual bool isVisibility(const Weather& weather) const;
+    virtual bool isHorizontalVisibility(const Weather& weather) const;
+    virtual bool isCrosswind(const Weather& weather) const;
+    virtual bool isTemperature(const Weather& weather) const;
+    virtual bool isThunderstorm(const Weather& weather) const;
+    virtual bool isFreezing(const Weather& weather) const;
     virtual bool isWeatherAcceptable(const Weather& weather) const ;
 };
 #endif

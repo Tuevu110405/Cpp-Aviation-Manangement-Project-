@@ -1,11 +1,11 @@
 flightID,VN310,VN150
 flight_type,cargo,passenger
-forward_visibility,310,275
-horizontal_visibility,6000,5550
-crosswind,5,20
-tailwind,5,30
-temperature,30,3
-thunderstorm,3,0
+forward_visibility,310,249
+horizontal_visibility,6000,6000
+crosswind,5,2
+tailwind,5,1
+temperature,30,-100
+thunderstorm,3,6
 pilot_name,Jonh,Tung
 flight_hours,5000,3500
 hours_in_command,2000,1500

@@ -35,10 +35,10 @@ Overall result: Ineligible
 
 [Weather inspection result]
  - Overall result: Not Acceptable
- - Visibility: Acceptable
- - Crosswind: Not Acceptable
+ - Visibility: Not Acceptable
+ - Crosswind: Acceptable
  - Temperature: Not Acceptable
- - Thunderstorm: Acceptable
- - Tailwind: Not Acceptable
+ - Thunderstorm: Not Acceptable
+ - Tailwind: Acceptable
  - Horizontal Visibility: Acceptable
 ==========

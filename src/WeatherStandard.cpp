@@ -65,6 +65,29 @@ void WeatherStandard::setHorizontalVisibility(float horizontalVisibility) {
     this->horizontalVisibility = horizontalVisibility;
 }
 
+//Update function checking each standard
+bool WeatherStandard::isCrosswind(const Weather& weather) const {
+    return weather.getCrosswind() <= crosswind;
+}
+bool WeatherStandard::isTailwind(const Weather& weather) const {
+    return weather.getTailwind() <= tailwind;
+}
+bool WeatherStandard::isVisibility(const Weather& weather) const {
+    return weather.getVisibility() >= visibility;
+}
+bool WeatherStandard::isHorizontalVisibility(const Weather& weather) const {
+    return weather.getHorizontalVisibility() >= horizontalVisibility;
+}
+bool WeatherStandard::isTemperature(const Weather& weather) const {
+    return weather.getTemperature() >= temperatureLowerBound && weather.getTemperature() <= temperatureUpperBound;
+}
+bool WeatherStandard::isThunderstorm(const Weather& weather) const {
+    return weather.getThunderstorm() <= thunderstorm;
+}
+bool WeatherStandard::isFreezing(const Weather& weather) const {
+    return weather.getFreezing() == false;
+}
+
 
 //Check whether the weather is qualified
 bool WeatherStandard::isWeatherAcceptable(const Weather& weather) const {

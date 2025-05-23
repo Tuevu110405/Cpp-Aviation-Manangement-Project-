@@ -13,9 +13,7 @@ public:
     CargoPlane();
     CargoPlane(const CargoPlane& other);
 
-    // override function
-    double PayLoad() const override;
-    double passengerCapacity() const override;
+    
     ostream& output(ostream& os) const override;
     istream& input(istream& is) override;
 
@@ -24,6 +22,7 @@ public:
 
     // setter
     void setPayload(double payloadCapacity);
+    double getPayload() const;
     
 };
 

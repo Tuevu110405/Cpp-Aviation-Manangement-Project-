@@ -18,12 +18,16 @@ public:
     PlaneInspectionResult();
     PlaneInspectionResult(const string& type);
     virtual ~PlaneInspectionResult() = default;
-
+    
+    // Pure virtual clone function
+    virtual PlaneInspectionResult* clone() const = 0;
+    //setters
     void setEngineStatusResult(bool result);
     void setFuelLevelResult(bool result);
     void setEngineStatusNote(const string& note);
     void setFuelLevelNote(const string& note);
 
+    //getters
     bool getEngineStatusResult() const;
     bool getFuelLevelResult() const;
     string getEngineStatusNote() const;

@@ -8,15 +8,18 @@ private:
     bool seatCapacityResult;
     string seatCapacityNote;
 
-    void setInspectionResult() override;
+    
 
 public:
     PassengerPlaneInspectionResult();
     PassengerPlaneInspectionResult(const string& type);
-
+    // Pure virtual clone function
+    PlaneInspectionResult* clone() const override {
+        return new PassengerPlaneInspectionResult(*this);
+    }
     void setSeatCapacityResult(bool result);
     void setSeatCapacityNote(const string& note);
-
+    void setInspectionResult() override;
     bool getSeatCapacityResult() const;
     string getSeatCapacityNote() const;
 };
