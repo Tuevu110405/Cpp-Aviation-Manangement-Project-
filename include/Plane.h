@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include "StringManipulator.h"
 using namespace std;
 class Plane
 {

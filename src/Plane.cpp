@@ -67,7 +67,7 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
 			return;
 		}
 
-		setBaseInfo(fuelRate, speedVal,fuel_tank,model);  // Use your existing setter
+		setBaseInfo(fuelRate, speedVal,fuel_tank,model);  // use setter
 
 		file.close();
 

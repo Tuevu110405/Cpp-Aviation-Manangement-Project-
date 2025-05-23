@@ -7,6 +7,11 @@
 #include "PilotInspectionResult.h"
 #include "PilotStandard.h"
 #include "Pilot.h"
+#include "Plane.h"
+#include "PlaneStandard.h"
+#include "CargoPlane.h"
+#include "PassengerPlane.h"
+#include "Location.h"
 #include <string>
 using namespace std;
 
