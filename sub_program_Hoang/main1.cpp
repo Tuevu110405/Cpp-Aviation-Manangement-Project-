@@ -46,12 +46,13 @@ int main()
         // If option is to inspect a passenger flight.
         if (option == PASSENGER_OPTION)
         {
-            // Create objects.
             Pilot pilot;                            // A Pilot object with default values.
             Weather actualWeather;                  // A Weather object with default values.
             WeatherStandardVN weatherStandardVN;    // A WeatherStandard object with default values.
-            Flight *flight = new Flight();       // A pointer to a Flight object.
+
+            Flight *flight = new Flight();          // A pointer to a Flight object.
             string flightID;                        // The string of flight ID.
+
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
@@ -93,27 +94,26 @@ int main()
                 {
                     if (pilotResult.getInspectionResult() == false)
                     {
-                        cout << "\nRe-enter the data for pilot.";
+                        cout << "\nRe-enter the data for pilot.\n";
                         cin >> pilot;
                     }
                     if (weatherResult.getInspectionResult() == false)
                     {
-                        cout << "\nRe-enter the data for the weather.";
+                        cout << "\nRe-enter the data for the weather.\n";
                         cin >> actualWeather;
                     }
-
                 }
             // Set data into a Flight object.
             flight->setFlightType("Passenger");
             flight->setPilot(pilot);
             flight->setWeather(actualWeather);
             
-            // Inspect the pilot.
+            // Inspect the pilot and get the inspection result.
             PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
             pilotResult = FlightInspection::inspectPilot(pilot, pilotStandard);
             flight->setPilotResult(pilotResult);
 
-            // Inspect the weather.
+            // Inspect the weather and get the inspection result.
             weatherResult = FlightInspection::inspectWeather(*flight, weatherStandardVN);
             flight->setWeatherInspectionResult(weatherResult);
             
@@ -146,11 +146,13 @@ int main()
                     flight->displayDetailsWeatherResult();
                     cout << endl;
                 }
+                // Prompt user for re-enter again.
                 cout << "\nDo you want to re-enter data for ineligible parts? ";
                 cout << "\nEnter Y for Yes and N for No: ";
                 char choice;
                 cin >> choice;
                 cin.ignore();
+
                 if (toupper(choice) == 'Y')
                 {
                     again = true;
@@ -177,8 +179,10 @@ int main()
             Pilot pilot;                            // A Pilot object with default values.
             Weather actualWeather;                  // A Weather object with default values.
             WeatherStandardVN weatherStandardVN;    // A WeatherStandard object with default values.
-            Flight *flight = new Flight();       // A pointer to a Flight object.
+
+            Flight *flight = new Flight();          // A pointer to a Flight object.
             string flightID;                        // The string of flight ID.
+
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
@@ -220,12 +224,12 @@ int main()
                 {
                     if (pilotResult.getInspectionResult() == false)
                     {
-                        cout << "\nRe-enter the data for pilot.";
+                        cout << "\nRe-enter the data for pilot.\n";
                         cin >> pilot;
                     }
                     if (weatherResult.getInspectionResult() == false)
                     {
-                        cout << "\nRe-enter the data for the weather.";
+                        cout << "\nRe-enter the data for the weather.\n";
                         cin >> actualWeather;
                     }
 
@@ -260,6 +264,7 @@ int main()
             // Otherwise, prompt user if they want to re-enter the data.
             else
             {
+                cout << "The flight is ineligible.\n";
                 if (pilotResult.getInspectionResult() == false)
                 {
                     cout << "Pilot is ineligible because\n";
@@ -272,11 +277,13 @@ int main()
                     flight->displayDetailsWeatherResult();
                     cout << endl;
                 }
+                // Prompt user to re-enter the data.
                 cout << "\nDo you want to re-enter data for ineligible parts? ";
                 cout << "\nEnter Y for Yes and N for No: ";
                 char choice;
                 cin >> choice;
                 cin.ignore();
+
                 if (toupper(choice) == 'Y')
                 {
                     again = true;

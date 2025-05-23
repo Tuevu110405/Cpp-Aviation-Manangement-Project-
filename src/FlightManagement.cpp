@@ -7,10 +7,15 @@
 // Define static member variables
 vector<Flight *> FlightManagement::eligibleFlightList;
 vector<Flight *> FlightManagement::ineligibleFlightList;
+vector<Flight *> FlightManagement::inspectedFlightList;
 
 // Function FlightMangement::addFlight
 void FlightManagement::addFlight(Flight *flight)
 {
+    // Add the flight to inspectedFlightList.
+    inspectedFlightList.push_back(flight);
+
+    // Categorize the flight to its relevant vector.
     if (flight->getFlightStatus() == false)
     {
         ineligibleFlightList.push_back(flight);
@@ -33,6 +38,7 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
     }
 
     // Write data to the file.
+    outputFile << "There are " << ineligibleFlightList.size() << " ineligible flights.\n";
     for (int count = 0; count < ineligibleFlightList.size(); count++)
     {
         Flight *flight = ineligibleFlightList[count];
@@ -42,78 +48,45 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
 
         // Write details of Pilot Inspection Result.
         outputFile << "\n[Pilot Inspection Result]\n";
+
         // Take the pilot inspection result.
         PilotInspectionResult pilotResult = flight->getPilotInspectionResult();
+
         // Write the overall pilot inspection result.
         outputFile << "Overall result: " << 
         (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible") << endl;
+
         // Write the details of the pilot inspection result for flight hours.
         outputFile << " - Flight hours: ";
-        if (pilotResult.getFlightHoursResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getFlightHoursNote()<< endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getFlightHoursResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getFlightHoursNote() << endl;
+
         // Write the details of the pilot inspection result for hours in command.
         outputFile << " - Hours in command: ";
-        if (pilotResult.getHoursInCommandResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getHoursInCommandNote() << endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getHoursInCommandResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getHoursInCommandNote() << endl;
+
         // Write the details of the pilot inspection result for English level.
         outputFile << " - English level: ";
-        if (pilotResult.getEnglishLevelResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getEnglishLevelNote() << endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getEnglishLevelResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getEnglishLevelNote() << endl;
+
         // Write the details of the pilot inspection result for health status.
         outputFile << " - Health status: ";
-        if (pilotResult.getHealthStatusResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getHealthStatusNote() << endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getHealthStatusResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getHealthStatusNote() << endl;
+        
         // Write the details of the pilot inspection result for license type.
         outputFile << " - License type: ";
-        if (pilotResult.getLicenseTypeResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getLicenseExpiryNote() << endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getLicenseTypeResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getLicenseExpiryNote() << endl;
+
         // Write the details of the pilot inspection result for license expiry.
         outputFile << " - License date: ";
-        if (pilotResult.getLicenseTypeResult() == false)
-        {
-            outputFile << "Ineligible, ";
-            outputFile << pilotResult.getLicenseExpiryNote() << endl;
-        }
-        else
-        {
-            outputFile << "Eligible" << endl;
-        }
+        outputFile << (pilotResult.getLicenseExpiryResult() ? "Eligible" : "Ineligible ");
+        outputFile << pilotResult.getLicenseExpiryNote() << endl;
         outputFile << endl;
+
         
         // Write the details of Weather Inspection Result.
         WeatherInspectionResult weatherInspectionResult = flight->getWeatherInspectionResult();
@@ -147,6 +120,7 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
     }
 
     // Write data to the file.
+    outputFile << "There are " << eligibleFlightList.size() << " ineligible flights.\n";
     for (int count = 0; count < eligibleFlightList.size(); count++)
     {
         Flight *flight = eligibleFlightList[count];
@@ -162,7 +136,7 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         outputFile << "Pilot result: Eligible.\n";
 
         // Write details Weather Inspection Result.
-        outputFile << "\nWeather result: Eligible.\n";
+        outputFile << "Weather result: Eligible.\n";
 
         // Write Plane Inspection Result.
 
@@ -190,6 +164,46 @@ void FlightManagement::writeSummary(const string &fileName)
     outputFile << "  - " << eligibleFlightList.size() << " eligible flights\n";
     outputFile << "  - " << ineligibleFlightList.size() << " ineligible flights\n";
 
+    // Write details of all inspected flights.
+    outputFile << "\nFlights have been inspected are listed below.\n";
+    outputFile << "==========\n\n";
+    for (int count = 0; count < inspectedFlightList.size(); count++)
+    {
+        Flight *flight = inspectedFlightList[count];
+        
+        // Write the flight general information.
+        outputFile << "Flight #" << (count + 1) <<  endl;
+        outputFile << "Flight ID: " << flight->getFlightID() << endl;
+        outputFile << "Flight type: " << flight->getFlightType() << endl;
+        outputFile << endl;
+
+        // Write the details of pilot.
+        Pilot pilot = flight->getPilot();
+        PilotCertificate certificate = pilot.getPilotCertificate();
+        PilotCompetence competence = pilot.getPilotCompetence();
+
+        outputFile << "[Pilot]\n";
+        outputFile << "Pilot name: " << pilot.getName() << endl;
+        outputFile << "Flight hours: " << competence.getFlightHours() << endl;
+        outputFile << "Hours in command: " << competence.getHoursInCommand() << endl;
+        outputFile << "English level: Level " << competence.getEnglishLevel() << endl;
+        outputFile << "Health status: Level " << competence.getHealthStatus() << endl;
+        outputFile << "License type: " << certificate.getLicenseType() << endl;
+        outputFile << "Expiry date: " << certificate.getExpiryDate().getDate() << endl;
+        outputFile << endl;
+
+        // Write the details of weather.
+        Weather weather = flight->getWeather();
+
+        outputFile << "[Weather]\n";
+        outputFile << "Forward visibility: " << weather.getVisibility() << endl;
+        outputFile << "Horizontal visibility: " << weather.getHorizontalVisibility() << endl;
+        outputFile << "Crosswind: " << weather.getCrosswind() << endl;
+        outputFile << "Tailwind: " << weather.getTailwind() << endl;
+        outputFile << "Temperature (Celsius degree): " << weather.getTemperature() << endl;
+        outputFile << "Thunderstorm: " << weather.getThunderstorm() << endl;
+        outputFile << "==========\n\n";
+    }
     // Close the file.
     outputFile.close();
 }

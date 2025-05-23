@@ -1,3 +1,29 @@
-Total flight inspected: 0 flights, in which
+Total flight inspected: 1 flights, in which
   - 0 eligible flights
-  - 0 ineligible flights
+  - 1 ineligible flights
+
+Flights have been inspected are listed below.
+==========
+
+Flight #1
+Flight ID: VN001
+Flight type: Passenger
+
+[Pilot]
+Pilot name: Hoang
+Flight hours: 5000
+Hours in command: 2500
+English level: Level 5
+Health status: Level 1
+License type: ATPL
+Expiry date: 9/25/2030
+
+[Weather]
+Forward visibility: 90
+Horizontal visibility: 900
+Crosswind: 5
+Tailwind: 9
+Temperature (Celsius degree): 23
+Thunderstorm: 7
+==========
+

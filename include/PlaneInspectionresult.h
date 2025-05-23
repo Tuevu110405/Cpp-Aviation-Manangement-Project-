@@ -1,20 +1,37 @@
-#pragma once
-#include "Plane.h"
-#include "PassengerPlane.h"
-#include "CargoPlane.h"
-#include "Location.h"
+#ifndef PLANEINSPECTIONRESULT_H
+#define PLANEINSPECTIONRESULT_H
 
-class PlaneInspectionResult {
-public:
-    static bool validate(const Plane& plane);
+#include "InspectionResult.h"
+#include <string>
+using namespace std;
 
-
-
+class PlaneInspectionResult : public InspectionResult {
 protected:
-    static bool validateModel(const Plane& plane);
-    static bool validateFuel(const Plane& plane);
-    static bool validateEngineStatus(const Plane& plane);
-    static bool validateFuelConsumptionRate(const Plane& plane);
-    static bool validateSpeed(const Plane& plane);
-    static bool isModelNameTrue(string& modelName);
+    bool engineStatusResult;
+    bool fuelLevelResult;
+    string engineStatusNote;
+    string fuelLevelNote;
+
+    virtual void setInspectionResult() override = 0; // Make this class abstract
+
+public:
+    PlaneInspectionResult();
+    PlaneInspectionResult(const string& type);
+    virtual ~PlaneInspectionResult() = default;
+    
+    // Pure virtual clone function
+    virtual PlaneInspectionResult* clone() const = 0;
+    //setters
+    void setEngineStatusResult(bool result);
+    void setFuelLevelResult(bool result);
+    void setEngineStatusNote(const string& note);
+    void setFuelLevelNote(const string& note);
+
+    //getters
+    bool getEngineStatusResult() const;
+    bool getFuelLevelResult() const;
+    string getEngineStatusNote() const;
+    string getFuelLevelNote() const;
 };
+
+#endif

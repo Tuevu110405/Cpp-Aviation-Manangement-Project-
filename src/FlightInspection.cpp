@@ -4,6 +4,7 @@
 #include "../include/Flight.h"
 #include "../include/Weather.h"
 #include <bits/stdc++.h>
+
 using namespace std;
 
 // Function FlightInspection::inspectWeather (Tue)
@@ -203,3 +204,150 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
 
     return result;
 }
+double FlightInspection::calculateMinFuelNeed(const Flight &flight)
+{
+    Destination dep, arr;
+    if (!flight.getLocation().getDestinationByCode(flight.getDepartureCode(), dep) ||
+        !flight.getLocation().getDestinationByCode(flight.getArrivalCode(), arr)) {
+        cerr << "Invalid airport codes" << endl;
+        return -1;
+    }
+
+    double distance = flight.getLocation().calculateDistanceInKM(dep.latitude, dep.longitude, arr.latitude, arr.longitude);
+    double speed = flight.getPlane()->getSpeed();
+    double time = distance / speed;
+    double minFuel = time * flight.getPlane()->getFuel_consumption_rate();
+    if(flight.getLocation().isOceanicFlight(dep.latitude, dep.longitude, arr.latitude, arr.longitude))
+    {
+        minFuel += 0.1 * minFuel; // Add 10% extra fuel for oceanic flights
+    }
+    return minFuel;
+}
+PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, const PlaneStandard* standard) {
+    Plane* plane = flight.getPlane();
+    string type = flight.getFlightType();
+
+    if (type == "Cargo") {
+    const CargoPlane* cargoPlane = dynamic_cast<const CargoPlane*>(plane);
+    const CargoPlaneStandard* cargoStandard = dynamic_cast<const CargoPlaneStandard*>(standard);
+    return inspectCargoPlane(cargoPlane, cargoStandard);
+}
+else if (type == "Passenger") {
+    const PassengerPlane* passengerPlane = dynamic_cast<const PassengerPlane*>(plane);
+    const PassengerPlaneStandard* passengerStandard = dynamic_cast<const PassengerPlaneStandard*>(standard);
+    return inspectPassengerPlane(passengerPlane, passengerStandard);
+}
+else {
+        cerr << "Unknown flight type: " << type << endl;
+        return nullptr;
+    }
+}
+
+CargoPlaneInspectionResult* FlightInspection::inspectCargoPlane(const CargoPlane* plane, const CargoPlaneStandard* standard) {
+    if (!plane || !standard) return nullptr;
+
+    CargoPlaneInspectionResult* result = new CargoPlaneInspectionResult();
+
+    // 1. Engine
+    bool engineOk = plane->areEnginesOk();
+    result->setEngineStatusResult(engineOk);
+    result->setEngineStatusNote(engineOk ? "Engines operational." : "Engine check failed.");
+
+    // 2. Fuel
+      double currentFuel = plane->getCurrent_Fuel();
+double requiredFuel = standard->getMin_fuel();
+double maxFuel = plane->getFuelTank();
+
+bool fuelAboveMin = currentFuel >= requiredFuel;
+bool fuelBelowMax = currentFuel <= maxFuel;
+bool fuelOk = fuelAboveMin && fuelBelowMax;
+
+result->setFuelLevelResult(fuelOk);
+
+string note;
+ if (!fuelAboveMin) {
+    note = "Fuel level too low. Current: " + 
+           to_string(currentFuel) + 
+           ", Required: " + to_string(requiredFuel) + ".";
+} else if (!fuelBelowMax) {
+    note = "Fuel level exceeds tank capacity. Current: " + 
+           to_string(currentFuel) + 
+           ", Max Tank: " + to_string(maxFuel) + ".";
+} else {
+    note = "Fuel level sufficient.";
+}
+result->setFuelLevelNote(note);
+    // 3. Payload
+    bool payloadOk = plane->getPayload() <= standard->getMaxPayload();
+    result->setPayloadResult(payloadOk);
+    result->setPayloadNote(payloadOk
+        ? "Payload within limit."
+        : "Payload (" + to_string(plane->getPayload()) + ") exceeds limit (" +
+          to_string(standard->getMaxPayload()) + ").");
+
+    // 4. Model match 
+    if (!standard->getModel_available().empty()) {
+        if (plane->getModel() != standard->getModel_available()) {
+            result->setEngineStatusNote(result->getEngineStatusNote() + " Model mismatch.");
+        }
+    }
+
+    result->setInspectionResult();
+    return result;
+}
+
+PassengerPlaneInspectionResult* FlightInspection::inspectPassengerPlane(const PassengerPlane* plane, const PassengerPlaneStandard* standard) {
+    if (!plane || !standard) return nullptr;
+
+    PassengerPlaneInspectionResult* result = new PassengerPlaneInspectionResult();
+
+    // 1. Engine
+    bool engineOk = plane->areEnginesOk();
+    result->setEngineStatusResult(engineOk);
+    result->setEngineStatusNote(engineOk ? "Engines operational." : "Engine check failed.");
+
+    // 2. Fuel
+    double currentFuel = plane->getCurrent_Fuel();
+double requiredFuel = standard->getMin_fuel();
+double maxFuel = plane->getFuelTank();
+
+bool fuelAboveMin = currentFuel >= requiredFuel;
+bool fuelBelowMax = currentFuel <= maxFuel;
+bool fuelOk = fuelAboveMin && fuelBelowMax;
+
+result->setFuelLevelResult(fuelOk);
+
+string note;
+ if (!fuelAboveMin) {
+    note = "Fuel level too low. Current: " + 
+           to_string(currentFuel) + 
+           ", Required: " + to_string(requiredFuel) + ".";
+} else if (!fuelBelowMax) {
+    note = "Fuel level exceeds tank capacity. Current: " + 
+           to_string(currentFuel) + 
+           ", Max Tank: " + to_string(maxFuel) + ".";
+} else {
+    note = "Fuel level sufficient.";
+}
+
+result->setFuelLevelNote(note);
+
+    // 3. Seat capacity
+    bool seatOk = plane->getNumOfPassenger() <= standard->getMaxSeatCapacity();
+    result->setSeatCapacityResult(seatOk);
+    result->setSeatCapacityNote(seatOk
+        ? "Passenger count within limit."
+        : "Passenger count (" + to_string(plane->getNumOfPassenger()) +
+          ") exceeds limit (" + to_string(standard->getMaxSeatCapacity()) + ").");
+
+    // 4. Model match 
+    if (!standard->getModel_available().empty()) {
+        if (plane->getModel() != standard->getModel_available()) {
+            result->setEngineStatusNote(result->getEngineStatusNote() + " Model mismatch.");
+        }
+    }
+
+    result->setInspectionResult();
+    return result;
+}
+

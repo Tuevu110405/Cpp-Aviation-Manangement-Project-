@@ -1,6 +1,7 @@
 #include "../include/Plane.h"
 #include <unordered_set>
 
+
 using namespace std;
 // constructor
 Plane::Plane()
@@ -42,7 +43,7 @@ void Plane::setEngineStatus(int status)
 	}
 }
 
-void Plane::setBaseInfo(double fuel_consumption_rate_, double speed_,double fuel_tank_, const string& model_)
+void Plane::setBaseInfo(const string& model_,double fuel_tank_,double fuel_consumption_rate_, double speed_  )
 {
 	fuel_consumption_rate = fuel_consumption_rate_;
 	speed = speed_;
@@ -60,14 +61,14 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
 
 		double fuelRate, speedVal, fuelTank;
 		string model;
-		file >> fuelTank >> fuelRate >> speedVal >> model;
+		file >> model >> fuelTank >> fuelRate >> speedVal ;
 
 		if (file.fail()) {
 			cerr << "Error: Failed to read base info from file." << endl;
 			return;
 		}
 
-		setBaseInfo(fuelRate, speedVal,fuel_tank,model);  // Use your existing setter
+		setBaseInfo(model, fuelTank, fuelRate, speedVal);  // use setter
 
 		file.close();
 
@@ -98,6 +99,10 @@ double Plane::getSpeed() const{
 
 }
 
+double Plane::getFuelTank() const
+{
+    return fuel_tank;
+}
 bool Plane::isModelNameTrue(std::string& modelName) {
 	// Convert model name to uppercase
 	transform(modelName.begin(), modelName.end(), modelName.begin(), ::toupper);

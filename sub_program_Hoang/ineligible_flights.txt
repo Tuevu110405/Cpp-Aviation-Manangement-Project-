@@ -1,0 +1,23 @@
+There are 1 ineligible flights.
+Flight: VN001
+Flight type: Passenger
+Status: Ineligible
+
+[Pilot Inspection Result]
+Overall result: Eligible
+ - Flight hours: Eligible
+ - Hours in command: Eligible
+ - English level: Eligible
+ - Health status: Eligible
+ - License type: Eligible
+ - License date: Eligible
+
+[Weather inspection result]
+ - Overall result: Not Acceptable
+ - Visibility: Acceptable
+ - Crosswind: Not Acceptable
+ - Temperature: Not Acceptable
+ - Thunderstorm: Not Acceptable
+ - Tailwind: Not Acceptable
+ - Horizontal Visibility: Acceptable
+==========

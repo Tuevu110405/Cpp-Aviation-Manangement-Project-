@@ -1,46 +1,32 @@
-// #pragma once
-// #include <vector>
-// #include <cmath>
-// #include <string>
-// #include <iostream>
-// #include <sstream>
-// #include <fstream>
+#pragma once
+#include <vector>
+#include <cmath>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#ifndef M_PI
+#define M_PI (acos(-1.0))
+#endif
+using namespace std;
+struct Destination {
+	string city;
+	string airport_code;
+	double latitude;
+	double longitude;
+};
 
-// using namespace std;
-// struct Destination {
-// 	string city;
-// 	string airport_code;
-// 	float latitude;
-// 	float longitude;
-// };
+class Location {
+private:
+    static double degreeToRadian(double deg);
+    static double radianToDegree(double rad);
+    vector<Destination> destinations; // List of all loaded airports
 
-// class Location
-// {
-// private:
-// 	// exchange the degree
-// 	double degreeToRadian(double deg) {
-// 		return (deg * M_PI / 180.0);
-// 	}
-
-// 	double radianToDegree(double rad) {
-// 		return (rad * 180.0 / M_PI);
-// 	}
-// 	vector<Destination> destinations;
-// public:
-// 	// The calculate function will take the latitude and longitude to calculate the distance between 2 destination
-//     double calculateDistance_in_KM(float lat1, float lon1, float lat2, float lon2);
-// 	void loadDestinationFromFile(const string& filename);
-// 	bool isOceanicFlight(float lat1, float lon1, float lat2, float lon2);
-// 	double Distance_in_NM();
-// 	// get destination
-// 	const vector<Destination>& getDestinations() const { return destinations; }
-
-    
-
-// };
-
-
-
-
-
-
+public:
+    void loadDestinationFromFile(const string& filename);  // Load airport data
+    double calculateDistanceInKM(double lat1, double lon1, double lat2, double lon2) const;
+    double distanceInNM(double distanceInKM) const;
+    bool isOceanicFlight(double lat1, double lon1, double lat2, double lon2) const;
+    const vector<Destination>& getDestinations() const;
+    bool getDestinationByCode(const string& code, Destination& dest) const;
+};

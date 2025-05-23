@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include "StringManipulator.h"
 using namespace std;
 class Plane
 {
@@ -19,7 +18,8 @@ protected:
 public:
 	// constructor
 	Plane();
-	Plane(int current_fuel_,const string& model, bool engine_ok);
+	Plane(int current_fuel_,const	 string& model, bool engine_ok);
+	Plane(const Plane& other) = default; // COPY CONSTRUCTOR
 
 	// destructor
 	virtual ~Plane() = default;
@@ -29,7 +29,7 @@ public:
 	 void setModel(const string& model_) ;
 	 void setEngineStatus(int status);
 
-	 virtual void setBaseInfo(double fuel_consumption_rate_, double speed_, double fuel_tank_, const string& model_ );
+	 virtual void setBaseInfo(const string& model_,double fuel_tank_,double fuel_consumption_rate_, double speed_  );
 	 virtual void setBaseInfo_from_FIle(const string& filename);
 	//getter 
 	int getCurrent_Fuel() const;
@@ -37,9 +37,11 @@ public:
 	bool areEnginesOk() const;
 	double getFuel_consumption_rate() const;
 	double getSpeed() const;
-	// each type of airplane must report their max possible weight
-	virtual double maxPayLoad() const = 0;
-	virtual double passengerCapacity() const = 0;
+	double getFuelTank() const;
+	
+
+	//deep copy function
+	virtual Plane* clone() const = 0;
 
 	// operator overload
 	virtual istream& input(istream& in) = 0;

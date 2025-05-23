@@ -1,3 +1,4 @@
+
 #ifndef FLIGHT_H
 #define FLIGHT_H
 #include "Weather.h"
@@ -9,6 +10,9 @@
 #include "../include/PassengerPlane.h"
 #include "../include/CargoPlane.h"
 #include "PlaneInspectionresult.h"
+#include "cargoPlaneInspectionResult.h"
+#include "PassengerPlaneInspectionResult.h"
+#include "Location.h"
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -31,7 +35,16 @@ private:
 
     // Plane (Tung)
     Plane *plane;   // The plane.
-    PlaneInspectionResult planeInspectionResult;
+    PlaneInspectionResult* planeInspectionResult;
+    
+    // Location (Tung)
+    Location location; // The location of the flight.
+    string departureCode; // Departure airport code.
+    string arrivalCode; // Arrival airport code.
+
+
+    
+
 public:
     // Exception classes.
     // Classes for exceptions.
@@ -50,7 +63,7 @@ public:
     Flight();
 
     // Constructor.
-    Flight(const string &id, const string &type, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
+    Flight(const string &id, const string &type,const string& dep, const string& arr, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
     //Copy constructor for FlightManagement stage(Tue)
     
     Flight(const Flight &flight);
@@ -74,7 +87,7 @@ public:
     Plane *getPlane() const
         { return plane; }
 
-    PlaneInspectionResult getPlaneInspectionResult() const
+    const PlaneInspectionResult* getPlaneInspectionResult() const
         { return planeInspectionResult; }
 
     // Accessor functions (Tue).
@@ -100,12 +113,30 @@ public:
         plane = newPlane;
     }
 
-    void setPlaneInspectionResult(const PlaneInspectionResult &result)
-        { planeInspectionResult = result; }
+    void setPlaneInspectionResult(const PlaneInspectionResult &result);
+
+    // Mutator functions for location (Tung).
+    void setDepartureCode(const string &code)
+        { departureCode = code; }
+    void setArrivalCode(const string &code)
+        { arrivalCode = code; }
+    void setLocation(const Location &loc)    // Set the location of the flight from file
+        { location = loc; }
+    void setLocation(const string &depCode, const string &arrCode)  // Set the location of the flight from text
+        { departureCode = depCode; arrivalCode = arrCode; }
+    
+    // Function to get the location of the flight (Tung).
+    const Location& getLocation() const
+        { return location; }
+    const string& getDepartureCode() const
+        { return departureCode; }
+    const string& getArrivalCode() const
+        { return arrivalCode; }
     
     // Other functions (Hoang).
     void displayDetailsPilotResult() const;
     void displayDetailsWeatherResult() const;
+    void displayDetailsPlaneResult() const;
 };
 
 

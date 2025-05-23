@@ -11,16 +11,18 @@ private:
 public:
     //constructor
     CargoPlane();
+    CargoPlane(const CargoPlane& other);
 
-    // override function
-    double maxPayLoad() const override;
-    double passengerCapacity() const override;
+    
     ostream& output(ostream& os) const override;
     istream& input(istream& is) override;
+
+    Plane* clone() const override;
 
 
     // setter
     void setPayload(double payloadCapacity);
+    double getPayload() const;
     
 };
 
