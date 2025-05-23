@@ -8,22 +8,14 @@ PassengerPlane::PassengerPlane()
 	Passenger_num = 0;
 }
 PassengerPlane::PassengerPlane(const PassengerPlane& other): Plane(other), Passenger_num(other.Passenger_num){}
-double PassengerPlane::PayLoad() const
-{
-	return Passenger_num * 100;
-}
 
-double PassengerPlane::passengerCapacity() const
-{
-	return Passenger_num;
-}
 
 ostream& PassengerPlane::output(ostream& os) const
 {
 	os << "Plane model: " << getModel();
 	os << "\nPlane fuel level: " << getCurrent_Fuel();
 	os << "\nPlane engines status :" << (areEnginesOk() ? " OK! " : " NO!");
-	os << "\nPlane have " << passengerCapacity() << " passenger! ";
+	os << "\nPlane have " << getNumOfPassenger() << " passenger! ";
 	return os;
 }
 
@@ -77,7 +69,7 @@ void PassengerPlane::setNumOfPassenger(double Passenger_num)
 	this->Passenger_num = Passenger_num;
 }
 
-double PassengerPlane::getNumOfPassenger(){
+double PassengerPlane::getNumOfPassenger() const{
     return Passenger_num;
 }
 

@@ -38,9 +38,7 @@ public:
 	double getFuel_consumption_rate() const;
 	double getSpeed() const;
 	double getFuelTank() const;
-	// each type of airplane must report their max possible weight
-	virtual double PayLoad() const = 0;
-	virtual double passengerCapacity() const = 0;
+	
 
 	//deep copy function
 	virtual Plane* clone() const = 0;

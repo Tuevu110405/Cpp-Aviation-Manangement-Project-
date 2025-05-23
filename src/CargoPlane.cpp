@@ -14,15 +14,7 @@ CargoPlane::CargoPlane()
 CargoPlane::CargoPlane(const CargoPlane &other):Plane(other), payloadCapacity(other.payloadCapacity)
 {
 }
-double CargoPlane::PayLoad() const
-{
-    return payloadCapacity;
-}
 
-double CargoPlane::passengerCapacity() const
-{
-    return 0;
-}
 
 // Corrected output() method
 ostream& CargoPlane::output(ostream& os) const
@@ -30,7 +22,7 @@ ostream& CargoPlane::output(ostream& os) const
     os << "Plane model: " << getModel();
     os << "\nPlane fuel level: " << getCurrent_Fuel();
     os << "\nPlane engines status: " << (areEnginesOk() ? " OK! " : " NO!");
-    os << "\nPlane payload capacity: " << PayLoad() << " kg";
+    os << "\nPlane payload capacity: " << getPayload() << " kg";
     return os;
 }
 
@@ -81,6 +73,10 @@ istream& CargoPlane::input(istream& is)
 void CargoPlane::setPayload(double payloadCapacity)
 {
     this->payloadCapacity = payloadCapacity;
+}
+double CargoPlane::getPayload() const
+{
+    return payloadCapacity;
 }
 
 Plane* CargoPlane::clone() const{

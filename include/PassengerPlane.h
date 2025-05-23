@@ -14,9 +14,7 @@ public:
     PassengerPlane();
     PassengerPlane(const PassengerPlane& other);
 
-    // override function
-    double PayLoad() const override;
-    double passengerCapacity() const override;
+
     ostream& output(ostream& os) const override;
     istream& input(istream& is) override;
     Plane* clone() const override;
@@ -25,7 +23,7 @@ public:
     void setNumOfPassenger(double Passenger_num);
 
     //getter
-    double getNumOfPassenger();
+    double getNumOfPassenger() const;
  
 };
 
