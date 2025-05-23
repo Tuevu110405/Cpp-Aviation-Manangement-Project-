@@ -1,8 +1,20 @@
 #include "../include/WeatherInspectionResult.h"
 using namespace std;
 
-WeatherInspectionResult::WeatherInspectionResult() : isVisibility(true), isCrosswind(true), isTemperature(true), isThunderstorm(true) {}
-WeatherInspectionResult::WeatherInspectionResult(bool isVisibility,bool isHorizontalVisibility, bool isCrosswind, bool isTailwind, bool isTemperature, bool isThunderstorm) : isVisibility(isVisibility),isHorizontalVisibility(isHorizontalVisibility), isCrosswind(isCrosswind),isTailwind(isTailwind), isTemperature(isTemperature), isThunderstorm(isThunderstorm) {}
+WeatherInspectionResult::WeatherInspectionResult() : 
+isVisibility(true), 
+isHorizontalVisibility(true),
+isTailwind(true),
+isCrosswind(true), 
+isTemperature(true), 
+isThunderstorm(true) {}
+WeatherInspectionResult::WeatherInspectionResult(bool isVisibility,bool isHorizontalVisibility, bool isCrosswind, bool isTailwind, bool isTemperature, bool isThunderstorm) : 
+isVisibility(isVisibility),
+isHorizontalVisibility(isHorizontalVisibility), 
+isCrosswind(isCrosswind),
+isTailwind(isTailwind), 
+isTemperature(isTemperature), 
+isThunderstorm(isThunderstorm) {}
 
 //Getters
 bool WeatherInspectionResult::getIsVisibility() const {

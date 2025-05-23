@@ -7,10 +7,10 @@
 using namespace std;
 
 // Function FlightInspection::inspectWeather (Tue)
-WeatherInspectionResult FlightInspection::inspectWeather(Flight& flight, WeatherStandardVN& weatherStandard) {
-    WeatherInspectionResult weatherInspectionResult = flight.getWeatherInspectionResult();
+WeatherInspectionResult FlightInspection::inspectWeather(const Weather& weather, const WeatherStandardVN& weatherStandard) {
+    WeatherInspectionResult weatherInspectionResult ;
     // Check if the weather is satisfactory, if not, check and set status for each quality
-    if(weatherStandard.isWeatherAcceptable(flight.getWeather())){
+    if(weatherStandard.isWeatherAcceptable(weather)){
         weatherInspectionResult.setIsCrosswind(true);
         weatherInspectionResult.setIsTemperature(true);
         weatherInspectionResult.setIsThunderstorm(true);
@@ -19,49 +19,49 @@ WeatherInspectionResult FlightInspection::inspectWeather(Flight& flight, Weather
         weatherInspectionResult.setIsVisibility(true);
         weatherInspectionResult.setInspectionResult(true);
     }
-    else{
+    else if(!weatherStandard.isWeatherAcceptable(weather)){
 
-        if(flight.getWeather().getVisibility() < weatherStandard.getVisibility()){
+        if(!weatherStandard.isVisibility(weather)){
             weatherInspectionResult.setIsVisibility(false);
         }
-        else{
-            weatherInspectionResult.setIsVisibility(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsVisibility(true);
+        // }
 
-        if(flight.getWeather().getCrosswind() > weatherStandard.getCrosswind()){
+        if(!weatherStandard.isCrosswind(weather)){
             weatherInspectionResult.setIsCrosswind(false);
         }
-        else{
-            weatherInspectionResult.setIsCrosswind(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsCrosswind(true);
+        // }
 
-        if(flight.getWeather().getTemperature() < weatherStandard.getTemperatureLowerBound() || flight.getWeather().getTemperature() > weatherStandard.getTemperatureUpperBound()){
+        if(!weatherStandard.isTemperature(weather)){
             weatherInspectionResult.setIsTemperature(false);
         }
-        else{
-            weatherInspectionResult.setIsTemperature(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsTemperature(true);
+        // }
 
-        if(flight.getWeather().getThunderstorm() > weatherStandard.getThunderstorm()){
+        if(!weatherStandard.isThunderstorm(weather)){
             weatherInspectionResult.setIsThunderstorm(false);
         }
-        else{
-            weatherInspectionResult.setIsThunderstorm(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsThunderstorm(true);
+        // }
 
-        if(flight.getWeather().getTailwind() > weatherStandard.getTailwind()){
+        if(!weatherStandard.isTailwind(weather)){
             weatherInspectionResult.setIsTailwind(false);
         }
-        else{
-            weatherInspectionResult.setIsTailwind(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsTailwind(true);
+        // }
 
-        if(flight.getWeather().getHorizontalVisibility() < weatherStandard.getHorizontalVisibility()){
+        if(!weatherStandard.isHorizontalVisibility(weather)){
             weatherInspectionResult.setIsHorizontalVisibility(false);
         }
-        else{
-            weatherInspectionResult.setIsHorizontalVisibility(true);
-        }
+        // else{
+        //     weatherInspectionResult.setIsHorizontalVisibility(true);
+        // }
         weatherInspectionResult.setInspectionResult(false);
     }
 

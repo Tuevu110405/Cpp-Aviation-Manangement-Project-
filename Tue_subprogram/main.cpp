@@ -72,12 +72,12 @@ void loadDataAndHandle(){
             string flightType = loader.getValue("flight_type", i);
             flight->setFlightType(flightType);
 
-
+            
             Weather* weather = new Weather();
-            //Set weather data
+            //Set weather data        
             weather->setVisibility(stof(loader.getValue("forward_visibility", i)));
             weather->setCrosswind(stof(loader.getValue("crosswind", i)));
-            weather->setTailwind(stof(loader.getValue("tailwind", i)));
+            weather->setTailwind(stof(loader.getValue("tailwind", i)));            
             weather->setTemperature(stof(loader.getValue("temperature", i)));
             weather->setThunderstorm(stof(loader.getValue("thunderstorm", i)));
             weather->setHorizontalVisibility(stof(loader.getValue("horizontal_visibility", i)));
@@ -124,18 +124,22 @@ void loadDataAndHandle(){
 
             // flight inspection
             WeatherStandardVN weatherStandard;
-            //load the pilot standard
+            cout << "Weather standard data: " << weatherStandard << endl;
+            cout << "standard visibility: " << weatherStandard.getVisibility() << endl;
+            
+            
             
             PilotStandard pilotStandard = DataManagement::findPilotStandard(flight->getPlane()->getModel());
             PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(flight->getPilot(), pilotStandard);
             flight->setPilotResult(pilotInspectionResult);
-            WeatherInspectionResult weatherInspectionResult = FlightInspection::inspectWeather(*flight, weatherStandard);
+            WeatherInspectionResult weatherInspectionResult = FlightInspection::inspectWeather(flight->getWeather(), weatherStandard);
             flight->setWeatherInspectionResult(weatherInspectionResult);
             flight->setPlaneInspectionResult(PlaneInspectionResult());
             //Store the flight in the relevant vector
             FlightManagement::addFlight(flight);
             cout << "Processing flight: " << flightID << " succesfully" << endl;
 
+            
 
 
 

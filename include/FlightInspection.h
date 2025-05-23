@@ -14,7 +14,7 @@ class FlightInspection
 {
 public:
     // Function to inspect the weather (Tue).
-    static WeatherInspectionResult inspectWeather(Flight& flight, WeatherStandardVN& weatherStandard);
+    static WeatherInspectionResult inspectWeather(const Weather& weather, const  WeatherStandardVN& weatherStandard);
         
     // Function to inspect the pilot (Hoang).
     static PilotInspectionResult inspectPilot(const Pilot &pilotInfo, const PilotStandard &standard);
