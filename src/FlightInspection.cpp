@@ -278,11 +278,11 @@ string note;
 }
 result->setFuelLevelNote(note);
     // 3. Payload
-    bool payloadOk = plane->PayLoad() <= standard->getMaxPayload();
+    bool payloadOk = plane->getPayload() <= standard->getMaxPayload();
     result->setPayloadResult(payloadOk);
     result->setPayloadNote(payloadOk
         ? "Payload within limit."
-        : "Payload (" + to_string(plane->PayLoad()) + ") exceeds limit (" +
+        : "Payload (" + to_string(plane->getPayload()) + ") exceeds limit (" +
           to_string(standard->getMaxPayload()) + ").");
 
     // 4. Model match 
@@ -333,11 +333,11 @@ string note;
 result->setFuelLevelNote(note);
 
     // 3. Seat capacity
-    bool seatOk = plane->passengerCapacity() <= standard->getMaxSeatCapacity();
+    bool seatOk = plane->getNumOfPassenger() <= standard->getMaxSeatCapacity();
     result->setSeatCapacityResult(seatOk);
     result->setSeatCapacityNote(seatOk
         ? "Passenger count within limit."
-        : "Passenger count (" + to_string(plane->passengerCapacity()) +
+        : "Passenger count (" + to_string(plane->getNumOfPassenger()) +
           ") exceeds limit (" + to_string(standard->getMaxSeatCapacity()) + ").");
 
     // 4. Model match 

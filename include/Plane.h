@@ -29,7 +29,7 @@ public:
 	 void setModel(const string& model_) ;
 	 void setEngineStatus(int status);
 
-	 virtual void setBaseInfo(double fuel_consumption_rate_, double speed_, double fuel_tank_, const string& model_ );
+	 virtual void setBaseInfo(const string& model_,double fuel_tank_,double fuel_consumption_rate_, double speed_  );
 	 virtual void setBaseInfo_from_FIle(const string& filename);
 	//getter 
 	int getCurrent_Fuel() const;
