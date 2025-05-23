@@ -10,6 +10,8 @@
 #include "../include/PassengerPlane.h"
 #include "../include/CargoPlane.h"
 #include "PlaneInspectionresult.h"
+#include "cargoPlaneInspectionResult.h"
+#include "PassengerPlaneInspectionResult.h"
 #include "Location.h"
 #include <iostream>
 #include <string>
@@ -111,12 +113,30 @@ public:
         plane = newPlane;
     }
 
-    void setPlaneInspectionResult(const PlaneInspectionResult &result)
-        { planeInspectionResult = result.clone(); }
+    void setPlaneInspectionResult(const PlaneInspectionResult &result);
+
+    // Mutator functions for location (Tung).
+    void setDepartureCode(const string &code)
+        { departureCode = code; }
+    void setArrivalCode(const string &code)
+        { arrivalCode = code; }
+    void setLocation(const Location &loc)    // Set the location of the flight from file
+        { location = loc; }
+    void setLocation(const string &depCode, const string &arrCode)  // Set the location of the flight from text
+        { departureCode = depCode; arrivalCode = arrCode; }
+    
+    // Function to get the location of the flight (Tung).
+    const Location& getLocation() const
+        { return location; }
+    const string& getDepartureCode() const
+        { return departureCode; }
+    const string& getArrivalCode() const
+        { return arrivalCode; }
     
     // Other functions (Hoang).
     void displayDetailsPilotResult() const;
     void displayDetailsWeatherResult() const;
+    void displayDetailsPlaneResult() const;
 };
 
 

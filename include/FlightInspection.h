@@ -14,6 +14,7 @@
 #include "PlaneStandard.h"
 #include "CargoPlaneStandard.h"
 #include "PassengerPlaneStandard.h"
+#include "Location.h"
 #include <string>
 using namespace std;
 
@@ -27,8 +28,12 @@ public:
     static PilotInspectionResult inspectPilot(const Pilot &pilotInfo, const PilotStandard &standard);
 
     // Function to inspect the plane (Tung).
-    static PlaneInspectionResult inspectPlane(const Plane *plane, const PlaneStandard &standard);
+    static PlaneInspectionResult* inspectPlane(const Flight& flight, const PlaneStandard* standard);
+    static PassengerPlaneInspectionResult* inspectPassengerPlane(const PassengerPlane *plane, const PassengerPlaneStandard *standard);
+    static CargoPlaneInspectionResult* inspectCargoPlane(const CargoPlane *plane, const CargoPlaneStandard *standard);
 
+    // subprogram for helping to inspect the plane (Tung).
+    double calculateMinFuelNeed(const Flight& flight);
 
 };
 

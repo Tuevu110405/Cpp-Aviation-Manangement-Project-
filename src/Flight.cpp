@@ -54,17 +54,11 @@ Flight::Flight(const Flight &flight)
     pilotResult = flight.pilotResult;
     weather = flight.weather;
     plane = flight.plane;
-    /*Tuệệ dùng deep copy như trong sách mà không đc
-    if(flight.plane != nullptr)
-    {
-        plane = new Plane(*flight.plane);
-        plane->setBaseInfo(flight.plane->getFuel_consumption_rate(), flight.plane->getSpeed(), flight.plane->getCurrent_Fuel(), flight.plane->getModel());
-    }
-    else
-    {
-        plane = nullptr;
-    }
-        */
+    if (flight.plane != nullptr) {
+    plane = flight.plane->clone(); // Use the clone method to create a deep copy of the plane object
+} else {
+    plane = nullptr;
+}
     weatherInspectionResult = flight.weatherInspectionResult;
     planeInspectionResult = flight.planeInspectionResult;
 }
@@ -105,7 +99,8 @@ void Flight::setFlightID(const string &id)
 void Flight::updateFlightStatus()
 {
     flightStatus = pilotResult.getInspectionResult() && 
-                   weatherInspectionResult.getInspectionResult();
+                   weatherInspectionResult.getInspectionResult()
+                   && planeInspectionResult->getInspectionResult();
 }
 
 // Function Flight::setFlightType (Hoang).
@@ -163,4 +158,41 @@ void Flight::displayDetailsWeatherResult() const
     cout << " - Thunderstorm: " << (weatherInspectionResult.getIsThunderstorm() ? "Acceptable" : "Not Acceptable") << endl;
     cout << " - Tailwind: " << (weatherInspectionResult.getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
     cout << " - Horizontal Visibility: " << (weatherInspectionResult.getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
+}
+
+ void Flight::displayDetailsPlaneResult() const {
+    cout << "===== Plane Inspection Summary =====" << endl;
+    cout << " - Overall Inspection Result: "
+         << (planeInspectionResult->getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << " - Engine Status: "
+         << (planeInspectionResult->getEngineStatusResult() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << " - Fuel Level: "
+         << (planeInspectionResult->getFuelLevelResult() ? "Acceptable" : "Not Acceptable") << endl;
+    cout << " - Engine Status Note: " << planeInspectionResult->getEngineStatusNote() << endl;
+    cout << " - Fuel Level Note: " << planeInspectionResult->getFuelLevelNote() << endl;
+
+    // Specific fields for CargoPlaneInspectionResult
+    if (auto cargoResult = dynamic_cast<const CargoPlaneInspectionResult*>(planeInspectionResult)) {
+        cout << " - Payload Capacity: "
+             << (cargoResult->getPayloadResult() ? "Acceptable" : "Not Acceptable") << endl;
+        cout << " - Payload Capacity Note: " << cargoResult->getPayloadNote() << endl;
+    }
+
+    // Specific fields for PassengerPlaneInspectionResult
+    else if (auto passengerResult = dynamic_cast<const PassengerPlaneInspectionResult*>(planeInspectionResult)) {
+        cout << " - Seat Capacity: "
+             << (passengerResult->getSeatCapacityResult() ? "Acceptable" : "Not Acceptable") << endl;
+        cout << " - Seat Capacity Note: " << passengerResult->getSeatCapacityNote() << endl;
+
+        cout << " - Passenger Count: "
+             << (passengerResult->getSeatCapacityResult() ? "Acceptable" : "Not Acceptable") << endl;
+        cout << " - Passenger Count Note: " << passengerResult->getSeatCapacityResult() << endl;
+    }
+}
+
+
+
+void Flight::setPlaneInspectionResult(const PlaneInspectionResult &result){
+    planeInspectionResult = result.clone();
+    updateFlightStatus();
 }

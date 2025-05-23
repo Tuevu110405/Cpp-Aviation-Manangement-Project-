@@ -8,12 +8,12 @@ private:
     bool payloadResult;
     string payloadNote;
 
-    void setInspectionResult() override;
+    
 
 public:
     CargoPlaneInspectionResult();
     CargoPlaneInspectionResult(const string& type);
-
+    void setInspectionResult() override;
     void setPayloadResult(bool result);
     void setPayloadNote(const string& note);
     // Pure virtual clone function
