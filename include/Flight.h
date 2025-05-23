@@ -6,9 +6,9 @@
 #include "PilotInspectionResult.h"
 #include "StringManipulator.h"
 #include "Pilot.h"
-#include "../include/Plane.h"
-#include "../include/PassengerPlane.h"
-#include "../include/CargoPlane.h"
+#include "Plane.h"
+#include "PassengerPlane.h"
+#include "CargoPlane.h"
 #include "PlaneInspectionresult.h"
 #include <iostream>
 #include <string>
@@ -97,7 +97,8 @@ public:
     // Mutator functions (Tung).
     void setPlane(Plane *newPlane)
     {
-        // Do not delete the existing plane pointer here to avoid double deletion.
+        if (plane != nullptr)
+            delete plane;
         plane = newPlane;
     }
 
