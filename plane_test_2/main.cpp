@@ -66,7 +66,7 @@ int main()
     cin >> weather;
 
     // Create a Flight.
-    Flight flight(flightID, flightType, departureCode, arrivalCode, pilot, weather, plane);
+    Flight flight(flightID, flightType, pilot, weather, plane);
     flight.setLocation(location);
     flight.setLocation(departureCode, arrivalCode);
 

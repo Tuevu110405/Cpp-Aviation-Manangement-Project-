@@ -29,7 +29,7 @@ Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, fal
 }
 
 // Constructor.
-Flight::Flight(const string &id, const string &type,const string& dep, const string& arr, const Pilot &pilotInfo, const Weather &weatherInfo, const Plane *planeInfo)
+Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, const Weather &weatherInfo, const Plane *planeInfo)
 {
     try
     {
@@ -38,8 +38,6 @@ Flight::Flight(const string &id, const string &type,const string& dep, const str
         setPilot(pilot);
         setWeather(weatherInfo);
         setPlane(plane);
-        setDepartureCode(dep);
-        setArrivalCode(arr);
     }
     catch (InvalidID e)
     {
