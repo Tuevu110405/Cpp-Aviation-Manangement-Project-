@@ -28,8 +28,11 @@ int main()
 
     // Get location.
     Location location;
-    location.loadDestinationFromFile("destinations.csv");
+
+    // location.loadDestinationFromFile("destinations.csv");
     
+    const vector<Destination>& destinations = location.getDestinations();
+
     // Flight type.
     string flightType = "Cargo";
 
