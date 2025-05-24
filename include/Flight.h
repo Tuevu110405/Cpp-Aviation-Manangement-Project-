@@ -63,7 +63,7 @@ public:
     Flight();
 
     // Constructor.
-    Flight(const string &id, const string &type,const string& dep, const string& arr, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
+    Flight(const string &id, const string &type, const string& dep, const string& arr, const Pilot &pilotInfor, const Weather &weatherInfo, const Plane *planeInfo);
     //Copy constructor for FlightManagement stage(Tue)
     
     Flight(const Flight &flight);

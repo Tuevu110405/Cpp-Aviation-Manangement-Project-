@@ -1,3 +1,4 @@
+#pragma once
 #include "PlaneStandard.h"
 
 class PassengerPlaneStandard : public PlaneStandard {
