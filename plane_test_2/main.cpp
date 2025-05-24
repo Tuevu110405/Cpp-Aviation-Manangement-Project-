@@ -30,7 +30,16 @@ int main()
     Location location;
 
     // location.loadDestinationFromFile("destinations.csv");
-    
+    Destination departure;
+    departure.city = "Tokyo";
+    departure.airport_code = "HND";
+    departure.latitude = 35.5494;
+    departure.longitude = 139.7798;
+    Destination arrival;
+    arrival.city = "Los Angeles";
+    arrival.airport_code = "LAX";
+    arrival.latitude = 33.9425;
+    arrival.longitude = -118.4081;
     const vector<Destination>& destinations = location.getDestinations();
 
     // Flight type.
