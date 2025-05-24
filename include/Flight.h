@@ -34,7 +34,7 @@ private:
     WeatherInspectionResult weatherInspectionResult;
 
     // Plane (Tung)
-    Plane *plane;   // The plane.
+    const Plane *plane;   // The plane.
     PlaneInspectionResult* planeInspectionResult;
     
     // Location (Tung)
@@ -84,7 +84,7 @@ public:
     const PilotInspectionResult &getPilotInspectionResult() const
         { return pilotResult; }
 
-    Plane *getPlane() const
+    const Plane *getPlane() const
         { return plane; }
 
     const PlaneInspectionResult* getPlaneInspectionResult() const
@@ -107,7 +107,7 @@ public:
     void setWeatherInspectionResult(const WeatherInspectionResult& weatherInspectionResult);
 
     // Mutator functions (Tung).
-    void setPlane(Plane *newPlane)
+    void setPlane(const Plane *newPlane)
     {
         plane = newPlane;
     }
