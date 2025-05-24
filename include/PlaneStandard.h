@@ -1,5 +1,8 @@
+#ifndef PLANE_STANDARD_H
+#define PLANE_STANDARD_H
 #include <string>
 using namespace std;
+
 class PlaneStandard {
 protected:
     double min_fuel;
@@ -12,3 +15,4 @@ public:
     string getModel_available() const;
     virtual ~PlaneStandard() = default;
 };
+#endif

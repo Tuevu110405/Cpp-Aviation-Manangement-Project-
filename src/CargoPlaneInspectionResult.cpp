@@ -1,4 +1,4 @@
-#include "CargoPlaneInspectionResult.h"
+#include "../include/CargoPlaneInspectionResult.h"
 
 CargoPlaneInspectionResult::CargoPlaneInspectionResult() 
     : PlaneInspectionResult(), payloadResult(false), payloadNote("") {}

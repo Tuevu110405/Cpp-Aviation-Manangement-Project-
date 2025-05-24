@@ -204,6 +204,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
 
     return result;
 }
+
 double FlightInspection::calculateMinFuelNeed(const Flight &flight)
 {
     Destination dep, arr;

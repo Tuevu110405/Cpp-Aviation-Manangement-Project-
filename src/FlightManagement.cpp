@@ -130,8 +130,7 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
 
         // Write details of Pilot Inspection Result.
         outputFile << "\n[Inspection Results]\n";
-        // Take the pilot inspection result.
-        PilotInspectionResult pilotResult = flight->getPilotInspectionResult();
+        
         // Write the overall pilot inspection result.
         outputFile << "Pilot result: Eligible.\n";
 
@@ -196,12 +195,12 @@ void FlightManagement::writeSummary(const string &fileName)
         Weather weather = flight->getWeather();
 
         outputFile << "[Weather]\n";
-        outputFile << "Forward visibility: " << weather.getVisibility() << endl;
-        outputFile << "Horizontal visibility: " << weather.getHorizontalVisibility() << endl;
-        outputFile << "Crosswind: " << weather.getCrosswind() << endl;
-        outputFile << "Tailwind: " << weather.getTailwind() << endl;
+        outputFile << "Forward visibility (m): " << weather.getVisibility() << endl;
+        outputFile << "Horizontal visibility (m): " << weather.getHorizontalVisibility() << endl;
+        outputFile << "Crosswind (knots): " << weather.getCrosswind() << endl;
+        outputFile << "Tailwind (knots): " << weather.getTailwind() << endl;
         outputFile << "Temperature (Celsius degree): " << weather.getTemperature() << endl;
-        outputFile << "Thunderstorm: " << weather.getThunderstorm() << endl;
+        outputFile << "Thunderstorm (nautical miles): " << weather.getThunderstorm() << endl;
         outputFile << "==========\n\n";
     }
     // Close the file.

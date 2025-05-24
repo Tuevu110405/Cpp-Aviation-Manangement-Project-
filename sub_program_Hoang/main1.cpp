@@ -114,7 +114,7 @@ int main()
             flight->setPilotResult(pilotResult);
 
             // Inspect the weather and get the inspection result.
-            weatherResult = FlightInspection::inspectWeather(*flight, weatherStandardVN);
+            weatherResult = FlightInspection::inspectWeather(actualWeather, weatherStandardVN);
             flight->setWeatherInspectionResult(weatherResult);
             
             // Update the flight status.
@@ -245,7 +245,7 @@ int main()
             flight->setPilotResult(pilotResult);
 
             // Inspect the weather.
-            weatherResult = FlightInspection::inspectWeather(*flight, weatherStandardVN);
+            weatherResult = FlightInspection::inspectWeather(actualWeather, weatherStandardVN);
             flight->setWeatherInspectionResult(weatherResult);
             
             // Update the flight status.
