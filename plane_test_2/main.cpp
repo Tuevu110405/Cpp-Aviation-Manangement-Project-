@@ -77,16 +77,33 @@ int main()
     }
 
     
-    // Create a Plane.
-    Plane *plane = new CargoPlane;
-    cin >> *plane;
-    plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
+    Plane *plane = nullptr;
+    PlaneStandard *planeStandard = nullptr;
 
-    
-    // Plane standard.
-    PlaneStandard *planeStandard = new CargoPlaneStandard;
-    planeStandard->loadFromFile("Aircraft payload.csv");
+    if (flightType == "Cargo") {
+        plane = new CargoPlane(); // Create a CargoPlane
+        cout << "Enter Cargo Plane details \n";
+        
+        cin >> *plane; 
+        plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
 
+        CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
+        cargoStandard->loadFromFile("Aircraft payload.csv");
+        planeStandard = cargoStandard;
+
+    } else if (flightType == "Passenger") {
+        plane = new PassengerPlane(); // Create a PassengerPlane
+        cout << "Enter Passenger Plane details \n";
+        cin >> *plane; 
+        plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
+
+        PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
+        passengerStandard->loadFromFile("Passenger_Aircraft_payload.csv"); 
+        planeStandard = passengerStandard;
+    } else {
+        cerr << "Error: Invalid flight type entered (" << flightType << "). Exiting." << endl;
+        return 1; // Exit if flight type is invalid
+    }
     cin.ignore();
     // Create a Pilot.
     Pilot pilot;
@@ -118,11 +135,19 @@ int main()
     weatherResult = FlightInspection::inspectWeather(weather, weatherStandard);
     flight.setWeatherInspectionResult(weatherResult);
     
-    // Inspecting plane (Need to fix).
-    FlightInspection inspector;
-    PlaneInspectionResult *planeInspectionResult = inspector.inspectPlane(flight, planeStandard);
+      // Inspecting plane.
+    PlaneInspectionResult *planeInspectionResult = nullptr;
+    if (plane && planeStandard) { 
+        planeInspectionResult = FlightInspection::inspectPlane(flight, planeStandard);
+    } else {
+         cerr << "Error: Plane or PlaneStandard is null. Skipping plane inspection." << endl;
+    }
 
-    flight.setPlaneInspectionResult(*planeInspectionResult);
+    if (planeInspectionResult != nullptr) {
+        flight.setPlaneInspectionResult(*planeInspectionResult);
+    } else {
+        cout << "Warning: Plane inspection failed or was skipped (result is nullptr)." << endl;
+    }
 
     flight.updateFlightStatus();
 
