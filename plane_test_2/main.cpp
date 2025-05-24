@@ -50,6 +50,7 @@ int main()
     
     // Create a Plane.
     Plane *plane = new CargoPlane;
+    plane = dynamic_cast<CargoPlane *>(plane);
     cin >> *plane;
     plane->setBaseInfo_from_FIle("Aircraf baseinfo.csv");
 

@@ -107,7 +107,6 @@ void DataManagement::loadPilotStandard(const string &fileName)
             exit(EXIT_FAILURE);
         } 
     }
-
     inputFile.close();
     cout << "Load the pilot standards sucessfully.\n";
 }
