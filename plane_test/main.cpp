@@ -1,73 +1,75 @@
-// #include "../include/Plane.h"
-// #include "../include/CargoPlane.h"
-// #include "../include/PassengerPlane.h"
-// #include "../include/Flight.h"
-// #include "../include/Weather.h"
-// #include "../include/WeatherStandard.h"
-// #include "../include/WeatherInspectionResult.h"
-// #include "../include/Pilot.h"
-// #include "../include/PilotInspectionResult.h"
-// #include "../include/FlightInspection.h"
-// #include "../include/FlightManagement.h"
-// #include "../include/PlaneInspectionresult.h"
+#include "../include/FLight.h"
+#include "../include/Pilot.h"
+#include "../include/PilotStandard.h"
+#include "../include/PilotInspectionResult.h"
+#include "../include/Weather.h"
+#include "../include/WeatherStandardVN.h"
+#include "../include/WeatherInspectionResult.h"
+#include "../include/Plane.h"
+#include "../include/PlaneInspectionresult.h"
+#include "../include/PlaneStandard.h"
+#include "../include/PassengerPlane.h"
+#include "../include/PassengerPlaneStandard.h"
+#include "../include/CargoPlane.h"
+#include "../include/CargoPlaneStandard.h"
+#include "../include/FlightInspection.h"
+#include "../include/Location.h"
+#include "../include/CargoPlaneInspectionResult.h"
+#include "../include/PassengerPlaneInspectionResult.h"
+#include <iostream>
 
-// #include <iostream>
-// using namespace std;
+using namespace std;
 
-// int main()
-// {
-//     FlightManagement::loadPilotStandard("../pilot_and_weather_test_(Tue & Hoang))/pilot_standards.txt");
-//     Flight* flight = new Flight();
-//     Weather weather;
+int main() {
+    // Create and load locations
+    Location loc;
+    loc.loadDestinationFromFile("destinations.csv"); // Make sure this file exists
 
-//     cout << "Enter forecast weather data:\n";
-    
-//     cin >> weather;
-//     cout << weather;
-//     flight->setWeather(weather);
-//     flight->setFlightID("VN001");
-//     flight->setFlightType("Passenger");
-//     Pilot pilot;
+    // Setup test flight data
+    string flightType = "Cargo"; // or "Passenger"
+    string depCode = "HND";      // Haneda, Japan
+    string arrCode = "LAX";      // Los Angeles, USA
 
-//     cout << "Enter data for pilot:\n";
-//     cin >> pilot;
-//     cout << pilot;
-//     flight->setPilot(pilot);
+    // Create a sample plane (CargoPlane example)
+   Plane* plane = new CargoPlane();
+   CargoPlane* cargo = dynamic_cast<CargoPlane*>(plane);
+if (cargo) {
+    cargo->setEngineStatus(1);
+    cargo->setBaseInfo("Boeing 747", 20000, 0.5, 900); // model, fuel tank, consumption rate, speed
+    cargo->setCurrent_Fuel(8000);      // current level
+    cargo->setPayload(25000);  // some payload// OK
+} else {
+    cout << "Dynamic cast failed: not a CargoPlane.\n";
+}
+ 
 
+    // Create standard
+    CargoPlaneStandard cargoStd;
+    cargoStd.setMin_Fuel(7000); // min required based on calculation
+    cargoStd.setMaxPayload(30000);
 
+    // Setup flight
+  
+Pilot pilot;
+cin >> pilot; // Assuming you have a way to input pilot data
+ // You may need to initialize this properly
+Flight flight("VN123", "Cargo", depCode, arrCode, pilot, Weather(), cargo);
 
+    flight.setLocation(loc);
+    flight.setLocation(depCode, arrCode);
 
-//     Plane *p = new PassengerPlane;
-//     p->setBaseInfo(10, 100, 1000, "Boeing737");
+    // Run inspection
+    FlightInspection inspector;
+    PlaneInspectionResult* result = inspector.inspectPlane(flight, &cargoStd);
+    flight.setPlaneInspectionResult(*result);
 
-//     cin >> *p;
+    // Show results
+    cout << "Flight ID: " << flight.getFlightID() << std::endl;
+    cout << "Flight Type: " << flight.getFlightType() << std::endl;
+    flight.displayDetailsPlaneResult();
 
-//     cout << *p;
-//     flight->setPlane(p);
-//     WeatherStandardVN weatherStandard;
-//     PilotStandard pilotStandard = FlightManagement::findPilotStandard(p->getModel());
-//     PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(pilot, pilotStandard);
-//     flight->setPilotResult(pilotInspectionResult);
-//     WeatherInspectionResult weatherInspectionResult = FlightInspection::inspectWeather(*flight, weatherStandard);
-//     flight->setWeatherInspectionResult(weatherInspectionResult);
-//     flight->setPlaneInspectionResult(PlaneInspectionResult());
+    delete cargo;
+    delete result;
 
-//     // Print the inspection results
-//     cout << "\n[Weather Inspection Result]" << endl;
-//     cout << "Visibility: " << (flight->getWeatherInspectionResult().getIsVisibility() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Crosswind: " << (flight->getWeatherInspectionResult().getIsCrosswind() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Temperature: " << (flight->getWeatherInspectionResult().getIsTemperature() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Thunderstorm: " << (flight->getWeatherInspectionResult().getIsThunderstorm() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Tailwind: " << (flight->getWeatherInspectionResult().getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Horizontal Visibility: " << (flight->getWeatherInspectionResult().getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "Overall Inspection Result: " << (flight->getWeatherInspectionResult().getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
-//     cout << "\n[Pilot Inspection Result]" << endl;
-//     flight->displayDetailsPilotResult();
-//     delete flight;
-//     delete p;
-//     return 0;
-
-
-
-    
-// }
+    return 0;
+}
