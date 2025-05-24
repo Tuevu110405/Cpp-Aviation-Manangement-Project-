@@ -109,8 +109,6 @@ public:
     // Mutator functions (Tung).
     void setPlane(Plane *newPlane)
     {
-        if (plane != nullptr)
-            delete plane;
         plane = newPlane;
     }
 

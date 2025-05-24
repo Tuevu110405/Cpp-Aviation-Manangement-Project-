@@ -29,7 +29,7 @@ int main()
     // Get location.
     Location location;
 
-    // location.loadDestinationFromFile("destinations.csv");
+    // location.loadDestinationFromFile("destinations.csv"); Need to fix
     Destination departure;
     departure.city = "Tokyo";
     departure.airport_code = "HND";
@@ -64,12 +64,14 @@ int main()
     Plane *plane = new CargoPlane;
     plane = dynamic_cast<CargoPlane *>(plane);
     cin >> *plane;
-    plane->setBaseInfo_from_FIle("Aircraf baseinfo.csv");
+    plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
 
+    
     // Plane standard.
     PlaneStandard *planeStandard = new CargoPlaneStandard;
     planeStandard->loadFromFile("Aircraft payload.csv");
 
+    cin.ignore();
     // Create a Pilot.
     Pilot pilot;
     cin >> pilot;
@@ -101,7 +103,7 @@ int main()
     weatherResult = FlightInspection::inspectWeather(weather, weatherStandard);
     flight.setWeatherInspectionResult(weatherResult);
     
-    // Inspecting plane.
+    // Inspecting plane (Need to fix).
     FlightInspection inspector;
     PlaneInspectionResult *planeInspectionResult = inspector.inspectPlane(flight, planeStandard);
 
