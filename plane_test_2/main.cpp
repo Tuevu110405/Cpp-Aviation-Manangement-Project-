@@ -24,12 +24,12 @@ using namespace std;
 int main()
 {
     // Load pilot standaard.
-    DataManagement::loadPilotStandard("pilot_standards.txt");
+    DataManagement::loadPilotStandard("../data/pilot_standards.txt");
 
     // Get location.
     Location location;
 
-    location.loadDestinationFromFile("destinations.csv");
+    location.loadDestinationFromFile("../data/destinations.csv");
 
     // destination details.
     Destination departureLocationDetails;
@@ -85,20 +85,20 @@ int main()
         cout << "Enter Cargo Plane details \n";
         
         cin >> *plane; 
-        plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
+        plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
 
         CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
-        cargoStandard->loadFromFile("Aircraft payload.csv");
+        cargoStandard->loadFromFile("../data/Aircraft payload.csv");
         planeStandard = cargoStandard;
 
     } else if (flightType == "Passenger") {
         plane = new PassengerPlane(); // Create a PassengerPlane
         cout << "Enter Passenger Plane details \n";
         cin >> *plane; 
-        plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
+        plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
 
         PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
-        passengerStandard->loadFromFile("Passenger_Aircraft_payload.csv"); 
+        passengerStandard->loadFromFile("../data/Passenger_Aircraft_payload.csv"); 
         planeStandard = passengerStandard;
     } else {
         cerr << "Error: Invalid flight type entered (" << flightType << "). Exiting." << endl;
