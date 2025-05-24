@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     // Load pilot standards from the file.
-    DataManagement::loadPilotStandard("pilot_standards.txt");
+    DataManagement::loadPilotStandard("../data/pilot_standards.txt");
 
     // Demonstrate inspecting pilot for Boeing 787 model.
     PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");

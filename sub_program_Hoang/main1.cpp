@@ -18,7 +18,7 @@ int validateOption(const string &option);
 int main()
 {
     // Load pilot standard from the file named PilotStandards.csv.
-    DataManagement::loadPilotStandard("pilot_standards.txt");
+    DataManagement::loadPilotStandard("../data/pilot_standards.txt");
 
     // Constants for options.
     const int PASSENGER_OPTION = 1;         

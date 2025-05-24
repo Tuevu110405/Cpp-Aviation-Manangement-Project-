@@ -225,7 +225,7 @@ double FlightInspection::calculateMinFuelNeed(const Flight &flight)
     return minFuel;
 }
 PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, const PlaneStandard* standard) {
-    Plane* plane = flight.getPlane();
+    const Plane* plane = flight.getPlane();
     string type = flight.getFlightType();
 
     if (type == "Cargo") {
