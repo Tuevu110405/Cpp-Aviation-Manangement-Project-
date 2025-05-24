@@ -18,21 +18,30 @@ bool CargoPlaneStandard::loadFromFile(const string& filename) {
     }
 
     string line;
+
+
+    // Read first data line (you can extend this for multiple models)
     if (getline(file, line)) {
         stringstream ss(line);
-        string model;
-        double maxPayload;
+        string model, payloadStr;
 
-        if (!(ss >> model >> maxPayload)) {
-            cerr << "Error: Incorrect format in file " << filename << endl;
+        if (getline(ss, model, ',') && getline(ss, payloadStr, ',')) {
+            try {
+                double maxPayload = stod(payloadStr);
+                setModel_available(model);
+                setMaxPayload(maxPayload);
+            } catch (const std::invalid_argument& e) {
+                cerr << "Error: Payload value is not a number in file " << filename << endl;
+                file.close();
+                return false;
+            }
+        } else {
+            cerr << "Error: Incorrect CSV format in file " << filename << endl;
             file.close();
             return false;
         }
-
-        setModel_available(model);
-        setMaxPayload(maxPayload);
     } else {
-        cerr << "Error: Empty file or read failure in " << filename << endl;
+        cerr << "Error: File is empty or read failure in " << filename << endl;
         file.close();
         return false;
     }

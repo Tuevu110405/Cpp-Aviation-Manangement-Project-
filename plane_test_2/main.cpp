@@ -29,18 +29,14 @@ int main()
     // Get location.
     Location location;
 
-    // location.loadDestinationFromFile("destinations.csv"); Need to fix
-    Destination departure;
-    departure.city = "Tokyo";
-    departure.airport_code = "HND";
-    departure.latitude = 35.5494;
-    departure.longitude = 139.7798;
-    Destination arrival;
-    arrival.city = "Los Angeles";
-    arrival.airport_code = "LAX";
-    arrival.latitude = 33.9425;
-    arrival.longitude = -118.4081;
-    const vector<Destination>& destinations = location.getDestinations();
+    location.loadDestinationFromFile("destinations.csv");
+
+    // destination details.
+    Destination departureLocationDetails;
+    Destination arrivalLocationDetails;
+    string departureCode;
+    string arrivalCode;
+
 
     // Flight type.
     string flightType = "Cargo";
@@ -50,19 +46,39 @@ int main()
     cout << "Enter flight ID: ";
     getline(cin, flightID);
 
-    // Departure code.
-    string departureCode;
-    cout << "Enter departure code: ";
-    getline(cin, departureCode);
+   // Get and validate departure code.
+    bool departureFound = false;
+    while (!departureFound) {
+        cout << "Enter departure code: ";
+        getline(cin, departureCode);
+        if (location.getDestinationByCode(departureCode, departureLocationDetails)) {
+            cout << "Departure location found: " << departureLocationDetails.city << endl;
+            departureFound = true;
+        } else {
+            cout << "Invalid departure code. Please try again." << endl;
+        }
+    }
 
-    string arrivalCode;
-    cout << "\nEnter arrival code: ";
-    getline(cin, arrivalCode);
+    // Get and validate arrival code.
+    bool arrivalFound = false;
+    while (!arrivalFound) {
+        cout << "\nEnter arrival code: ";
+        getline(cin, arrivalCode);
+        if (location.getDestinationByCode(arrivalCode, arrivalLocationDetails)) {
+            if (arrivalCode == departureCode) {
+                cout << "Arrival code cannot be the same as departure code. Please try again." << endl;
+            } else {
+                cout << "Arrival location found: " << arrivalLocationDetails.city << endl;
+                arrivalFound = true;
+            }
+        } else {
+            cout << "Invalid arrival code. Please try again." << endl;
+        }
+    }
 
     
     // Create a Plane.
     Plane *plane = new CargoPlane;
-    plane = dynamic_cast<CargoPlane *>(plane);
     cin >> *plane;
     plane->setBaseInfo_from_FIle("Aircraft baseinfo.csv");
 
@@ -82,7 +98,6 @@ int main()
 
     // Create a Flight.
     Flight flight(flightID, flightType, pilot, weather, plane);
-    flight.setLocation(location);
     flight.setLocation(departureCode, arrivalCode);
 
 

@@ -1,5 +1,8 @@
 #include "../include/Plane.h"
 #include <unordered_set>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 
 using namespace std;
@@ -53,26 +56,40 @@ void Plane::setBaseInfo(const string& model_,double fuel_tank_,double fuel_consu
 
 void Plane::setBaseInfo_from_FIle(const string& filename)
 {
-		ifstream file(filename);
-		if (!file.is_open()) {
-			cerr << "Error: Could not open file " << filename << endl;
-			return;
-		}
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cerr << "Error: Could not open file " << filename << endl;
+        return;
+    }
 
-		double fuelRate, speedVal, fuelTank;
-		string model;
-		file >> model >> fuelTank >> fuelRate >> speedVal ;
+    string line;
+    if (getline(file, line)) {
+        stringstream ss(line);
+        string model, fuelTankStr, fuelRateStr, speedStr;
 
-		if (file.fail()) {
-			cerr << "Error: Failed to read base info from file." << endl;
-			return;
-		}
+        if (getline(ss, model, ',') &&
+            getline(ss, fuelTankStr, ',') &&
+            getline(ss, fuelRateStr, ',') &&
+            getline(ss, speedStr, ',')) {
+            try {
+                double fuelTank = stod(fuelTankStr);
+                double fuelRate = stod(fuelRateStr);
+                double speedVal = stod(speedStr);
+                setBaseInfo(model, fuelTank, fuelRate, speedVal);
+            } catch (const invalid_argument& e) {
+                cerr << "Error: One of the numeric values is invalid in file " << filename << endl;
+            }
+        } else {
+            cerr << "Error: Incorrect CSV format in file " << filename << endl;
+        }
+    } else {
+        cerr << "Error: Failed to read line from file " << filename << endl;
+    }
 
-		setBaseInfo(model, fuelTank, fuelRate, speedVal);  // use setter
-
-		file.close();
-
+    file.close();
 }
+
+
 
 // getter
 int Plane::getCurrent_Fuel() const

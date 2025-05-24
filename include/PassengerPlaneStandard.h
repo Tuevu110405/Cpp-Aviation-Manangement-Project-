@@ -3,9 +3,9 @@
 
 class PassengerPlaneStandard : public PlaneStandard {
 protected:
-    int max_seat_capacity;
+    double max_seat_capacity;
 public:
-    void setMaxSeatCapacity(int);
-    int getMaxSeatCapacity() const;
+    void setMaxSeatCapacity(double);
+    double getMaxSeatCapacity() const;
     bool loadFromFile(const string& filename) override;
 };

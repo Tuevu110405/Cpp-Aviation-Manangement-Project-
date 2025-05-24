@@ -88,6 +88,8 @@ istream& PassengerPlane::input(istream& is)
             break; // Exit loop on valid input
         }
     }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+
     return is;
 }
 
