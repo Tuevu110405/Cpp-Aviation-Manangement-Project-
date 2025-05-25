@@ -149,6 +149,7 @@ void DataManagement::displayPilotStandards(const string &model)
     cout << standard << endl;
 }
 
+// Functions (Tung).
 void DataManagement::loadCargoStandard(const string& fileName) {
     ifstream file(fileName);
     if (!file.is_open()) {

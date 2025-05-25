@@ -1,5 +1,6 @@
 #include "../include/StringManipulator.h"
 
+// Function StringManipulator::capitalize (Hoang).
 string StringManipulator::capitalize(const string &inputStr)
 {
     string output = "";
@@ -15,6 +16,7 @@ string StringManipulator::capitalize(const string &inputStr)
     return output;
 }
 
+// Function StringManipulator::removespaces (Hoang).
 string StringManipulator::removeSpaces(const string &inputStr)
 {
     string output = "";
@@ -28,6 +30,7 @@ string StringManipulator::removeSpaces(const string &inputStr)
     return output;
 }
 
+// Function StringManipulator::lowercase (Tue).
 string StringManipulator::lowerCase(const string& str)
 {
     string result = "";
