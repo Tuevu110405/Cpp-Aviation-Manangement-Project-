@@ -51,6 +51,8 @@ public:
 	bool isModelNameTrue(string& modelName);
 	friend ostream& operator<<(ostream& os, const Plane& plane) ;
 	friend istream& operator>>(istream& is, Plane& plane) ;
+	virtual void setNumOfPassenger(double Passenger_num) {} ; // virtual function for payload capacity
+	virtual void setPayload(double payloadCapacity) {} ; // virtual function for payload capacity
 
 
 };

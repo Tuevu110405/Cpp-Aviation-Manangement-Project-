@@ -65,7 +65,7 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
     }
 
     string line;
-    if (getline(file, line)) {
+    while (getline(file, line)) {
         stringstream ss(line);
         string model, fuelTankStr, fuelRateStr, speedStr;
 
@@ -84,8 +84,6 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
         } else {
             cerr << "Error: Incorrect CSV format in file " << filename << endl;
         }
-    } else {
-        cerr << "Error: Failed to read line from file " << filename << endl;
     }
 
     file.close();

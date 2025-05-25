@@ -9,5 +9,7 @@ class StringManipulator
 public:
     static string capitalize(const string &);
     static string removeSpaces(const string &);
+    //adding a function to convert string to lowercase(Tue)
+    static string lowerCase(const string& str);
 };
 #endif
