@@ -44,11 +44,39 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         Flight *flight = ineligibleFlightList[count];
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
-        outputFile << "Departure: " << flight->getDepartureCode() << endl;
-        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << "Status: Ineligible\n";
 
-        // Write details of Plane Inspection Result.
+        // Write the details of Plane Inspection Result.
+        outputFile << "\n[Plane Inspection Result]\n";
+        
+        const PlaneInspectionResult *planeResult = flight->getPlaneInspectionResult();
+
+        outputFile << "Overall result: " << (planeResult->getInspectionResult() ? "Eligible" : "Ineligible") << endl;
+        outputFile << " - Engine status: " << (planeResult->getEngineStatusResult() ? "Eligible" : "Ineligible ") << endl;
+        outputFile << " - Fuel Level: " << (planeResult->getFuelLevelResult() ? "Eligible" : "Ineligible ") << endl;
+        outputFile << " - Engine Status Note: " << planeResult->getEngineStatusNote() << endl;
+        outputFile << " - Fuel Level Note: " << planeResult->getFuelLevelNote() << endl;
+        // Specific fields for CargoPlaneInspectionResult
+        if (flight->getFlightType() == "Cargo")
+        {
+        auto cargoResult = dynamic_cast<const CargoPlaneInspectionResult*>(planeResult);
+        cout << " - Payload Capacity: "
+             << (cargoResult->getPayloadResult() ? "Acceptable" : "Not Acceptable") << endl;
+        cout << " - Payload Capacity Note: " << cargoResult->getPayloadNote() << endl;
+        }
+
+        // Specific fields for PassengerPlaneInspectionResult
+        else
+        {
+            auto passengerResult = dynamic_cast<const PassengerPlaneInspectionResult*>(planeResult);
+            outputFile << " - Seat Capacity: "
+                    << (passengerResult->getSeatCapacityResult() ? "Acceptable" : "Not Acceptable") << endl;
+            outputFile << " - Seat Capacity Note: " << passengerResult->getSeatCapacityNote() << endl;
+
+            outputFile << " - Passenger Count: "
+                    << (passengerResult->getSeatCapacityResult() ? "Acceptable" : "Not Acceptable") << endl;
+            outputFile << " - Passenger Count Note: " << passengerResult->getSeatCapacityNote() << endl;
+        }
 
         // Write details of Pilot Inspection Result.
         outputFile << "\n[Pilot Inspection Result]\n";
@@ -102,7 +130,7 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         outputFile << " - Thunderstorm: " << (weatherInspectionResult.getIsThunderstorm() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Tailwind: " << (weatherInspectionResult.getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Horizontal Visibility: " << (weatherInspectionResult.getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
-
+        
         outputFile << "==========" << endl;
     }
 
@@ -128,21 +156,20 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         Flight *flight = eligibleFlightList[count];
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
-        outputFile << "Departure: " << flight->getDepartureCode() << endl;
-        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << "Status: Eligible\n";
 
         // Write details of Pilot Inspection Result.
         outputFile << "\n[Inspection Results]\n";
         
+        // Write Plane Inspection Result.
+        outputFile << "Plane result: Eligible.\n";
+
         // Write the overall pilot inspection result.
         outputFile << "Pilot result: Eligible.\n";
 
         // Write details Weather Inspection Result.
         outputFile << "Weather result: Eligible.\n";
-
-        // Write Plane Inspection Result.
-        outputFile << "Plane result: Eligible.\n";
+        
         outputFile << "==========" << endl;
     }
 
@@ -178,18 +205,32 @@ void FlightManagement::writeSummary(const string &fileName)
         outputFile << "Flight #" << (count + 1) <<  endl;
         outputFile << "Flight ID: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
-        outputFile << "Departure: " << flight->getDepartureCode() << endl;
-        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
-        outputFile << endl;
 
-        // Write the dtails of plane.
-        
+        // Write the details of plane.
+        const Plane *plane = flight->getPlane();
+
+        outputFile << "\n[Plane]\n";
+        if (flight->getFlightType() == "Passenger")
+        {   
+            const PassengerPlane *passengerPlane = dynamic_cast<const PassengerPlane *>(plane);
+            outputFile << "Model: " << passengerPlane->getModel() << endl;
+            outputFile << "Passengers: " << passengerPlane->getNumOfPassenger() << endl;
+            outputFile << "Current fuel (kg): " << passengerPlane->getCurrent_Fuel() << endl;
+        }
+        else
+        {
+            const CargoPlane *cargoPlane = dynamic_cast<const CargoPlane *>(plane);
+            outputFile << "Model: " << cargoPlane->getModel() << endl;
+            outputFile << "Payload (kg): " << cargoPlane->getPayload() << endl;
+            outputFile << "Current fuel (kg): " << cargoPlane->getCurrent_Fuel() << endl;
+        }
+
         // Write the details of pilot.
         Pilot pilot = flight->getPilot();
         PilotCertificate certificate = pilot.getPilotCertificate();
         PilotCompetence competence = pilot.getPilotCompetence();
 
-        outputFile << "[Pilot]\n";
+        outputFile << "\n[Pilot]\n";
         outputFile << "Pilot name: " << pilot.getName() << endl;
         outputFile << "Flight hours: " << competence.getFlightHours() << endl;
         outputFile << "Hours in command: " << competence.getHoursInCommand() << endl;
