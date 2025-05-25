@@ -21,7 +21,8 @@ void Flight::setWeather(const Weather& weather){
 }
 
 // Default constructor.
-Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, false, false, false, false, false)
+Flight::Flight() : weather(0, 0, 0, 0, 0, 0), weatherInspectionResult(false, false, false, false, false, false),plane(nullptr), planeInspectionResult(nullptr)
+
 {
     flightID = "";
     flightType = "";

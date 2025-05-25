@@ -232,12 +232,12 @@ PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, cons
     const Plane* plane = flight.getPlane();
     string type = flight.getFlightType();
 
-    if (type == "Cargo") {
+    if (type == "cargo" || type == "Cargo") {
     const CargoPlane* cargoPlane = dynamic_cast<const CargoPlane*>(plane);
     const CargoPlaneStandard* cargoStandard = dynamic_cast<const CargoPlaneStandard*>(standard);
     return inspectCargoPlane(cargoPlane, cargoStandard);
 }
-else if (type == "Passenger") {
+else if (type == "passenger" || type == "Passenger") {
     const PassengerPlane* passengerPlane = dynamic_cast<const PassengerPlane*>(plane);
     const PassengerPlaneStandard* passengerStandard = dynamic_cast<const PassengerPlaneStandard*>(standard);
     return inspectPassengerPlane(passengerPlane, passengerStandard);

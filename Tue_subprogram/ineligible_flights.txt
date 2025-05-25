@@ -1,44 +1,13 @@
+There are 2 ineligible flights.
 Flight: VN310
 Flight type: cargo
+Departure: HPH
+Arrival: SGN
 Status: Ineligible
 
-[Pilot Inspection Result]
+[Plane Inspection Result]
 Overall result: Ineligible
- - Flight hours: Eligible
- - Hours in command: Eligible
- - English level: Eligible
- - Health status: Ineligible, (Actual: Status 2, Required: Status 1).
- - License type: Eligible
- - License date: Eligible
-
-[Weather inspection result]
- - Overall result: Acceptable
- - Visibility: Acceptable
- - Crosswind: Acceptable
- - Temperature: Acceptable
- - Thunderstorm: Acceptable
- - Tailwind: Acceptable
- - Horizontal Visibility: Acceptable
-==========
-Flight: VN150
-Flight type: passenger
-Status: Ineligible
-
-[Pilot Inspection Result]
-Overall result: Ineligible
- - Flight hours: Eligible
- - Hours in command: Eligible
- - English level: Eligible
- - Health status: Ineligible, (Actual: Status 2, Required: Status 1).
- - License type: Eligible
- - License date: Eligible
-
-[Weather inspection result]
- - Overall result: Not Acceptable
- - Visibility: Not Acceptable
- - Crosswind: Acceptable
- - Temperature: Not Acceptable
- - Thunderstorm: Not Acceptable
- - Tailwind: Acceptable
- - Horizontal Visibility: Acceptable
-==========
+ - Engine status: Eligible
+ - Fuel Level: Ineligible 
+ - Engine Status Note: Engines operational. Model mismatch.
+ - Fuel Level Note: Fuel level exceeds tank capacity. Current: 90000.000000, Max Tank: 26352.000000.

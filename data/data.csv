@@ -17,7 +17,7 @@ fuel,90000,90000
 engine_status,1,1
 fuel_consumption_rate,5400,5800
 speed_val,903,903
-model,boeing787,airbusa350
+model,BOEING787,AIRBUSA350
 capacity,300,0
 passenger_number,0,90
 departure_code,HPH,HAN
