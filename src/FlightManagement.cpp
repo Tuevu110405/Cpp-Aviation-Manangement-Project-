@@ -44,6 +44,8 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         Flight *flight = ineligibleFlightList[count];
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
+        outputFile << "Departure: " << flight->getDepartureCode() << endl;
+        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << "Status: Ineligible\n";
 
         // Write details of Pilot Inspection Result.
@@ -126,6 +128,8 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         Flight *flight = eligibleFlightList[count];
         outputFile << "Flight: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
+        outputFile << "Departure: " << flight->getDepartureCode() << endl;
+        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << "Status: Eligible\n";
 
         // Write details of Pilot Inspection Result.
@@ -138,7 +142,7 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         outputFile << "Weather result: Eligible.\n";
 
         // Write Plane Inspection Result.
-
+        outputFile << "Plane result: Eligible.\n";
         outputFile << "==========" << endl;
     }
 
@@ -174,6 +178,8 @@ void FlightManagement::writeSummary(const string &fileName)
         outputFile << "Flight #" << (count + 1) <<  endl;
         outputFile << "Flight ID: " << flight->getFlightID() << endl;
         outputFile << "Flight type: " << flight->getFlightType() << endl;
+        outputFile << "Departure: " << flight->getDepartureCode() << endl;
+        outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << endl;
 
         // Write the details of pilot.
