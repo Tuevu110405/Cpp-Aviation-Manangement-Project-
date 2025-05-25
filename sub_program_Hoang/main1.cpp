@@ -43,9 +43,10 @@ void subprogram1()
     const int EXIT = 3;
 
     // Variable to hold the option.
-    string optionString;
-    int option;
+    string optionString;    // To hold the user's option of menu 1.
+    int option;             // To hold the user's option after converting to an int.
     
+    // The main loop of the subprogram.
     do
     {
         // Display the menu and get option.
@@ -77,6 +78,7 @@ void subprogram1()
             Flight *flight = new Flight();          // A pointer to a Flight object.
             string flightID;                        // The string of flight ID.
 
+            // Create inspection result objects.
             PlaneInspectionResult* planeResult = nullptr;
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
@@ -85,10 +87,12 @@ void subprogram1()
             {
                 if (isFirstTime)
                 {
-                    cout << "\nEnter the data for a flight.\n";
+                    cout << "\nEnter the data for a passenger flight.\n";
                     // Prompt user for flightID.
                     while (true)
                     {
+                        // Try to get flightID from user, then if
+                        // the flightID is invalid, prompt again.
                         try
                         {
                             cout << "Enter the flight ID: ";
@@ -108,9 +112,9 @@ void subprogram1()
                     bool departureFound = false;
                     while (!departureFound)
                     {
-                        cout << "Enter departure code: ";
+                        cout << "\nEnter departure code: ";
                         getline(cin, departureCode);
-                        if (location.getDestinationByCode(departureCode, departureLocationDetails))
+                        if (!location.getDestinationByCode(departureCode, departureLocationDetails))
                         {
                             cout << "Departure location found: " << departureLocationDetails.city << endl;
                             departureFound = true;
@@ -125,7 +129,7 @@ void subprogram1()
                     bool arrivalFound = false;
                     while (!arrivalFound)
                     {
-                        cout << "\nEnter arrival code: ";
+                        cout << "Enter arrival code: ";
                         getline(cin, arrivalCode);
                         if (location.getDestinationByCode(arrivalCode, arrivalLocationDetails))
                         {
@@ -212,7 +216,7 @@ void subprogram1()
             // If the flight is eligible, store it in the vector.
             if (isFlightEligible)
             {
-                cout << "The flight is eligible for takeoff.\n";
+                cout << "\nThe flight is eligible for takeoff.\n";
                 cout << "Storing it in the eligible list...\n";
                 FlightManagement::addFlight(flight);
             }
@@ -253,7 +257,7 @@ void subprogram1()
                 // Else put the flight to ineligible list.
                 else
                 {
-                    cout << "The flight is ineligible for takeoff.\n";
+                    cout << "\nThe flight is ineligible for takeoff.\n";
                     cout << "Storing it to the ineligible list...\n";
                     FlightManagement::addFlight(flight);
                     break;
@@ -289,7 +293,7 @@ void subprogram1()
             {
                 if (isFirstTime)
                 {
-                    cout << "\nEnter the data for a flight.\n";
+                    cout << "\nEnter the data for a cargo flight.\n";
                     // Prompt user for flightID.
                     while (true)
                     {
@@ -312,7 +316,7 @@ void subprogram1()
                     bool departureFound = false;
                     while (!departureFound)
                     {
-                        cout << "Enter departure code: ";
+                        cout << "\nEnter departure code: ";
                         getline(cin, departureCode);
                         if (location.getDestinationByCode(departureCode, departureLocationDetails))
                         {
@@ -329,7 +333,7 @@ void subprogram1()
                     bool arrivalFound = false;
                     while (!arrivalFound)
                     {
-                        cout << "\nEnter arrival code: ";
+                        cout << "Enter arrival code: ";
                         getline(cin, arrivalCode);
                         if (location.getDestinationByCode(arrivalCode, arrivalLocationDetails))
                         {
@@ -399,26 +403,6 @@ void subprogram1()
             planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
             
-            /*
-            PlaneInspectionResult *planeInspectionResult = nullptr;
-            if (plane && planeStandard) 
-            { 
-                planeInspectionResult = FlightInspection::inspectPlane(*flight, planeStandard);
-            }
-            else
-            {
-                cerr << "Error: Plane or PlaneStandard is null. Skipping plane inspection." << endl;
-            }
-
-            if (planeInspectionResult != nullptr)
-            {
-                flight->setPlaneInspectionResult(*planeInspectionResult);
-            } 
-            else
-            {
-                cout << "Warning: Plane inspection failed or was skipped (result is nullptr)." << endl;
-            }
-            */
 
             // Inspect the pilot.
             PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
@@ -438,14 +422,14 @@ void subprogram1()
             // If the flight is eligible, store it in the vector.
             if (isFlightEligible)
             {
-                cout << "The flight is eligible for takeoff.\n";
+                cout << "\nThe flight is eligible for takeoff.\n";
                 cout << "Storing it in the eligible list...\n";
                 FlightManagement::addFlight(flight);
             }
             // Otherwise, prompt user if they want to re-enter the data.
             else
             {
-                cout << "The flight is ineligible.\n";
+                cout << "\nThe flight is ineligible.\n";
                 if (planeResult->getInspectionResult() == false)
                 {
                     cout << "\nPlane is ineligible because\n";
@@ -532,7 +516,7 @@ int validateOption1(const string &option)
     string output = "";
     // Remove any spaces from the option.
     output = StringManipulator::removeSpaces(option);
-    
+
     // If the option contains character other than digits,
     // then returns false.
     for (int index = 0; index < output.length(); index++)
