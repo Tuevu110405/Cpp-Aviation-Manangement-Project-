@@ -39,7 +39,7 @@ int main()
 
 
     // Flight type.
-    string flightType = "Cargo";
+    string flightType = "Passenger";
 
     // Get flight ID.
     string flightID;
@@ -98,7 +98,7 @@ int main()
         plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
 
         PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
-        passengerStandard->loadFromFile("../data/Passenger_Aircraft_payload.csv"); 
+        passengerStandard->loadFromFile("../data/Aircraft seat capacity.csv"); 
         planeStandard = passengerStandard;
     } else {
         cerr << "Error: Invalid flight type entered (" << flightType << "). Exiting." << endl;

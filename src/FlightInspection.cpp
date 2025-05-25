@@ -205,6 +205,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
     return result;
 }
 
+//
 double FlightInspection::calculateMinFuelNeed(const Flight &flight)
 {
     Destination dep, arr;
@@ -222,6 +223,9 @@ double FlightInspection::calculateMinFuelNeed(const Flight &flight)
     {
         minFuel += 0.1 * minFuel; // Add 10% extra fuel for oceanic flights
     }
+    // PlaneStandard *standard;
+    // standard->setMin_Fuel(minFuel);
+
     return minFuel;
 }
 PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, const PlaneStandard* standard) {
@@ -244,6 +248,7 @@ else {
     }
 }
 
+//
 CargoPlaneInspectionResult* FlightInspection::inspectCargoPlane(const CargoPlane* plane, const CargoPlaneStandard* standard) {
     if (!plane || !standard) return nullptr;
 

@@ -37,7 +37,7 @@ Flight::Flight(const string &id, const string &type, const Pilot &pilotInfo, con
         setFlightType(type);
         setPilot(pilot);
         setWeather(weatherInfo);
-        setPlane(plane);
+        setPlane(planeInfo);
     }
     catch (InvalidID e)
     {
@@ -128,6 +128,7 @@ void Flight::setPilotResult(const PilotInspectionResult &newResult)
 // Function Flight::displayDetailsPilotResult (Hoang).
 void Flight::displayDetailsPilotResult() const
 {
+    cout << "\n[Plane Inspection Result]\n";
     cout << " - Overall inspection result: ";
     cout << (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible ") << endl;
 
@@ -153,6 +154,7 @@ void Flight::displayDetailsPilotResult() const
 
 void Flight::displayDetailsWeatherResult() const
 {
+    cout << "\n[Weather Inspection Result]\n";
     cout << " - Overall Inspection Result: " << (weatherInspectionResult.getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
     cout << " - Visibility: " << (weatherInspectionResult.getIsVisibility() ? "Acceptable" : "Not Acceptable") << endl;
     cout << " - Crosswind: " << (weatherInspectionResult.getIsCrosswind() ? "Acceptable" : "Not Acceptable") << endl;
@@ -188,7 +190,7 @@ void Flight::displayDetailsWeatherResult() const
 
         cout << " - Passenger Count: "
              << (passengerResult->getSeatCapacityResult() ? "Acceptable" : "Not Acceptable") << endl;
-        cout << " - Passenger Count Note: " << passengerResult->getSeatCapacityResult() << endl;
+        cout << " - Passenger Count Note: " << passengerResult->getSeatCapacityNote() << endl;
     }
 }
 
