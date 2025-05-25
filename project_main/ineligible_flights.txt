@@ -1,0 +1,13 @@
+There are 2 ineligible flights.
+Flight: VN310
+Flight type: cargo
+Departure: HPH
+Arrival: SGN
+Status: Ineligible
+
+[Plane Inspection Result]
+Overall result: Eligible
+ - Engine status: Eligible
+ - Fuel Level: Eligible
+ - Engine Status Note: Engines operational.
+ - Fuel Level Note: Fuel level sufficient.
