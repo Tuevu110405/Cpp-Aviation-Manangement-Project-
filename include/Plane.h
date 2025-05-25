@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include "../include/StringManipulator.h"
 using namespace std;
 class Plane
 {
@@ -26,7 +27,7 @@ public:
 
 	// setter
 	 void setCurrent_Fuel(int current_fuel__) ;
-	 void setModel(const string& model_) ;
+	 void setModel(string& model_) ;
 	 void setEngineStatus(int status);
 
 	 virtual void setBaseInfo(const string& model_,double fuel_tank_,double fuel_consumption_rate_, double speed_  );

@@ -28,8 +28,10 @@ void Plane::setCurrent_Fuel(int current_fuel__)
 	(current_fuel__ >= 0) ? current_fuel = current_fuel__: current_fuel = 0; // auto set to zero if input is negative
 }
 
-void Plane::setModel(const string& model_) 
+void Plane::setModel( string& model_) 
 {
+	model_ = StringManipulator::removeSpaces(model_); // Remove spaces
+	model_ = StringManipulator::capitalize(model_); // Capitalize the model name
 	model = model_;
 }
 
@@ -77,7 +79,7 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
                 double speedVal = stod(speedStr);
                 setBaseInfo(model, fuelTank, fuelRate, speedVal);
             } catch (const invalid_argument& e) {
-                cerr << "Error: One of the numeric values is invalid in file " << filename << endl;
+                cerr << "Error: One of the numeric values is invalid in file " << filename << "/n Details: " << e.what() << endl;
             }
         } else {
             cerr << "Error: Incorrect CSV format in file " << filename << endl;
@@ -120,9 +122,9 @@ double Plane::getFuelTank() const
 {
     return fuel_tank;
 }
-bool Plane::isModelNameTrue(std::string& modelName) {
-	// Convert model name to uppercase
-	transform(modelName.begin(), modelName.end(), modelName.begin(), ::toupper);
+bool Plane::isModelNameTrue(string& modelName) {
+	modelName = StringManipulator::removeSpaces(modelName);
+	modelName = StringManipulator::capitalize(modelName); // Capitalize the model name
 
 	// Valid Boeing and Airbus models (you can expand this list)
 	// Remove invalid models for Tung 
