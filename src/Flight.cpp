@@ -166,7 +166,7 @@ void Flight::displayDetailsWeatherResult() const
 }
 
  void Flight::displayDetailsPlaneResult() const {
-    cout << "===== Plane Inspection Summary =====" << endl;
+    cout << "\n[Plane Inspection Result]" << endl;
     cout << " - Overall Inspection Result: "
          << (planeInspectionResult->getInspectionResult() ? "Acceptable" : "Not Acceptable") << endl;
     cout << " - Engine Status: "

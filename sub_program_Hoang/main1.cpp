@@ -361,7 +361,7 @@ void subprogram1()
                     plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
 
                     // Prompt user for Pilot.
-                    cout << "\nEnter data for pilot.\n";
+                    cout << "Enter data for pilot.\n";
                     cin >> pilot;
 
                     // Prompt user for Weather.
