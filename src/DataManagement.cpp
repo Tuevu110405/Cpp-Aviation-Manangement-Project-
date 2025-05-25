@@ -146,3 +146,92 @@ void DataManagement::displayPilotStandards(const string &model)
     // Display the pilot standard.
     cout << standard << endl;
 }
+
+void DataManagement::loadCargoStandard(const string& fileName) {
+    ifstream file(fileName);
+    if (!file.is_open()) {
+        cout << "ERROR: Cannot open file " << fileName << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+        if (line.empty()) continue;
+
+        stringstream ss(line);
+        string model, token;
+        double maxPayload;
+
+        getline(ss, model, ',');
+        getline(ss, token, ',');
+        maxPayload = stod(token);
+
+        CargoPlaneStandard cps;
+        cps.setModel_available( StringManipulator::capitalize(StringManipulator::removeSpaces(model)));
+        cps.setMaxPayload(maxPayload);
+
+        cargoStandardArray.push_back(cps);
+    }
+
+    file.close();
+    cout << "Loaded cargo standards successfully.\n";
+}
+
+CargoPlaneStandard DataManagement::findCargoStandard(const string &model) {
+    string processedModel = StringManipulator::capitalize(StringManipulator::removeSpaces(model));
+
+    for (const auto& standard : cargoStandardArray) {
+        if (standard.getModel_available() == processedModel) {
+            return standard;
+        }
+    }
+
+    cout << "ERROR: No cargo standard found for model " << processedModel << endl;
+    exit(EXIT_FAILURE);
+}
+
+void DataManagement::loadPassengerStandard(const string& fileName) {
+    ifstream file(fileName);
+    if (!file.is_open()) {
+        cout << "ERROR: Cannot open file " << fileName << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+        if (line.empty()) continue;
+
+        stringstream ss(line);
+        string model, token;
+        int maxSeats;
+
+        getline(ss, model, ',');
+        getline(ss, token, ',');
+        maxSeats = stoi(token);
+
+        PassengerPlaneStandard pps;
+        pps.setModel_available(StringManipulator::capitalize(StringManipulator::removeSpaces(model)));
+        pps.setMaxSeatCapacity(maxSeats);
+
+        passengerStandardArray.push_back(pps);
+    }
+
+    file.close();
+    cout << "Loaded passenger standards successfully.\n";
+}
+PassengerPlaneStandard DataManagement::findPassengerStandard(const string& model) {
+    string processedModel = StringManipulator::capitalize(StringManipulator::removeSpaces(model));
+
+    for (const auto& standard : passengerStandardArray) {
+        if (standard.getModel_available() == processedModel) {
+            return standard;
+        }
+    }
+
+    cout << "ERROR: No passenger standard found for model " << processedModel << endl;
+    exit(EXIT_FAILURE);
+}
+
+

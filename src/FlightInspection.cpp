@@ -206,40 +206,38 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
 }
 
 //
-double FlightInspection::calculateMinFuelNeed(const Flight &flight)
-{
+
+
+PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, PlaneStandard* standard) {
+    const Plane* plane = flight.getPlane();
+    string type = flight.getFlightType();
+
     Destination dep, arr;
+    double minFuel_required;
     if (!flight.getLocation().getDestinationByCode(flight.getDepartureCode(), dep) ||
         !flight.getLocation().getDestinationByCode(flight.getArrivalCode(), arr)) {
         cerr << "Invalid airport codes" << endl;
-        return -1;
     }
 
     double distance = flight.getLocation().calculateDistanceInKM(dep.latitude, dep.longitude, arr.latitude, arr.longitude);
     double speed = flight.getPlane()->getSpeed();
     double time = distance / speed;
-    double minFuel = time * flight.getPlane()->getFuel_consumption_rate();
+    minFuel_required = time * flight.getPlane()->getFuel_consumption_rate();
     if(flight.getLocation().isOceanicFlight(dep.latitude, dep.longitude, arr.latitude, arr.longitude))
     {
-        minFuel += 0.1 * minFuel; // Add 10% extra fuel for oceanic flights
+        minFuel_required += 0.1 * minFuel_required; // Add 10% extra fuel for oceanic flights
     }
-    // PlaneStandard *standard;
-    // standard->setMin_Fuel(minFuel);
+    standard->setMin_Fuel(minFuel_required);
 
-    return minFuel;
-}
-PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, const PlaneStandard* standard) {
-    const Plane* plane = flight.getPlane();
-    string type = flight.getFlightType();
-
+    
     if (type == "cargo" || type == "Cargo") {
     const CargoPlane* cargoPlane = dynamic_cast<const CargoPlane*>(plane);
-    const CargoPlaneStandard* cargoStandard = dynamic_cast<const CargoPlaneStandard*>(standard);
+    CargoPlaneStandard* cargoStandard = dynamic_cast< CargoPlaneStandard*>(standard);
     return inspectCargoPlane(cargoPlane, cargoStandard);
 }
 else if (type == "passenger" || type == "Passenger") {
     const PassengerPlane* passengerPlane = dynamic_cast<const PassengerPlane*>(plane);
-    const PassengerPlaneStandard* passengerStandard = dynamic_cast<const PassengerPlaneStandard*>(standard);
+    PassengerPlaneStandard* passengerStandard = dynamic_cast< PassengerPlaneStandard*>(standard);
     return inspectPassengerPlane(passengerPlane, passengerStandard);
 }
 else {
@@ -249,7 +247,7 @@ else {
 }
 
 //
-CargoPlaneInspectionResult* FlightInspection::inspectCargoPlane(const CargoPlane* plane, const CargoPlaneStandard* standard) {
+CargoPlaneInspectionResult* FlightInspection::inspectCargoPlane(const CargoPlane* plane, CargoPlaneStandard* standard) {
     if (!plane || !standard) return nullptr;
 
     CargoPlaneInspectionResult* result = new CargoPlaneInspectionResult();
@@ -302,7 +300,7 @@ result->setFuelLevelNote(note);
     return result;
 }
 
-PassengerPlaneInspectionResult* FlightInspection::inspectPassengerPlane(const PassengerPlane* plane, const PassengerPlaneStandard* standard) {
+PassengerPlaneInspectionResult* FlightInspection::inspectPassengerPlane( const PassengerPlane* plane, PassengerPlaneStandard* standard) {
     if (!plane || !standard) return nullptr;
 
     PassengerPlaneInspectionResult* result = new PassengerPlaneInspectionResult();
