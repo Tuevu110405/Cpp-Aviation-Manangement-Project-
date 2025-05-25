@@ -19,12 +19,50 @@
 using namespace std;
 
 // Function prototypes.
+void displayMainMenu();
 void displayMenu1();
-int validateOption1(const string &option);
+int validateOption(const string &option);
 void subprogram1();
 int main()
 {
-    subprogram1();
+    // Constants for subprogram.
+    const int SUBPROGRAM1 = 1;
+    const int SUBPROGRAM2 = 2;
+    const int SUBPROGRAM3 = 3;
+    const int EXIT = 4;
+
+    // Variable to hold the option.
+    string optionString;    // To hold the user's option of menu 1.
+    int option;             // To hold the user's option after converting to an int.
+
+    do 
+    {
+        // Display the main menu.
+        do
+        {
+            displayMainMenu();
+            getline(cin, optionString);
+            option = validateOption(optionString);
+            if (option > EXIT || option < SUBPROGRAM1)
+            {
+                cout << "ERROR: Invalid option. Enter again.\n";
+            }
+        } while (option > EXIT || option < SUBPROGRAM1);
+
+        // If option to select subprogram1.
+        if (option == SUBPROGRAM1)
+        {
+            subprogram1();
+        }
+        else if (option == EXIT)
+        {
+            cout << "Exit the program sucessfully.\n";
+        }
+        else
+        {
+            cout << "ERROR: Invalid option. Enter again.\n";
+        }
+    } while (option != EXIT);
 
     return 0;
 }
@@ -57,7 +95,7 @@ void subprogram1()
         {
             displayMenu1();
             getline(cin, optionString);
-            option = validateOption1(optionString);
+            option = validateOption(optionString);
             if (option > EXIT || option < PASSENGER_OPTION)
             {
                 cout << "ERROR: Invalid option. Enter again.\n";
@@ -491,9 +529,9 @@ void subprogram1()
         // If the option is to exit the program.
         if (option == EXIT)
         {
-            const string ELIGIBLE_FLIGHT_FILE = "eligible_flights.txt";
-            const string INELIGIBLE_FLIGHT_FILE = "ineligible_flights.txt";
-            const string SUMMARY_FILE = "summary.txt";
+            const string ELIGIBLE_FLIGHT_FILE = "output1/eligible_flights.txt";
+            const string INELIGIBLE_FLIGHT_FILE = "output1/ineligible_flights.txt";
+            const string SUMMARY_FILE = "output1/summary.txt";
 
             // Write the data of ineligible flights to a file.
             FlightManagement::writeIneligibleFlights(INELIGIBLE_FLIGHT_FILE);
@@ -513,6 +551,17 @@ void subprogram1()
 }
 
 
+// Function displayMainMenu.
+void displayMainMenu()
+{
+    cout << "\n---MAIN MENU---\n";
+    cout << "1. To enter data by hand.\n";
+    cout << "2. To enter data from a file.\n";
+    cout << "3. To enter data partly by hand and partly from file.\n";
+    cout << "4. To exit the program.\n";
+    cout << "Enter your choice (1 - 4): ";
+}
+
 // Function displayMenu.
 void displayMenu1()
 {
@@ -525,7 +574,7 @@ void displayMenu1()
 
 
 // Function validateOption.
-int validateOption1(const string &option)
+int validateOption(const string &option)
 {
     string output = "";
     // Remove any spaces from the option.

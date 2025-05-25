@@ -131,7 +131,7 @@ Arrival: HND
 
 [Plane]
 Model: BOEING787
-Fuel level (kg): 20,000
+Fuel level (kg): 10
 Engine status: 1
 Payload (kg): 50,000
 

@@ -8,29 +8,29 @@ Flights have been inspected are listed below.
 Flight #1
 Flight ID: VN005
 Flight type: Cargo
-Departure: SGN
-Arrival: HND
+Departure: HAN
+Arrival: SGN
 
 [Plane]
 Model: BOEING787
-Payload (kg): 40000
-Current fuel (kg): 10000
+Payload (kg): 90
+Current fuel (kg): 1000
 
 [Pilot]
-Pilot name: Cole
-Flight hours: 5000
-Hours in command: 2500
-English level: Level 5
-Health status: Level 1
-License type: ATPL
-Expiry date: 1/29/2027
+Pilot name: 
+Flight hours: 0
+Hours in command: 0
+English level: Level 0
+Health status: Level 0
+License type: 
+Expiry date: 0/0/0
 
 [Weather]
 Forward visibility (m): 400
-Horizontal visibility (m): 6100
-Crosswind (knots): 3
+Horizontal visibility (m): 6500
+Crosswind (knots): 1
 Tailwind (knots): 2
-Temperature (Celsius degree): 25
+Temperature (Celsius degree): 23
 Thunderstorm (nautical miles): 1
 ==========
 
