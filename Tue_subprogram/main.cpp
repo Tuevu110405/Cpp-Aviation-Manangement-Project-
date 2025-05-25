@@ -310,6 +310,12 @@ void loadDataAndHandle(){
     //     cout << "Error writing to file: " << e.what() << endl;
     //     return;
     // }
+
+    // vector <Flight *> ineligibleList = FlightManagement::getIneligibleFlightList();
+    // for (int count = 0; count < ineligibleList.size(); count++)
+    // {
+    //     cout << ineligibleList[count]->getPlaneInspectionResult()->getInspectionResult() << endl;
+    // }
     FlightManagement::writeIneligibleFlights("ineligible_flights.txt");
     FlightManagement::writeSummary("summary.txt");
 
