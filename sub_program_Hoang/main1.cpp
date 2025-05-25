@@ -114,7 +114,7 @@ void subprogram1()
                     {
                         cout << "\nEnter departure code: ";
                         getline(cin, departureCode);
-                        if (!location.getDestinationByCode(departureCode, departureLocationDetails))
+                        if (location.getDestinationByCode(departureCode, departureLocationDetails))
                         {
                             cout << "Departure location found: " << departureLocationDetails.city << endl;
                             departureFound = true;
