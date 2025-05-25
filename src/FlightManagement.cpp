@@ -61,9 +61,9 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         if (flight->getFlightType() == "Cargo")
         {
         auto cargoResult = dynamic_cast<const CargoPlaneInspectionResult*>(planeResult);
-        cout << " - Payload Capacity: "
+        outputFile << " - Payload Capacity: "
              << (cargoResult->getPayloadResult() ? "Acceptable" : "Not Acceptable") << endl;
-        cout << " - Payload Capacity Note: " << cargoResult->getPayloadNote() << endl;
+        outputFile << " - Payload Capacity Note: " << cargoResult->getPayloadNote() << endl;
         }
 
         // Specific fields for PassengerPlaneInspectionResult

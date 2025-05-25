@@ -83,6 +83,9 @@ void subprogram1()
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
+            PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
+            PlaneStandard *planeStandard = nullptr;
+
             do
             {
                 if (isFirstTime)
@@ -194,9 +197,8 @@ void subprogram1()
             flight->setWeather(actualWeather);
             
             // Inspect the plane and get the inspection result.
-            PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
             passengerStandard->loadFromFile("../data/Aircraft seat capacity.csv"); 
-            PlaneStandard *planeStandard = passengerStandard;
+            planeStandard = passengerStandard;
             planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
 
@@ -290,6 +292,9 @@ void subprogram1()
             PlaneInspectionResult* planeResult = nullptr;
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
+
+            CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
+            PlaneStandard *planeStandard = nullptr;
 
             do
             {
@@ -401,9 +406,8 @@ void subprogram1()
             flight->setWeather(actualWeather);
             
             // Inspect the plane and get the inspection result.
-            CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
             cargoStandard->loadFromFile("../data/Aircraft payload.csv"); 
-            PlaneStandard *planeStandard = cargoStandard;
+            planeStandard = cargoStandard;
             planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
             

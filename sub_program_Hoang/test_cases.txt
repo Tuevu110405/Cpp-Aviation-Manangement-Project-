@@ -1,0 +1,153 @@
+1. An eligible passenger flight. (Yes)
+
+Flight ID: VN001
+Flight Type: Passenger
+Departure: HAN
+Arrival: SGN
+
+[Plane]
+Model: BOEING787
+Fuel level (kg): 100,000
+Engine status: 1
+Passengers: 300
+
+[Pilot]
+Name: Harrison
+Flight hours: 8400
+Hours in command: 3500
+English level: 5
+Health status: 1
+License type: ATPL
+Expiry date: 09/25/2030
+
+[Weather]
+Visibility (m): 300
+Crosswind (knots): 4
+Temperature (C): 25
+Distance to thunderstorm (nautical miles): 2
+Tailwind (knots): 8
+Horizontal visibility (m): 6500
+
+==========
+
+2. An eligible cargo flight (Yes).
+Flight ID: VN002
+Flight Type: Cargo
+Departure: HAN
+Arrival: HND
+
+[Plane]
+Model: AIRBUSA350
+Fuel level (kg): 80,000
+Engine status: 1
+Payload (kg): 30,000
+
+[Pilot]
+Name: Ricardo
+Flight hours: 9100
+Hours in command: 4200
+English level: 6
+Health status: 1
+License type: ATPL
+Expiry date: 03/27/2028
+
+[Weather]
+Visibility (m): 450
+Crosswind (knots): 3
+Temperature (C): 21
+Distance to thunderstorm (nautical miles): 4
+Tailwind (knots): 1
+Horizontal visibility (m): 7000
+
+====
+
+3. An ineligible passenger flight (Inelgible pilots) (Yes)
+Flight ID: VN003
+Flight Type: Passenger
+Departure: SGN
+Arrival: HND
+
+[Plane]
+Model: AIRBUSA321
+Fuel level (kg): 25,000
+Engine status: 1
+Passengers: 200
+
+[Pilot]
+Name: Kevin
+Flight hours: 4000
+Hours in command: 1500
+English level: 5
+Health status: 2
+License type: CPL
+Expiry date: 05/24/2027
+
+[Weather]
+Visibility: 300
+Crosswind: 3
+Temperature: 25
+Distance to thunderstorm: 2
+Tailwind: 9
+Horizontal visibility: 6100
+
+===========
+
+4. An ineligible cargo flight (Overloaded and ineligible weather).
+Flight ID: VN004
+Flight Type: Cargo
+Departure: HAN
+Arrival: CDG
+
+[Plane] (No)
+Model: AIRBUSA320NEO
+Fuel level (kg): 20,000
+Engine status: 1
+Payload (kg): 21,000
+
+[Pilot]
+Name: James
+Flight hours: 8000
+Hours in command: 3200
+English level: 5
+Health status: 1
+License type: ATPL
+Expiry date: 05/24/2027
+
+[Weather]
+Visibility: 300
+Crosswind: 3
+Temperature: 25
+Distance to thunderstorm: 10
+Tailwind: 20
+Horizontal visibility 6100
+
+===========
+
+5. An ineligible cargo flight (Overloaded, inelgible plane, and ineligible weather).
+Flight ID: VN005
+Flight Type: Cargo
+Departure: SGN
+Arrival: HND
+
+[Plane]
+Model: BOEING787
+Fuel level (kg): 20,000
+Engine status: 1
+Payload (kg): 50,000
+
+[Pilot]
+Name: Cole
+Flight hours: 5000
+Hours in command: 100
+English level: 5
+Health status: 1
+License type: CPL
+Expiry date: 01/29/2027
+
+[Weather]
+Visibility (m): 150
+Crosswind (knots): 3
+Temperature (C): 25
+Distance to thunderstorm (nautical miles): 10
+Tailwind (knots): 12
+Horizontal visibility (m): 6100
