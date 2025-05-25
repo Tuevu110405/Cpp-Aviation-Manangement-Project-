@@ -1,3 +1,0 @@
-Total flight inspected: 2 flights, in which
-  - 0 eligible flights
-  - 2 ineligible flights
