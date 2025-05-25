@@ -19,7 +19,7 @@ string PlaneStandard::getModel_available() const {
     return model_available;
 }
 
-// Base loadFromFile only loads model name; child classes will extend this
+
 bool PlaneStandard::loadFromFile(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) {

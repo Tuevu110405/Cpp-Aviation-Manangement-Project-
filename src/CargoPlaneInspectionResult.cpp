@@ -23,6 +23,6 @@ string CargoPlaneInspectionResult::getPayloadNote() const {
 }
 
 void CargoPlaneInspectionResult::setInspectionResult() {
-    // Set the inherited inspectionResult flag from base class
+    
     inspectionResult = (engineStatusResult && fuelLevelResult && payloadResult);
 }

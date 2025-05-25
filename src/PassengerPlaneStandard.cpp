@@ -13,10 +13,7 @@ bool PassengerPlaneStandard::loadFromFile(const string& filename) {
 
     string line;
 
-    // Skip header
-    getline(file, line);
-
-    // Read first data line (you can extend this for multiple models)
+    
     if (getline(file, line)) {
         stringstream ss(line);
         string model, seatCapacity;
