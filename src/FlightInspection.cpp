@@ -214,8 +214,8 @@ PlaneInspectionResult* FlightInspection::inspectPlane(const Flight& flight, Plan
 
     Destination dep, arr;
     double minFuel_required;
-    if (!flight.getLocation().getDestinationByCode(flight.getDepartureCode(), dep) ||
-        !flight.getLocation().getDestinationByCode(flight.getArrivalCode(), arr)) {
+    if (flight.getLocation().getDestinationByCode(flight.getDepartureCode(), dep) ||
+        flight.getLocation().getDestinationByCode(flight.getArrivalCode(), arr)) {
         cerr << "Invalid airport codes" << endl;
     }
 
