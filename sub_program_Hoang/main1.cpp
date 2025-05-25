@@ -19,10 +19,17 @@
 using namespace std;
 
 // Function prototypes.
-void displayMenu();
-int validateOption(const string &option);
-
+void displayMenu1();
+int validateOption1(const string &option);
+void subprogram1();
 int main()
+{
+    subprogram1();
+
+    return 0;
+}
+
+void subprogram1()
 {
     // Load pilot standard from the file named pilot_standards.csv.
     DataManagement::loadPilotStandard("../data/pilot_standards.txt");
@@ -44,9 +51,9 @@ int main()
         // Display the menu and get option.
         do
         {
-            displayMenu();
+            displayMenu1();
             getline(cin, optionString);
-            option = validateOption(optionString);
+            option = validateOption1(optionString);
         } while (option == -1);
 
         // FLags
@@ -70,7 +77,7 @@ int main()
             Flight *flight = new Flight();          // A pointer to a Flight object.
             string flightID;                        // The string of flight ID.
 
-            PassengerPlaneInspectionResult* planeResult = nullptr;
+            PlaneInspectionResult* planeResult = nullptr;
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
@@ -184,7 +191,7 @@ int main()
             PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
             passengerStandard->loadFromFile("../data/Aircraft seat capacity.csv"); 
             PlaneStandard *planeStandard = passengerStandard;
-            PlaneInspectionResult *planeInspectionResult = FlightInspection::inspectPlane(*flight, planeStandard);
+            planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
 
             // Inspect the pilot and get the inspection result.
@@ -274,7 +281,7 @@ int main()
             Flight *flight = new Flight();          // A pointer to a Flight object.
             string flightID;                        // The string of flight ID.
 
-            PassengerPlaneInspectionResult* planeResult = nullptr;
+            PlaneInspectionResult* planeResult = nullptr;
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
@@ -389,7 +396,10 @@ int main()
             CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
             cargoStandard->loadFromFile("../data/Aircraft payload.csv"); 
             PlaneStandard *planeStandard = cargoStandard;
+            planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
+            flight->setPlaneInspectionResult(*planeResult);
             
+            /*
             PlaneInspectionResult *planeInspectionResult = nullptr;
             if (plane && planeStandard) 
             { 
@@ -408,6 +418,7 @@ int main()
             {
                 cout << "Warning: Plane inspection failed or was skipped (result is nullptr)." << endl;
             }
+            */
 
             // Inspect the pilot.
             PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
@@ -501,13 +512,11 @@ int main()
             cout << "Exit the program sucessfully!" << endl;
         }
     } while (option != EXIT);
-
-    return 0;
 }
 
 
 // Function displayMenu.
-void displayMenu()
+void displayMenu1()
 {
     cout << "\n---MENU---\n";
     cout << "1. Inspect a Passenger flight.\n";
@@ -518,15 +527,12 @@ void displayMenu()
 
 
 // Function validateOption.
-int validateOption(const string &option)
+int validateOption1(const string &option)
 {
     string output = "";
     // Remove any spaces from the option.
-    for (int count = 0; count < option.length(); count++)
-    {
-        if (!isspace(option[count]))
-            output += option[count];
-    }
+    output = StringManipulator::removeSpaces(option);
+    
     // If the option contains character other than digits,
     // then returns false.
     for (int index = 0; index < output.length(); index++)
