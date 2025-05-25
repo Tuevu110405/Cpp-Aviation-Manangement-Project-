@@ -19,55 +19,10 @@
 using namespace std;
 
 // Function prototypes.
-void displayMainMenu();
-void displayMenu1();
+void displayMenu();
 int validateOption(const string &option);
-void subprogram1();
+
 int main()
-{
-    // Constants for subprogram.
-    const int SUBPROGRAM1 = 1;
-    const int SUBPROGRAM2 = 2;
-    const int SUBPROGRAM3 = 3;
-    const int EXIT = 4;
-
-    // Variable to hold the option.
-    string optionString;    // To hold the user's option of menu 1.
-    int option;             // To hold the user's option after converting to an int.
-
-    do 
-    {
-        // Display the main menu.
-        do
-        {
-            displayMainMenu();
-            getline(cin, optionString);
-            option = validateOption(optionString);
-            if (option > EXIT || option < SUBPROGRAM1)
-            {
-                cout << "ERROR: Invalid option. Enter again.\n";
-            }
-        } while (option > EXIT || option < SUBPROGRAM1);
-
-        // If option to select subprogram1.
-        if (option == SUBPROGRAM1)
-        {
-            subprogram1();
-        }
-        else if (option == EXIT)
-        {
-            cout << "Exit the program sucessfully.\n";
-        }
-        else
-        {
-            cout << "ERROR: Invalid option. Enter again.\n";
-        }
-    } while (option != EXIT);
-
-    return 0;
-}
-
-void subprogram1()
 {
     // Load pilot standard from the file named pilot_standards.csv.
     DataManagement::loadPilotStandard("../data/pilot_standards.txt");
@@ -93,7 +48,7 @@ void subprogram1()
         // Display the menu and get option.
         do
         {
-            displayMenu1();
+            displayMenu();
             getline(cin, optionString);
             option = validateOption(optionString);
             if (option > EXIT || option < PASSENGER_OPTION)
@@ -269,6 +224,7 @@ void subprogram1()
                 cout << "\nThe flight is eligible for takeoff.\n";
                 cout << "Storing it in the eligible list...\n";
                 FlightManagement::addFlight(flight);
+                break;
             }
             // Otherwise, prompt user if they want to re-enter the data.
             else
@@ -478,6 +434,7 @@ void subprogram1()
                 cout << "\nThe flight is eligible for takeoff.\n";
                 cout << "Storing it in the eligible list...\n";
                 FlightManagement::addFlight(flight);
+                break;
             }
             // Otherwise, prompt user if they want to re-enter the data.
             else
@@ -529,9 +486,9 @@ void subprogram1()
         // If the option is to exit the program.
         if (option == EXIT)
         {
-            const string ELIGIBLE_FLIGHT_FILE = "output1/eligible_flights.txt";
-            const string INELIGIBLE_FLIGHT_FILE = "output1/ineligible_flights.txt";
-            const string SUMMARY_FILE = "output1/summary.txt";
+            const string ELIGIBLE_FLIGHT_FILE = "output/eligible_flights.txt";
+            const string INELIGIBLE_FLIGHT_FILE = "output/ineligible_flights.txt";
+            const string SUMMARY_FILE = "output/summary.txt";
 
             // Write the data of ineligible flights to a file.
             FlightManagement::writeIneligibleFlights(INELIGIBLE_FLIGHT_FILE);
@@ -551,19 +508,8 @@ void subprogram1()
 }
 
 
-// Function displayMainMenu.
-void displayMainMenu()
-{
-    cout << "\n---MAIN MENU---\n";
-    cout << "1. To enter data by hand.\n";
-    cout << "2. To enter data from a file.\n";
-    cout << "3. To enter data partly by hand and partly from file.\n";
-    cout << "4. To exit the program.\n";
-    cout << "Enter your choice (1 - 4): ";
-}
-
 // Function displayMenu.
-void displayMenu1()
+void displayMenu()
 {
     cout << "\n---MENU---\n";
     cout << "1. Inspect a Passenger flight.\n";
@@ -571,7 +517,6 @@ void displayMenu1()
     cout << "3. Exit the program.\n";
     cout << "Enter your choice (1 - 3): ";
 }
-
 
 // Function validateOption.
 int validateOption(const string &option)
