@@ -36,6 +36,9 @@ void subprogram1()
     // Load locations of airports from the file named destinations.csv.
     Location location;
     location.loadDestinationFromFile("../data/destinations.csv");
+    // Load plane standards.
+    DataManagement::loadCargoStandard("../data/Aircraft payload.csv");
+    DataManagement::loadPassengerStandard("../data/Aircraft seat capacity.csv");
 
     // Constants for options.
     const int PASSENGER_OPTION = 1;         
@@ -83,7 +86,7 @@ void subprogram1()
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
-            PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
+            PassengerPlaneStandard passengerStandard;
             PlaneStandard *planeStandard = nullptr;
 
             do
@@ -176,6 +179,7 @@ void subprogram1()
                         plane = new PassengerPlane();
                         cout << "\nRe-enter the data for plane.\n";
                         cin >> *plane;
+                        plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
                     }
                     if (pilotResult.getInspectionResult() == false)
                     {
@@ -197,13 +201,13 @@ void subprogram1()
             flight->setWeather(actualWeather);
             
             // Inspect the plane and get the inspection result.
-            passengerStandard->loadFromFile("../data/Aircraft seat capacity.csv"); 
-            planeStandard = passengerStandard;
+            passengerStandard = DataManagement::findPassengerStandard(plane->getModel()); 
+            planeStandard = &passengerStandard;
             planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
 
             // Inspect the pilot and get the inspection result.
-            PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
+            PilotStandard pilotStandard = DataManagement::findPilotStandard(plane->getModel());
             pilotResult = FlightInspection::inspectPilot(pilot, pilotStandard);
             flight->setPilotResult(pilotResult);
 
@@ -293,7 +297,7 @@ void subprogram1()
             PilotInspectionResult pilotResult;
             WeatherInspectionResult weatherResult;
 
-            CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
+            CargoPlaneStandard cargoStandard;
             PlaneStandard *planeStandard = nullptr;
 
             do
@@ -361,7 +365,7 @@ void subprogram1()
                     }
 
                     // Prompt user for Plane.
-                    cout << "\nEnter data for the passenger plane.\n";
+                    cout << "\nEnter data for the cargo plane.\n";
                     cin >> *plane;
                     plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
 
@@ -384,6 +388,7 @@ void subprogram1()
                         plane = new CargoPlane();
                         cout << "\nRe-enter the data for plane.\n";
                         cin >> *plane;
+                        plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
                     }
                     if (pilotResult.getInspectionResult() == false)
                     {
@@ -406,14 +411,14 @@ void subprogram1()
             flight->setWeather(actualWeather);
             
             // Inspect the plane and get the inspection result.
-            cargoStandard->loadFromFile("../data/Aircraft payload.csv"); 
-            planeStandard = cargoStandard;
+            cargoStandard = DataManagement::findCargoStandard(plane->getModel()); 
+            planeStandard = &cargoStandard;
             planeResult = FlightInspection::inspectPlane(*flight, planeStandard);
             flight->setPlaneInspectionResult(*planeResult);
             
 
             // Inspect the pilot.
-            PilotStandard pilotStandard = DataManagement::findPilotStandard("Boeing 787");
+            PilotStandard pilotStandard = DataManagement::findPilotStandard(plane->getModel());
             pilotResult = FlightInspection::inspectPilot(pilot, pilotStandard);
             flight->setPilotResult(pilotResult);
 
@@ -470,7 +475,7 @@ void subprogram1()
                 // Else put the flight to ineligible list.
                 else
                 {
-                    cout << "The flight is ineligible for takeoff.\n";
+                    cout << "\nThe flight is ineligible for takeoff.\n";
                     cout << "Storing it to the ineligible list...\n";
                     FlightManagement::addFlight(flight);
                     break;

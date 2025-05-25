@@ -4,6 +4,8 @@
 
 // Define static member variables
 vector<PilotStandard> DataManagement::pilotStandardArray;    // Pilot-related variable (Hoang)
+vector<CargoPlaneStandard> DataManagement::cargoStandardArray;
+vector<PassengerPlaneStandard> DataManagement::passengerStandardArray;
 
 // Function DataManagement::loadPilotStandard (Hoang)
 void DataManagement::loadPilotStandard(const string &fileName)
