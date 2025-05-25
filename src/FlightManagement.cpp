@@ -48,6 +48,8 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << "Status: Ineligible\n";
 
+        // Write details of Plane Inspection Result.
+
         // Write details of Pilot Inspection Result.
         outputFile << "\n[Pilot Inspection Result]\n";
 
@@ -100,8 +102,6 @@ void FlightManagement::writeIneligibleFlights(const string &fileName)
         outputFile << " - Thunderstorm: " << (weatherInspectionResult.getIsThunderstorm() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Tailwind: " << (weatherInspectionResult.getIsTailwind() ? "Acceptable" : "Not Acceptable") << endl;
         outputFile << " - Horizontal Visibility: " << (weatherInspectionResult.getIsHorizontalVisibility() ? "Acceptable" : "Not Acceptable") << endl;
-
-        // Write the details of Plane Inspection Result.
 
         outputFile << "==========" << endl;
     }
@@ -182,6 +182,8 @@ void FlightManagement::writeSummary(const string &fileName)
         outputFile << "Arrival: " << flight->getArrivalCode() << endl;
         outputFile << endl;
 
+        // Write the dtails of plane.
+        
         // Write the details of pilot.
         Pilot pilot = flight->getPilot();
         PilotCertificate certificate = pilot.getPilotCertificate();
