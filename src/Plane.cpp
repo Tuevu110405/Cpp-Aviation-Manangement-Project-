@@ -67,10 +67,15 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
     string line;
     while (getline(file, line)) {
         stringstream ss(line);
-        string model, fuelTankStr, fuelRateStr, speedStr;
+        string modelName, fuelTankStr, fuelRateStr, speedStr;
+		getline(ss, modelName, ',');
+		
+		modelName = StringManipulator::removeSpaces(modelName);
+		modelName = StringManipulator::capitalize(modelName);
 
-        if (getline(ss, model, ',') &&
-            getline(ss, fuelTankStr, ',') &&
+		if (modelName == model)
+        {
+			if (getline(ss, fuelTankStr, ',') &&
             getline(ss, fuelRateStr, ',') &&
             getline(ss, speedStr, ',')) {
             try {
@@ -81,8 +86,11 @@ void Plane::setBaseInfo_from_FIle(const string& filename)
             } catch (const invalid_argument& e) {
                 cerr << "Error: One of the numeric values is invalid in file " << filename << "/n Details: " << e.what() << endl;
             }
-        } else {
-            cerr << "Error: Incorrect CSV format in file " << filename << endl;
+			}
+        } 
+		else
+		{
+            continue;
         }
     }
 
