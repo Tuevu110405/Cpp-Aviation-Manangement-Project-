@@ -310,15 +310,15 @@ void loadDataAndHandle(){
     //     cout << "Error writing to file: " << e.what() << endl;
     //     return;
     // }
-    // // FlightManagement::writeIneligibleFlights("ineligible_flights.txt");
-    // // FlightManagement::writeSummary("summary.txt");
+    FlightManagement::writeIneligibleFlights("ineligible_flights.txt");
+    FlightManagement::writeSummary("summary.txt");
 
-    // //Options allowing user to adjust and validate the invalid flights
+    //Options allowing user to adjust and validate the invalid flights
     
-    // // Free memory
-    // FlightManagement::deleteFlights();
-    // cout << "All data is written to file successfully." << endl;
-    // cout <<"---Program finished successfully---" << endl;
+    // Free memory
+    FlightManagement::deleteFlights();
+    cout << "All data is written to file successfully." << endl;
+    cout <<"---Program finished successfully---" << endl;
     
 
 

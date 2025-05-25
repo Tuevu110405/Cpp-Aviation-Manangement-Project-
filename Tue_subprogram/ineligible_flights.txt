@@ -6,8 +6,8 @@ Arrival: SGN
 Status: Ineligible
 
 [Plane Inspection Result]
-Overall result: Ineligible
+Overall result: Eligible
  - Engine status: Eligible
- - Fuel Level: Ineligible 
- - Engine Status Note: Engines operational. Model mismatch.
- - Fuel Level Note: Fuel level exceeds tank capacity. Current: 90000.000000, Max Tank: 26352.000000.
+ - Fuel Level: Eligible
+ - Engine Status Note: Engines operational.
+ - Fuel Level Note: Fuel level sufficient.
