@@ -1,5 +1,16 @@
-There are 1 ineligible flights.
-Flight: VN005
+There are 2 ineligible flights.
+Flight: VN001
+Flight type: Passenger
+Departure: HAN
+Arrival: SGN
+Status: Eligible
+
+[Inspection Results]
+Plane result: Eligible.
+Pilot result: Eligible.
+Weather result: Eligible.
+==========
+Flight: VN001
 Flight type: Cargo
 Departure: HAN
 Arrival: SGN

@@ -173,7 +173,7 @@ void FlightManagement::writeEligibleFlights(const string &fileName)
         // Write details Weather Inspection Result.
         outputFile << "Weather result: Eligible.\n";
         
-        outputFile << "==========" << endl;
+        outputFile << "\n==========\n" << endl;
     }
 
     // Close the file.
@@ -255,7 +255,7 @@ void FlightManagement::writeSummary(const string &fileName)
         outputFile << "Tailwind (knots): " << weather.getTailwind() << endl;
         outputFile << "Temperature (Celsius degree): " << weather.getTemperature() << endl;
         outputFile << "Thunderstorm (nautical miles): " << weather.getThunderstorm() << endl;
-        outputFile << "==========\n\n";
+        outputFile << "\n==========\n\n";
     }
     // Close the file.
     outputFile.close();
