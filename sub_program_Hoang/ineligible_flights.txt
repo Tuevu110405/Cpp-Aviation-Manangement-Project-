@@ -1,9 +1,18 @@
 There are 1 ineligible flights.
-Flight: VN001
+Flight: VN003
 Flight type: Passenger
-Departure: HAN
-Arrival: SGN
 Status: Ineligible
+
+[Plane Inspection Result]
+Overall result: Ineligible
+ - Engine status: Eligible
+ - Fuel Level: Ineligible 
+ - Engine Status Note: Engines operational.
+ - Fuel Level Note: Fuel level exceeds tank capacity. Current: 8000.000000, Max Tank: -0.000000.
+ - Seat Capacity: Acceptable
+ - Seat Capacity Note: Passenger count within limit.
+ - Passenger Count: Acceptable
+ - Passenger Count Note: Passenger count within limit.
 
 [Pilot Inspection Result]
 Overall result: Eligible
@@ -15,11 +24,11 @@ Overall result: Eligible
  - License date: Eligible
 
 [Weather inspection result]
- - Overall result: Not Acceptable
+ - Overall result: Acceptable
  - Visibility: Acceptable
  - Crosswind: Acceptable
  - Temperature: Acceptable
- - Thunderstorm: Not Acceptable
+ - Thunderstorm: Acceptable
  - Tailwind: Acceptable
  - Horizontal Visibility: Acceptable
 ==========
