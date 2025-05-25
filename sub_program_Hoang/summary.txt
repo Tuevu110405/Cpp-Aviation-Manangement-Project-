@@ -1,6 +1,6 @@
-Total flight inspected: 1 flights, in which
-  - 0 eligible flights
-  - 1 ineligible flights
+Total flight inspected: 2 flights, in which
+  - 2 eligible flights
+  - 0 ineligible flights
 
 Flights have been inspected are listed below.
 ==========
@@ -10,20 +10,42 @@ Flight ID: VN001
 Flight type: Passenger
 
 [Pilot]
-Pilot name: Hoang
-Flight hours: 5000
-Hours in command: 2500
+Pilot name: Harrison
+Flight hours: 8400
+Hours in command: 3500
 English level: Level 5
 Health status: Level 1
 License type: ATPL
 Expiry date: 9/25/2030
 
 [Weather]
-Forward visibility: 90
-Horizontal visibility: 900
-Crosswind: 5
-Tailwind: 9
+Forward visibility (m): 300
+Horizontal visibility (m): 6500
+Crosswind (knots): 4
+Tailwind (knots): 8
 Temperature (Celsius degree): 23
-Thunderstorm: 7
+Thunderstorm (nautical miles): 2
+==========
+
+Flight #2
+Flight ID: VN002
+Flight type: Cargo
+
+[Pilot]
+Pilot name: Hoang
+Flight hours: 8500
+Hours in command: 3400
+English level: Level 4
+Health status: Level 1
+License type: ATPL
+Expiry date: 5/23/2028
+
+[Weather]
+Forward visibility (m): 400
+Horizontal visibility (m): 7100
+Crosswind (knots): 2
+Tailwind (knots): 6
+Temperature (Celsius degree): 30
+Thunderstorm (nautical miles): 1
 ==========
 

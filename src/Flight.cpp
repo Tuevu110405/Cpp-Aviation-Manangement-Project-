@@ -128,7 +128,7 @@ void Flight::setPilotResult(const PilotInspectionResult &newResult)
 // Function Flight::displayDetailsPilotResult (Hoang).
 void Flight::displayDetailsPilotResult() const
 {
-    cout << "\n[Plane Inspection Result]\n";
+    cout << "\n[Pilot Inspection Result]\n";
     cout << " - Overall inspection result: ";
     cout << (pilotResult.getInspectionResult() ? "Eligible" : "Ineligible ") << endl;
 

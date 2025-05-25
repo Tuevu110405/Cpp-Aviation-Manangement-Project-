@@ -192,7 +192,7 @@ PilotInspectionResult FlightInspection::inspectPilot(const Pilot &pilotInfo, con
         // Set the license expiry result to false.
         result.setLicenseExpiryResult(false);
         // Add note to the result.
-        result.setLicenseExipiryNote("License has expired.");
+        result.setLicenseExipiryNote("(License has expired).");
     }
     else
     {
