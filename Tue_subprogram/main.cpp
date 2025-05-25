@@ -16,6 +16,7 @@
 #include "../include/PassengerPlane.h"
 #include "../include/Date.h"
 #include "../include/PlaneInspectionResult.h"
+#include "../include/StringManipulator.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -50,110 +51,192 @@ passenger_number,0,3
 void loadDataAndHandle(){
     string filepath;
 
-    // cout << "Enter the path to the flight data file: ";
-    // cin >> filepath;
-    // cout << "--- Loading data from file: " << filepath << " ---" << endl;
+    cout << "Enter the path to the flight data file: ";
+    cin >> filepath;
+    cout << "--- Loading data from file: " << filepath << " ---" << endl;
 
     //test fixed path
-    filepath = "../data/data.csv";
+    // string filepath = "../data/flight_data.csv";
+    bool loadOK = false;
+    while(!loadOK){
     // Load flight data(try-catch for not being able to open file)
-    try{
-        DataLoader loader(filepath);
-        cout << "Data loaded successfully." << endl;
-        // Print the number of flights
-        string key = "flightID";
-        cout << "This data constains " << loader.getValueSize(key) << " flights." << endl;
-        DataManagement::loadPilotStandard("pilot_standards.txt");
-        //Using a loop to handle each flight
-        for (int i = 0; i < loader.getValueSize(key); i++) {
-            Flight* flight = new Flight();
-            string flightID = loader.getValue(key, i);
-            flight->setFlightID(flightID);
-            string flightType = loader.getValue("flight_type", i);
-            flight->setFlightType(flightType);
-
-            
-            Weather* weather = new Weather();
-            //Set weather data        
-            weather->setVisibility(stof(loader.getValue("forward_visibility", i)));
-            weather->setCrosswind(stof(loader.getValue("crosswind", i)));
-            weather->setTailwind(stof(loader.getValue("tailwind", i)));            
-            weather->setTemperature(stof(loader.getValue("temperature", i)));
-            weather->setThunderstorm(stof(loader.getValue("thunderstorm", i)));
-            weather->setHorizontalVisibility(stof(loader.getValue("horizontal_visibility", i)));
-            flight->setWeather(*weather);
-            delete weather;
-
-
-            Pilot *pilot= new Pilot();
-            //Set pilot data
-            pilot->setName(loader.getValue("pilot_name", i));
-            pilot->setPilotCompetence(PilotCompetence(stoi(loader.getValue("flight_hours", i)), stoi(loader.getValue("hours_in_command", i)),
-                stoi(loader.getValue("english_level", i)), stoi(loader.getValue("health_status", i))));
-            Date expiryDate(loader.getValue("license_expiry_date", i));
-            pilot->setPilotCertificate(PilotCertificate(loader.getValue("license_type", i), expiryDate));
-            flight->setPilot(*pilot);
-            delete pilot;
-
-
-            if(flightType == "cargo"){
-                //Set cargoPlane data
-                CargoPlane *plane = new CargoPlane();
-                plane->setBaseInfo(stof(loader.getValue("fuel_consumption_rate", i)), stof(loader.getValue("speed_val", i)), 
-                    stof(loader.getValue("fuel_tank", i)), loader.getValue("model", i));
-                plane->setPayload(stof(loader.getValue("capacity", i)));
-                flight->setPlane(plane);
-                
-            }
-            else if(flightType == "passenger"){
-                PassengerPlane *plane = new PassengerPlane();
-                plane->setBaseInfo(stof(loader.getValue("fuel_consumption_rate", i)), stof(loader.getValue("speed_val", i)), 
-                    stof(loader.getValue("fuel_tank", i)), loader.getValue("model", i));
-                plane->setSeatCapacity(stoi(loader.getValue("capacity", i)));
-                plane->setNumOfPassenger(stoi(loader.getValue("passenger_number", i)));
-                flight->setPlane(plane);
-                
-            }
-            else{
-                cout << "Invalid flight type: " << flightType << endl;
-                delete flight;
-                continue; // Skip to the next iteration
-            }
-
-
-
-            // flight inspection
+        try{
+            DataLoader loader(filepath);
+            cout << "Data loaded successfully." << endl;
+            // Print the number of flights
+            string key = "flightID";
+            cout << "This data constains " << loader.getValueSize(key) << " flights." << endl;
+            DataManagement::loadPilotStandard("pilot_standards.txt");
             WeatherStandardVN weatherStandard;
-            cout << "Weather standard data: " << weatherStandard << endl;
-            cout << "standard visibility: " << weatherStandard.getVisibility() << endl;
-            
-            
-            
-            PilotStandard pilotStandard = DataManagement::findPilotStandard(flight->getPlane()->getModel());
-            PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(flight->getPilot(), pilotStandard);
-            flight->setPilotResult(pilotInspectionResult);
-            WeatherInspectionResult weatherInspectionResult = FlightInspection::inspectWeather(flight->getWeather(), weatherStandard);
-            flight->setWeatherInspectionResult(weatherInspectionResult);
-            flight->setPlaneInspectionResult(PlaneInspectionResult());
-            //Store the flight in the relevant vector
-            FlightManagement::addFlight(flight);
-            cout << "Processing flight: " << flightID << " succesfully" << endl;
+            //Using a loop to handle each flight
+            for (int i = 0; i < loader.getValueSize(key); i++) {
+                Flight* flight = new Flight();
+                string flightID = loader.getValue(key, i);
+                flight->setFlightID(flightID);
+                string flightType = loader.getValue("flight_type", i);
+                //processing flight type
+                flightType = StringManipulator::lowerCase(flightType); // remove spaces
+                flightType = StringManipulator::lowerCase(flightType); // Convert to lowercase 
 
+                if (flightType != "cargo" && flightType != "passenger") {
+                    cout << "Invalid flight type: " << flightType << endl;
+                    delete flight; // Free memory for the flight object
+                    continue; // Skip to the next iteration
+                }
+                flight->setFlightType(flightType);
+
+                
+                Weather* weather = new Weather();
+                //Set weather data        
+                weather->setVisibility(stof(loader.getValue("forward_visibility", i)));
+                weather->setCrosswind(stof(loader.getValue("crosswind", i)));
+                weather->setTailwind(stof(loader.getValue("tailwind", i)));            
+                weather->setTemperature(stof(loader.getValue("temperature", i)));
+                weather->setThunderstorm(stof(loader.getValue("thunderstorm", i)));
+                weather->setHorizontalVisibility(stof(loader.getValue("horizontal_visibility", i)));
+                flight->setWeather(*weather);
+                delete weather;
+
+
+                Pilot *pilot= new Pilot();
+                //Set pilot data
+                pilot->setName(loader.getValue("pilot_name", i));
+                pilot->setPilotCompetence(PilotCompetence(stoi(loader.getValue("flight_hours", i)), stoi(loader.getValue("hours_in_command", i)),
+                    stoi(loader.getValue("english_level", i)), stoi(loader.getValue("health_status", i))));
+                Date expiryDate(loader.getValue("license_expiry_date", i));
+                pilot->setPilotCertificate(PilotCertificate(loader.getValue("license_type", i), expiryDate));
+                flight->setPilot(*pilot);
+                delete pilot;
+
+                
+                // if(flightType == "cargo"){
+                //     //Set cargoPlane data
+                //     CargoPlane *plane = new CargoPlane();
+                //     plane->setBaseInfo(stof(loader.getValue("fuel_consumption_rate", i)), stof(loader.getValue("speed_val", i)), 
+                //         stof(loader.getValue("fuel_tank", i)), loader.getValue("model", i));
+                //     plane->setPayload(stof(loader.getValue("capacity", i)));
+                //     flight->setPlane(plane);
+                    
+                // }
+                // else if(flightType == "passenger"){
+                //     PassengerPlane *plane = new PassengerPlane();
+                //     plane->setBaseInfo(stof(loader.getValue("fuel_consumption_rate", i)), stof(loader.getValue("speed_val", i)), 
+                //         stof(loader.getValue("fuel_tank", i)), loader.getValue("model", i));
+                //     plane->setSeatCapacity(stoi(loader.getValue("capacity", i)));
+                //     plane->setNumOfPassenger(stoi(loader.getValue("passenger_number", i)));
+                //     flight->setPlane(plane);
+                    
+                // }
+                // else{
+                //     cout << "Invalid flight type: " << flightType << endl;
+                //     delete flight;
+                //     continue; // Skip to the next iteration
+                // }
+
+                //New version of setting plane data
+                // Get location.
+                Location location;
+
+                location.loadDestinationFromFile("../data/destinations.csv");
+
+                // destination details.
+                Destination departureLocationDetails;
+                Destination arrivalLocationDetails;
+                string departureCode;
+                string arrivalCode;
+
+                //Create a plane instance
+                Plane *plane = nullptr;
+                PlaneStandard *planeStandard = nullptr;
+
+                if(flightType == "cargo"){
+                    plane = new CargoPlane(); // Create a CargoPlane
+                    
             
+                    //Getting cargo plane details from laoder
+                    plane->setCurrent_Fuel(stof(loader.getValue("fuel", i)));
+                    plane->setModel(loader.getValue("model", i));
+                    plane->setEngineStatus(stoi(loader.getValue("engine_status", i)));
+                    plane->setPayload(stof(loader.getValue("capacity", i)));
+                    plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
+
+                    CargoPlaneStandard *cargoStandard = new CargoPlaneStandard();
+                    cargoStandard->loadFromFile("../data/Aircraft payload.csv");
+                    planeStandard = cargoStandard; 
+                }
+
+                else if(flightType == "passenger"){
+                    plane = new PassengerPlane(); // Create a PassengerPlane
+                    
+            
+                    plane->setCurrent_Fuel(stof(loader.getValue("fuel", i)));
+                    plane->setModel(loader.getValue("model", i));
+                    plane->setEngineStatus(stoi(loader.getValue("engine_.status", i)));
+                    plane->setNumOfPassenger(stoi(loader.getValue("passenger_number", i)));
+
+                    plane->setBaseInfo_from_FIle("../data/Aircraft baseinfo.csv");
+
+                    PassengerPlaneStandard *passengerStandard = new PassengerPlaneStandard();
+                    passengerStandard->loadFromFile("../data/Aircraft payload.csv");
+                    planeStandard = passengerStandard; 
+                }
+                else{
+                    cout << "Invalid flight type: " << flightType << endl;
+                    delete flight; // Free memory for the flight object
+                    continue; // Skip to the next iteration
+                }
+                // load arrival and departure code
+                departureCode = loader.getValue("departure_code", i);
+                arrivalCode = loader.getValue("arrival_code", i);
+
+                //set location for flight
+                flight->setLocation(departureCode, arrivalCode);
+
+                
+                
+                
+                //Inspect pilot
+                PilotStandard pilotStandard = DataManagement::findPilotStandard(flight->getPlane()->getModel());
+                PilotInspectionResult pilotInspectionResult = FlightInspection::inspectPilot(flight->getPilot(), pilotStandard);
+                flight->setPilotResult(pilotInspectionResult);
+                //Inspect weather
+                WeatherInspectionResult weatherInspectionResult = FlightInspection::inspectWeather(flight->getWeather(), weatherStandard);
+                flight->setWeatherInspectionResult(weatherInspectionResult);
+                //Inspect plane
+                PlaneInspectionResult* planeInspectionResult = nullptr;
+                if (plane && planeStandard) { 
+                    planeInspectionResult = FlightInspection::inspectPlane(*flight, planeStandard);
+        }       else {
+                    cerr << "Error: Plane or PlaneStandard is null. Skipping plane inspection." << endl;
+        }
+
+                if (planeInspectionResult != nullptr) {
+                    flight->setPlaneInspectionResult(*planeInspectionResult);
+        }       else {
+                    cout << "Warning: Plane inspection failed or was skipped (result is nullptr)." << endl;
+        }
+                //Store the flight in the relevant vector
+                FlightManagement::addFlight(flight);
+                cout << "Processing flight: " << flightID << " succesfully" << endl;
+
+                
 
 
+
+            }
+            loadOK = true; 
+            
+            //
 
         }
-        
-        //
-
-    }
-    catch (const runtime_error& e) {
-        cout << "Error: " << e.what() << endl;
-        cout << "Please check the file path and format." << endl;
-        return;
-        
-    }
+        catch (const runtime_error& e) {
+            cout << "Error: " << e.what() << endl;
+            cout << "Please check the file path and format." << endl;
+            cout << "Enter the path to the flight data file again: ";
+            cin >> filepath; 
+            
+        }
+}
     // catch (const exception& e) {
     //     cout << "An unexpected error occurred: " << e.what() << endl;
         
@@ -162,6 +245,8 @@ void loadDataAndHandle(){
     FlightManagement::writeEligibleFlights("eligible_flights.txt");
     FlightManagement::writeIneligibleFlights("ineligible_flights.txt");
     FlightManagement::writeSummary("summary.txt");
+
+    //Options allowing user to adjust and validate the invalid flights
     
     // Free memory
     FlightManagement::deleteFlights();

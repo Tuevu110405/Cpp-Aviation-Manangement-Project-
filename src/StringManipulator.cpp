@@ -27,3 +27,13 @@ string StringManipulator::removeSpaces(const string &inputStr)
     
     return output;
 }
+
+string StringManipulator::lowerCase(const string& str)
+{
+    string result = "";
+    for (char c : str)
+    {
+        result += tolower(c);
+    }
+    return result;
+}
