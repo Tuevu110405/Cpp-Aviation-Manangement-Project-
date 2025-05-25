@@ -1,12 +1,1 @@
-There are 1 ineligible flights.
-Flight: VN001
-Flight type: Passenger
-Departure: 
-Arrival: 
-Status: Eligible
-
-[Inspection Results]
-Pilot result: Eligible.
-Weather result: Eligible.
-Plane result: Eligible.
-==========
+There are 0 ineligible flights.

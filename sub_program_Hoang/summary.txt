@@ -1,6 +1,6 @@
 Total flight inspected: 1 flights, in which
-  - 1 eligible flights
-  - 0 ineligible flights
+  - 0 eligible flights
+  - 1 ineligible flights
 
 Flights have been inspected are listed below.
 ==========
@@ -8,14 +8,14 @@ Flights have been inspected are listed below.
 Flight #1
 Flight ID: VN001
 Flight type: Passenger
-Departure: 
-Arrival: 
+Departure: HAN
+Arrival: SGN
 
 [Pilot]
 Pilot name: Harrison
 Flight hours: 8500
 Hours in command: 4500
-English level: Level 5
+English level: Level 6
 Health status: Level 1
 License type: ATPL
 Expiry date: 9/25/2030
@@ -23,9 +23,9 @@ Expiry date: 9/25/2030
 [Weather]
 Forward visibility (m): 300
 Horizontal visibility (m): 6500
-Crosswind (knots): 4
-Tailwind (knots): 2
-Temperature (Celsius degree): 23
-Thunderstorm (nautical miles): 1
+Crosswind (knots): 2
+Tailwind (knots): 8
+Temperature (Celsius degree): 3
+Thunderstorm (nautical miles): 23
 ==========
 

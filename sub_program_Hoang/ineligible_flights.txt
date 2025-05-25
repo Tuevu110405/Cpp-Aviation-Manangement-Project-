@@ -1,1 +1,25 @@
-There are 0 ineligible flights.
+There are 1 ineligible flights.
+Flight: VN001
+Flight type: Passenger
+Departure: HAN
+Arrival: SGN
+Status: Ineligible
+
+[Pilot Inspection Result]
+Overall result: Eligible
+ - Flight hours: Eligible
+ - Hours in command: Eligible
+ - English level: Eligible
+ - Health status: Eligible
+ - License type: Eligible
+ - License date: Eligible
+
+[Weather inspection result]
+ - Overall result: Not Acceptable
+ - Visibility: Acceptable
+ - Crosswind: Acceptable
+ - Temperature: Acceptable
+ - Thunderstorm: Not Acceptable
+ - Tailwind: Acceptable
+ - Horizontal Visibility: Acceptable
+==========

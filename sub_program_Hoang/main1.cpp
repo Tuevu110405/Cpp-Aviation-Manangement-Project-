@@ -187,6 +187,8 @@ void subprogram1()
                 }
             // Set data into a Flight object.
             flight->setFlightType("Passenger");
+            flight->setDepartureCode(departureCode);
+            flight->setArrivalCode(arrivalCode);
             flight->setPlane(plane);
             flight->setPilot(pilot);
             flight->setWeather(actualWeather);
@@ -232,13 +234,13 @@ void subprogram1()
                 }
                 if (pilotResult.getInspectionResult() == false)
                 {
-                    cout << "\nPilot is ineligible because\n";
+                    cout << "\nPilot is ineligible because";
                     flight->displayDetailsPilotResult();
                     cout << endl;
                 }
                 if (weatherResult.getInspectionResult() == false)
                 {
-                    cout << "\nWeather is ineligible because\n";
+                    cout << "\nWeather is ineligible because";
                     flight->displayDetailsWeatherResult();
                     cout << endl;
                 }
@@ -392,6 +394,8 @@ void subprogram1()
                 }
             // Set data into a Flight object.
             flight->setFlightType("Cargo");
+            flight->setDepartureCode(departureCode);
+            flight->setArrivalCode(arrivalCode);
             flight->setPlane(plane);
             flight->setPilot(pilot);
             flight->setWeather(actualWeather);
@@ -438,13 +442,13 @@ void subprogram1()
                 }
                 if (pilotResult.getInspectionResult() == false)
                 {
-                    cout << "Pilot is ineligible because\n";
+                    cout << "Pilot is ineligible because";
                     flight->displayDetailsPilotResult();
                     cout << endl;
                 }
                 if (weatherResult.getInspectionResult() == false)
                 {
-                    cout << "\nWeather is ineligible because\n";
+                    cout << "\nWeather is ineligible because";
                     flight->displayDetailsWeatherResult();
                     cout << endl;
                 }
