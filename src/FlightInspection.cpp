@@ -300,7 +300,7 @@ result->setFuelLevelNote(note);
     return result;
 }
 
-PassengerPlaneInspectionResult* FlightInspection::inspectPassengerPlane( const PassengerPlane* plane, PassengerPlaneStandard* standard) {
+PassengerPlaneInspectionResult* FlightInspection::inspectPassengerPlane(const PassengerPlane* plane, PassengerPlaneStandard* standard) {
     if (!plane || !standard) return nullptr;
 
     PassengerPlaneInspectionResult* result = new PassengerPlaneInspectionResult();
