@@ -19,10 +19,56 @@
 using namespace std;
 
 // Function prototypes.
-void displayMenu();
+void displayMainMenu();
+void displayMenu1();
 int validateOption(const string &option);
+void subprogram1();
 
 int main()
+{
+    // Constants for subprogram.
+    const int SUBPROGRAM1 = 1;
+    const int SUBPROGRAM2 = 2;
+    const int EXIT = 3;
+
+    // Variable to hold the option.
+    string optionString;    // To hold the user's option of menu 1.
+    int option;             // To hold the user's option after converting to an int.
+
+    do 
+    {
+        // Display the main menu.
+        do
+        {
+            displayMainMenu();
+            getline(cin, optionString);
+            option = validateOption(optionString);
+            if (option > EXIT || option < SUBPROGRAM1)
+            {
+                cout << "ERROR: Invalid option. Enter again.\n";
+            }
+        } while (option > EXIT || option < SUBPROGRAM1);
+
+        // If option to select subprogram1.
+        if (option == SUBPROGRAM1)
+        {
+            subprogram1();
+        }
+        else if (option == EXIT)
+        {
+            cout << "Exit the program sucessfully.\n";
+        }
+        else
+        {
+            cout << "ERROR: Invalid option. Enter again.\n";
+        }
+    } while (option != EXIT);
+
+    return 0;
+}
+
+// Suprogram 1.
+void subprogram1()
 {
     // Load pilot standard from the file named pilot_standards.csv.
     DataManagement::loadPilotStandard("../data/pilot_standards.txt");
@@ -48,7 +94,7 @@ int main()
         // Display the menu and get option.
         do
         {
-            displayMenu();
+            displayMenu1();
             getline(cin, optionString);
             option = validateOption(optionString);
             if (option > EXIT || option < PASSENGER_OPTION)
@@ -507,9 +553,18 @@ int main()
     } while (option != EXIT);
 }
 
+// Function displayMainMenu.
+void displayMainMenu()
+{
+    cout << "\n--- MAIN MENU ---\n";
+    cout << "1. To enter data by hand.\n";
+    cout << "2. To enter data from a file.\n";
+    cout << "3. To exit the program.\n";
+    cout << "Enter your choice (1 - 3): ";
+}
 
 // Function displayMenu.
-void displayMenu()
+void displayMenu1()
 {
     cout << "\n---MENU---\n";
     cout << "1. Inspect a Passenger flight.\n";
